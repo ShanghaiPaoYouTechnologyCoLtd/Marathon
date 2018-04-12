@@ -482,8 +482,6 @@
 				doresize = true;
 				
 				pp_open = false;
-				
-				delete settings;
 			});
 		};
 	

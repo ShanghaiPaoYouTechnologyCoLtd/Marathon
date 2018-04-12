@@ -118,6 +118,13 @@ section{
     z-index: 99;
 	background-size:contain;
 }
+.action_T_tit p{
+	font-size:25px; 
+	color:#fff;
+	font-weight:bold;
+	text-align:center;
+	line-height:50px;
+}
 .kode_header_1{
 	float: left;
 	width: 100%;
@@ -882,7 +889,7 @@ section{
 	text-transform: uppercase;
 }
 .result_slider .slick-arrow{
-	display: none !important;
+	/* display: none !important; */
 }
 /*
 	  ============================================================
