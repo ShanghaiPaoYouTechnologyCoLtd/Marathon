@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<jboss-web>  
+    <context-root>marathon</context-root>  
+    <!--  
+    <max-active-sessions>20</max-active-sessions>  
+    <passivation-config>  
+        <use-session-passivation>true</use-session-passivation>  
+        <passivation-min-idle-time>60</passivation-min-idle-time>  
+        <passivation-max-idle-time>600</passivation-max-idle-time>  
+    </passivation-config>  
+   -->
+</jboss-web> 
