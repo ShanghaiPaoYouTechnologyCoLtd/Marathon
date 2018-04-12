@@ -46,10 +46,6 @@
   	.pay-way-radio{
   		margin-top: 14px !important;;
   	}
-  	
-  	.result_slide_wrap{
-  	    height:180px;
-  	}
   	.app-screenshot .screenshot-container .phone-mockup {width: 45%;}
 	#kode-responsive-navigation{display: none;}	
 	.kode_header_2 .kode_navigation li a{
@@ -167,9 +163,6 @@
 		height: 40px;
   	}
   	
-  	.result_slide_wrap{
-  	    height:160px;
-  	}
   	.pay-way-radio{
   		margin-top: 14px !important;;
   	}
@@ -383,10 +376,6 @@
     	line-height: 38px;
     	margin-bottom: 10px;
 	}
-	
-	.result_slide_wrap{
-  	    height:140px;
-  	}
 	
 	.kf_query_ranking .search-btn button{
 		width: 100%;
@@ -764,11 +753,7 @@
 	.kf_table2 .input-btn{
 		min-width: auto;
 	}
-
-       .result_slide_wrap{
-  	    height:100px;
-  	}
-	
+	.kode_content_wrap{padding-top: 0;}
 	.kf_table2 .versus {
 	    min-width: 160px;
 	}
@@ -786,6 +771,12 @@
 	}
 	.team_st_table li .versus p{
 		padding: 0;
+	}
+	.action_T_tit{
+		top: -27px;
+	}
+	.kf_result_thumb{
+		padding: 10px;
 	}
   
 }
