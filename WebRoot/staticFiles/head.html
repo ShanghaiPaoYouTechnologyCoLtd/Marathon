@@ -1,0 +1,61 @@
+﻿<header class="kode_header_2" id="kode_header_2">
+		<div class="container">
+			<div class="kode_logo_bar">
+				<div class="logo">
+					<a href="#"> <img src="images/CML1.png" alt="">
+					</a>
+				</div>
+				<div class="kode_navigation">
+					<ul class="nav">
+						<li><a href="index.jsp" target="_parent">首页</a></li>
+						<li><a href="passport/marathonInstructions.jsp" >中国马拉松护照</a></li>
+						<li><a href="pages/olympicGames.jsp">我要上奥运 ▪ 中国马拉松大奖赛</a></li>
+						<li><a href="pages/cmlApp.jsp">中国马拉松赛事联盟APP</a></li>
+						<li><a href="pages/about.jsp">关于我们</a></li>
+						<!-- <li><a href="WebSite/personal.html">注册/登录</a></li> -->
+					</ul>
+					<!--DL Menu Start-->
+					<div id="kode-responsive-navigation" class="dl-menuwrapper">
+						<button class="dl-trigger"></button>
+						<ul class="dl-menu">
+							<li><a href="index.jsp" target="_parent">首页</a></li>
+							<li><a href="passport/marathonInstructions.jsp"
+								target="_parent">中国马拉松护照</a></li>
+							<li><a href="pages/olympicGames.jsp" target="_parent">我要上奥运
+									▪ 中国马拉松大奖赛</a></li>
+							<li><a href="pages/cmlApp.jsp" target="_parent">中国马拉松赛事联盟APP</a></li>
+							<li><a href="pages/about.jspl" target="_parent">关于我们</a></li>
+							<!-- <li><a href="personal.html">注册/登录</a></li> -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+<script>
+	var links = new Array("index.jsp", "passport", "olympicGames", "cmlApp", "about");
+	var scr = location.href;
+	for (i = 0; i < links.length; i++) {
+		if (scr.indexOf(links[i]) >= 0) {
+			$(".nav a:eq(" + i + ")").addClass("current-item");
+			$(".dl-menu a:eq(" + i + ")").addClass("current-item");
+			break;
+		}
+	}
+	
+	window.onload = function() {
+		if (typeof ($.fn.dlmenu) == 'function') {
+			$('#kode-responsive-navigation').each(function() {
+				$(this).find('.dl-submenu').each(function() {
+					if ($(this).siblings('a').attr('href') && $(this).siblings('a').attr('href') != '#') {
+						var parent_nav = $('<li class="menu-item kode-parent-menu"></li>');
+						parent_nav.append($(this).siblings('a').clone());
+
+						$(this).prepend(parent_nav);
+					}
+				});
+				$(this).dlmenu();
+			});
+		}
+	}
+</script> 

@@ -1,79 +1,44 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+  <base href="<%=basePath%>" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <base href="../" />
     <title>中国马拉松赛事联盟APP</title>
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <!-- DL Menu CSS -->
-    <link href="../js/dl-menu/component.css" rel="stylesheet">
-    <!-- Slick Slider CSS -->
-    <link href="../css/slick.css" rel="stylesheet">
-    <link href="../css/slick-theme.css" rel="stylesheet">
-    <!-- ICONS CSS -->
-    <link href="../css/font-awesome.css" rel="stylesheet">
-	<link href="../css/svg-icons.css" rel="stylesheet">
-    <!-- Pretty Photo CSS -->
-    <link href="../css/prettyPhoto.css" rel="stylesheet">
-    <!-- Typography CSS -->
-    <link href="../css/typography.css" rel="stylesheet">
-    <!-- Widget CSS -->
-    <link href="../css/widget.css" rel="stylesheet">
-    <!-- Shortcodes CSS -->
-    <link href="../css/shortcodes.css" rel="stylesheet">
-	<!-- Custom Main StyleSheet CSS -->
-
-    <link href="css/mainstyle.css" rel="stylesheet">
+    <%@ include file="../staticFiles/globalCSS.html"%>
     <link href="css/appCommon.css" rel="stylesheet">
-
-    <link href="../css/mainstyle.css" rel="stylesheet">
-    <link href="../css/appCommon.css" rel="stylesheet">
-
-	<!-- Color CSS -->
-    <link href="../css/color.css" rel="stylesheet">
-    <!-- Responsive CSS -->
-    <link href="../css/responsive.css" rel="stylesheet">
-    
+    <script src="js/jquery.js"></script>
   </head>
 
   <body>
 
-<!--kode Wrapper Start-->  
 <div class="kode_wrapper"> 
-	<!--Header 2 Wrap Start-->
-   <iframe src="head.html" width="100%" height="113px" frameborder="0" scrolling="no"></iframe>
-        
-    <!--begin nine_section_wrapper -->
+<%@ include file="../staticFiles/head.html"%>
     <section id="showcase" class="nine_section_wrapper">        
-        <!--begin nine_section -->
         <div class="nine_section">   
-            <!--begin row -->
             <div class="row">
-                <!--begin twelvecol -->
                 <div class="twelvecol">
-                
-                    <!--begin sixcol -->
                     <div class="sixcol padding_top left_fade">
-                        
-                        <!--begin features_title_wrapper -->
                         <div class="features_title_wrapper">
                             <span class="features_number">01</span>
                             <span class="features_separator">/</span>
                             <span class="features_title">中国马拉松护照<br>购买/补办/更换</span>
                         </div>
-                        <!--end features_title_wrapper -->
-                        
                         <p>中国马拉松护照一键购买/更换/补办<br>购买成功后，您可在APP查看自己的电子护照，持有中国马拉松护照的跑者可在赛道终点盖印完赛章，且在您的电子护照内页可查看电子完赛章，每完成一场马拉松赛事，您将获得相应的积分，积分累计到达指定等级将可获得相应的积分奖励。</p>
                         
                         <!--begin quotes -->
                         <div>
                             <i class="fa fa-quote-left fa-3x pull-left grey"></i>
-                            <span><img src="../extra-images/download_app.png" style="width:35%"></span>
-                            <!--begin sixcol -->
+                            <span><img src="extra-images/download_app.png" style="width:35%"></span>
                             <div class="sixcol" style="float:right;">
                                 <ul>
                                     <li><i class="fa fa-check grey"></i> &nbsp; 网上购买中国马拉松护照还可获得随机小礼品.</li>
@@ -82,67 +47,32 @@
                                     <li><i class="fa fa-check grey"></i> &nbsp; 扫描左侧二维码即可下载中国马拉松赛事联盟APP.</li>
                                 </ul>                         
                             </div>
-                            <!--end sixcol -->
                         </div>
-                        <!--end quotes --> 
                         
                     </div>
-                    <!--end sixcol -->
-                    
-                    <!--begin sixcol -->
                     <div class="sixcol last right_fade">
                         
-                        <img src="../extra-images/shape-3.png" alt="picture">
+                        <img src="extra-images/shape-3.png" alt="picture">
                                                                
                     </div>
-                    <!--end sixcol -->
-                     
                 </div>
-                <!--end twelvecol -->
-                
             </div>
-            <!--end row -->
-            
         </div>
-        <!--end nine_section -->
-        
     </section>
-    <!--end nine_section -->
-
-    <!--begin nine_section2_wrapper -->
     <section class="nine_section2_wrapper">
-        
-        <!--begin nine_section2 -->
         <div class="nine_section2">
-          
-            <!--begin row -->
             <div class="row">
-                
-                <!--begin twelvecol -->
                 <div class="twelvecol">
-                
-                    <!--begin sixcol -->
                     <div class="sixcol left_fade">
-                        
-                        <img src="../extra-images/shape-2.png" alt="picture" style="width:90%">
-                                                               
+                        <img src="extra-images/shape-2.png" alt="picture" style="width:90%">                                
                     </div>
-                    <!--end sixcol -->
-                    
-                    <!--begin sixcol -->
                     <div class="sixcol last padding_top right_fade">
-
-                        <!--begin features_title_wrapper -->
                         <div class="features_title_wrapper">
                             <span class="features_number">02</span>
                             <span class="features_separator">/</span>
                             <span class="features_title">赛事资讯<br>权威专业</span>
                         </div>
-                        <!--end features_title_wrapper -->
-                        
                         <p>赛事资讯早知道，最热门的跑马话题，最近的比赛信息，最贴心的比赛贴士，最完善的跑马周边游攻略，尽在中国马拉松赛事联盟APP. </p>
-                        
-                        <!--begin showcase_item -->
                         <div class="showcase_item">
                                 
                             <span class="dropcaps_showcase"><i class="glyphicon glyphicon-list-alt"></i></span>
@@ -153,9 +83,6 @@
                             </div>
                             
                         </div>
-                        <!--end showcase_item -->
-                        
-                        <!--begin showcase_item -->
                         <div class="showcase_item">
                                 
                             <span class="dropcaps_showcase"><i class="fa fa-camera-retro"></i></span>
@@ -166,50 +93,24 @@
                             </div>
                             
                         </div>
-                        <!--end showcase_item -->
-                        
                     </div>
-                    <!--end sixcol -->
-                     
                 </div>
-                <!--end twelvecol -->
-                
             </div>
-            <!--end row -->
-            
         </div>
-        <!--end nine_section2 -->
-        
     </section>
-    <!--end nine_section2_wrapper -->
-
-    <!--begin nine_section_wrapper -->
     <section id="showcase" class="nine_section_wrapper">        
-        <!--begin nine_section -->
         <div class="nine_section">   
-            <!--begin row -->
             <div class="row">
-                <!--begin twelvecol -->
                 <div class="twelvecol">
-                
-                    <!--begin sixcol -->
                     <div class="sixcol padding_top left_fade">
-                        
-                        <!--begin features_title_wrapper -->
                         <div class="features_title_wrapper">
                             <span class="features_number">03</span>
                             <span class="features_separator">/</span>
                             <span class="features_title">跑马成绩<br>记录跑马人生</span>
                         </div>
-                        <!--end features_title_wrapper -->
-                        
                         <p>最权威的马拉松赛事成绩<br>马拉松战绩记录了您的进步，您的汗水，您的努力，每一块奖牌都是由一步步踏实的步伐汇聚而成。而我们，则是为记录您每一场跑马挥洒下的汗水与荣耀而生。</p>
-                        
-                        <!--begin quotes -->
                         <div>
                             <i class="fa fa-quote-left fa-3x pull-left grey"></i>
-                            <!-- <span><img src="extra-images/download_app.png" style="width:35%"></span> -->
-                            <!--begin sixcol -->
                             <div class="sixcol" style="float:left;width:80%;">
                                 <ul>
                                     <li><i class="fa fa-check grey"></i> &nbsp; 马拉松是一项有魅力的运动。它包含了一切——戏剧成分，竞争，友情，英雄主义。不是每个跑者成为奥运冠军的梦想都可以成真，但是每一个人都可以梦想去完成一次马拉松比赛。</li>
@@ -217,54 +118,27 @@
                                     <li><i class="fa fa-check grey"></i> &nbsp; 当你站在起跑线上，将自己展现在陌生人面前时，你会感受并铭记那令你自己无比兴奋的瞬间。.</li>
                                 </ul>                         
                             </div>
-                            <!--end sixcol -->
                         </div>
-                        <!--end quotes --> 
                         
                     </div>
-                    <!--end sixcol -->
-                    
-                    <!--begin sixcol -->
                     <div class="sixcol last right_fade">
                         
-                        <img src="../extra-images/shape-3.png" alt="picture">
+                        <img src="extra-images/shape-3.png" alt="picture">
                                                                
                     </div>
-                    <!--end sixcol -->
                      
                 </div>
-                <!--end twelvecol -->
                 
             </div>
-            <!--end row -->
             
         </div>
-        <!--end nine_section -->
         
     </section>
-    <!--end nine_section -->
-
-    <!--begin info_white_wrapper -->
     <div id="services" class="info_white_wrapper">
         
-        <!--begin info_white -->
-  <!--       <div class="info_white bounce_fade">
-            <h3>Why do you choose Fourteen?</h3>
-            <h4>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,<br>by injected humour, or new modern randomised words which don't look even slightly believable.</h4>
-        </div> -->
-        <!--end info_white -->
-            
+ 
     </div>
-    <!--end info_white_wrapper -->
-
-    <!--Copy Right Wrap Start-->
-    <div class="copy_right3">
-        <div class="container">
-            <p>主办单位：中国田径协会    运营机构：上海跑友信息科技有限公司    网站支持：上海跑友信息科技有限公司</p>
-            <p>咨询电话：021-50897802-601    Email：business@caa-paoyou.com</p>
-            <p>Copyright &copy; 2017.中国马拉松赛事联盟.  沪ICP备17004492号-1</p>
-        </div>
-    </div>
+	<%@ include file="../staticFiles/foot.html"%>
 </div>
   </body>
 </html>

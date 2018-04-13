@@ -1,35 +1,20 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+<base href="<%=basePath%>" />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>中国马拉松护照</title>
-<!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.css" rel="stylesheet">
-<!-- DL Menu CSS -->
-<link href="../js/dl-menu/component.css" rel="stylesheet">
-<!-- Slick Slider CSS -->
-<link href="../css/slick.css" rel="stylesheet">
-<link href="../css/slick-theme.css" rel="stylesheet">
-<!-- ICONS CSS -->
-<link href="../css/font-awesome.css" rel="stylesheet">
-<link href="../css/svg-icons.css" rel="stylesheet">
-<!-- Pretty Photo CSS -->
-<link href="../css/prettyPhoto.css" rel="stylesheet">
-<!-- Typography CSS -->
-<link href="../css/typography.css" rel="stylesheet">
-<!-- Widget CSS -->
-<link href="../css/widget.css" rel="stylesheet">
-<!-- Shortcodes CSS -->
-<link href="../css/shortcodes.css" rel="stylesheet">
-<!-- Custom Main StyleSheet CSS -->
-<link href="../css/mainstyle.css" rel="stylesheet">
-<!-- Color CSS -->
-<link href="../css/color.css" rel="stylesheet">
-<!-- Responsive CSS -->
-<link href="../css/responsive.css" rel="stylesheet">
+<%@ include file="../staticFiles/globalCSS.html"%>
+<script src="js/jquery.js"></script>
 <style>
 select {
     width: 24%;
@@ -55,12 +40,8 @@ select {
 </head>
 
 <body>
-
-	<!--kode Wrapper Start-->
 	<div class="kode_wrapper">
-		<!--Header 2 Wrap Start-->
-		   <iframe src="../head.html" width="100%" height="113px" frameborder="0" scrolling="no"></iframe>
-		<!--Header 2 Wrap End-->
+	<%@ include file="../staticFiles/head.html"%>
 		<div class="kode_content_wrap section">
 			<div class="kf_shoppage">
 				<div class="container">
@@ -72,28 +53,19 @@ select {
 								<div class="kf_h5">
 									<h5>中国马拉松护照</h5>
 								</div>
-								<!--Heading 5 End-->
 								<div class="kf_border-2">
-									<ul class="widget_ul">
-										<li><a href="marathonInstructions.html">简介</a></li>
-										<li><a class="current_intro" href="marathonPassport.html">护照购买</a></li>
-										<li><a href="marathonQA.html">常见问题</a></li>
-									</ul>
+									<%@ include file="../staticFiles/passportMenu.html"%>
 								</div>
 								<div style="clear:both;"></div>
 							</div>
-							<!--Widget category End-->
 						</aside>
 						<div class="col-md-9 kf_shop_wrap">
-							<!-- possport sell start -->
 							<div style="display:block;">
 								<div class="kf_overview kf_overview_roster">
-									<!--Heading 1 Start-->
 									<h6 class="kf_hd1 margin_0">
 										<span>中国马拉松护照-购买</span> <a class="prv_btn"
 											href="runnerList.html">批量购买（10人起购）&raquo;</a>
 									</h6>
-									<!--Heading 1 End-->
 								</div>
 								<div id="passport-sell">
 									<form class="form-horizontal">
@@ -180,16 +152,12 @@ select {
 									</form>
 								</div>
 							</div>
-							<!-- possport sell end -->
-
-							<!-- possport QA start -->
 							<div style="display:none;">
 								<div class="kf_overview kf_overview_roster">
 									<!--Heading 1 Start-->
 									<h6 class="kf_hd1 margin_0">
 										<span>中国马拉松护照-问答中心</span>
 									</h6>
-									<!--Heading 1 End-->
 								</div>
 								<div id="passport-QA">
 									<p>中国马拉松护照是巴拉巴拉啊啊啊</p>
@@ -197,36 +165,16 @@ select {
 									<p>中国马拉松护照是巴拉巴拉啊啊啊</p>
 								</div>
 							</div>
-							<!-- possport QA end -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--Main Content Wrap End-->
-		<!--Copy Right Wrap Start-->
-		<div class="copy_right3">
-			<div class="container">
-				<p>主办单位：中国田径协会 运营机构：上海跑友信息科技有限公司 网站支持：上海跑友信息科技有限公司</p>
-				<p>咨询电话：021-50897802-601 Email：business@caa-paoyou.com</p>
-				<p>Copyright &copy; 2017.中国马拉松赛事联盟. 沪ICP备17004492号-1</p>
-			</div>
-		</div>
-		<!--Copy Right Wrap End-->
+	<%@ include file="../staticFiles/foot.html"%>
 	</div>
-	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/slick.min.js"></script>
-	<script src="../js/downCount.js"></script>
-	<script src="../js/waypoints-min.js"></script>
-	<script src="../js/dl-menu/modernizr.custom.js"></script>
-	<script src="../js/dl-menu/jquery.dlmenu.js"></script>
-	<script src="../js/jprogress.js" type="text/javascript"></script>
-	<script src="../js/jquery.prettyPhoto.js"></script>
-	<script src="../js/custom.js"></script>
-	<script src="../js/iconfont.js"></script>
-	<script src="../js/distpicker/distpicker.data.min.js"></script>
-	<script src="../js/distpicker/distpicker.js"></script>
+	<%@ include file="../staticFiles/globalScript.html"%>
+	<script src="js/distpicker/distpicker.data.min.js"></script>
+	<script src="js/distpicker/distpicker.min.js"></script>
 </body>
 </html>
 

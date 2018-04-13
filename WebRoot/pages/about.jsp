@@ -1,45 +1,25 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<base href="<%=basePath%>" />
     <title>中国马拉松赛事联盟-关于我们</title>
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <!-- DL Menu CSS -->
-    <link href="../js/dl-menu/component.css" rel="stylesheet">
-    <!-- Slick Slider CSS -->
-    <link href="../css/slick.css" rel="stylesheet">
-    <link href="../css/slick-theme.css" rel="stylesheet">
-    <!-- ICONS CSS -->
-    <link href="../css/font-awesome.css" rel="stylesheet">
-    <link href="../css/svg-icons.css" rel="stylesheet">
-    <!-- Pretty Photo CSS -->
-    <link href="../css/prettyPhoto.css" rel="stylesheet">
-    <!-- Typography CSS -->
-    <link href="../css/typography.css" rel="stylesheet">
-    <!-- Widget CSS -->
-    <link href="../css/widget.css" rel="stylesheet">
-    <!-- Shortcodes CSS -->
-    <link href="../css/shortcodes.css" rel="stylesheet">
-    <!-- Custom Main StyleSheet CSS -->
-    <link href="../css/mainstyle.css" rel="stylesheet">
-    <!-- Color CSS -->
-    <link href="../css/color.css" rel="stylesheet">
-    <!-- Responsive CSS -->
-    <link href="../css/responsive.css" rel="stylesheet">
- 
+     <%@ include file="../staticFiles/globalCSS.html"%>
+         <script src="js/jquery.js"></script>
   </head>
 
   <body>
 
-<!--kode Wrapper Start-->  
 <div class="kode_wrapper"> 
-    <!--Header 2 Wrap Start-->
-       <iframe src="../head.html" width="100%" height="113px" frameborder="0" scrolling="no"></iframe>
-    <!--Header 2 Wrap End-->
+<%@ include file="../staticFiles/head.html"%>
     <div class="kode_content_wrap">
         <section>
             <div class="container">
@@ -54,8 +34,8 @@
                             <!--Heading 1 END-->
                             <p>中国马拉松赛事联盟（Chinese Marathon League,简称CML）是中国田径协会发起，由符合条件的全国各马拉松及相关运动赛事联合组成。旨在适应全国迅猛发展的马拉松及相关运动赛事数量的快速增长，吸引高水平赛事聚集，促进赛事间以及与国际同行间的培训、交流和协作，整合资源，共同开发市场，宣传、提升赛事的品牌形象，推动马拉松以及相关运动赛事健康发展。</p>
                             <div class="logo-area">
-                                <img src="../extra-images/CAA.png" alt="田协logo">
-                                <img src="../extra-images/CML.png" alt="中国马拉松赛事联盟logos">
+                                <img src="extra-images/CAA.png" alt="田协logo">
+                                <img src="extra-images/CML.png" alt="中国马拉松赛事联盟logos">
                             </div>
                         </div>
                         <!--Featured Slider End-->
@@ -92,7 +72,7 @@
                             </h6>
                             <!--Heading 1 END-->
                             <div class="col-row">
-                                <img src="../extra-images/download_app.png" class="center-block img-rounded" style="width: 60%;">
+                                <img src="extra-images/download_app.png" class="center-block img-rounded" style="width: 60%;">
                             </div>
                         </div>
                         <div class="widget widget_ranking">
@@ -102,7 +82,7 @@
                             </h6>
                             <!--Heading 1 END-->
                             <div class="col-row">
-                                <img src="../extra-images/wechat_code.jpg" class="center-block img-rounded" style="width: 60%;">
+                                <img src="extra-images/wechat_code.jpg" class="center-block img-rounded" style="width: 60%;">
                             </div>
                         </div>
                         <!--Widget Add 3 End-->
@@ -111,55 +91,8 @@
             </div>
         </section>
     </div>
-    <!--Main Content Wrap End-->
-    <!--Footer Wrap Start-->
-    <footer class="kode_footer_2">
-        <div class="container">
-            <span class="go-up">
-                <i class="fa fa-angle-up"></i>
-            </span>
-        </div>
-    </footer>
-    <!--Footer Wrap End-->
-    <!--Copy Right Wrap Start-->
-    <div class="copy_right3">
-        <div class="container">
-            <p>主办单位：中国田径协会    运营机构：上海跑友信息科技有限公司    网站支持：上海跑友信息科技有限公司</p>
-            <p>咨询电话：021-50897802-601    Email：business@caa-paoyou.com</p>
-            <p>Copyright &copy; 2017.中国马拉松赛事联盟.  沪ICP备17004492号-1</p>
-        </div>
-    </div>
-    <!--Copy Right Wrap End-->
-    <!--Register Pop Up Wrap Start-->
-    <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="search">
-        <div class="modal-dialog" role="document">
-            <div class="input_dec">
-                <input type="text" placeholder="search......">
-                <button class="btn_icon"><i class="fa fa-search"></i></button>
-            </div>
-        </div>
-    </div>        
-    <!--Register Pop Up Wrap End-->
+	<%@ include file="../staticFiles/foot.html"%>
 </div>
-<!--kode Wrapper End-->
-    <!--Jquery Library-->
-    <script src="../js/jquery.js"></script>
-    <!--Bootstrap core JavaScript-->
-    <script src="../js/bootstrap.js"></script>
-    <!--Slick Slider JavaScript-->
-    <script src="../js/slick.min.js"></script>
-    <!--Number Count (Waypoints) JavaScript-->
-    <script src="../js/downCount.js"></script>
-    <script src="../js/waypoints-min.js"></script>
-    <!--Dl Menu Script-->
-    <script src="../js/dl-menu/modernizr.custom.js"></script>
-    <script src="../js/dl-menu/jquery.dlmenu.js"></script>
-    <!--Progress bar JavaScript-->
-    <script src="../js/jprogress.js" type="text/javascript"></script>
-    <!--Pretty Photo JavaScript-->
-    <script src="../js/jquery.prettyPhoto.js"></script>
-    <!--Custom JavaScript-->
-    <script src="../js/custom.js"></script>
 
   </body>
 </html>

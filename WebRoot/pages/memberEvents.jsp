@@ -1,86 +1,25 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<base href="<%=basePath%>" />
     <title>我要上奥运 ▪ 中国马拉松大奖赛</title>
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <!-- DL Menu CSS -->
-    <link href="../js/dl-menu/component.css" rel="stylesheet">
-    <!-- Slick Slider CSS -->
-    <link href="../css/slick.css" rel="stylesheet">
-    <link href="../css/slick-theme.css" rel="stylesheet">
-    <!-- ICONS CSS -->
-    <link href="../css/font-awesome.css" rel="stylesheet">
-    <link href="../css/svg-icons.css" rel="stylesheet">
-    <!-- Pretty Photo CSS -->
-    <link href="../css/prettyPhoto.css" rel="stylesheet">
-    <!-- Typography CSS -->
-    <link href="../css/typography.css" rel="stylesheet">
-    <!-- Widget CSS -->
-    <link href="../css/widget.css" rel="stylesheet">
-    <!-- Shortcodes CSS -->
-    <link href="../css/shortcodes.css" rel="stylesheet">
-    <!-- Custom Main StyleSheet CSS -->
-    <link href="../css/mainstyle.css" rel="stylesheet">
-    <!-- Color CSS -->
-    <link href="../css/color.css" rel="stylesheet">
-    <!-- Responsive CSS -->
-    <link href="../css/responsive.css" rel="stylesheet">
- 
+    <%@ include file="../staticFiles/globalCSS.html"%>
+        <script src="js/jquery.js"></script>
   </head>
 
   <body>
 
-
-<!--memberMatch Wrapper Start-->  
 <div class="kode_wrapper"> 
-    <!--Header 2 Wrap Start-->
-    <header class="kode_header_2">
-        <!--Header 2 Top Bar End-->
-        <div class="container">
-            <!--Logo Bar Start-->
-            <div class="kode_logo_bar">
-                <!--Logo Start-->
-                <div class="logo">
-                    <a href="#">
-                        <img src="../images/CML1.png" alt="">
-                    </a>
-                </div>
-                <!--Logo Start-->
-                <!--Navigation Wrap Start-->
-                <div class="kode_navigation">
-                    <!--Navigation Start-->
-                    <ul class="nav">
-                        <li><a href="../index.html">首页</a></li>
-                        <li><a href="../passport/marathonInstructions.html">中国马拉松护照</a></li>
-                        <li><a class="current-item" href="../webSite/olympicGames.html">我要上奥运 ▪ 中国马拉松大奖赛</a></li>
-                        <li><a href="../webSite/CMLApp.html">中国马拉松赛事联盟APP</a></li>
-                        <li><a href="../webSite/about.html">关于我们</a></li>
-                        <!-- <li><a href="../personal.html">注册/登录</a></li> -->
-                    </ul>
-                    <!--DL Menu Start-->
-                    <div id="kode-responsive-navigation" class="dl-menuwrapper">
-                        <button class="dl-trigger"></button>
-                        <ul class="dl-menu">
-                            <li><a href="../index.html">首页</a></li>
-                            <li><a href="../passport/marathonInstructions.html">中国马拉松护照</a></li>
-                            <li><a class="current-item" href="../webSite/olympicGames.html">我要上奥运 ▪ 中国马拉松大奖赛</a></li>
-                            <li><a href="../webSite/CMLApp.html">中国马拉松赛事联盟APP</a></li>
-                            <li><a href="../webSite/about.html">关于我们</a></li>
-                            <!-- <li><a href="../personal.html">注册/登录</a></li> -->
-                        </ul>
-                    </div>
-                </div>
-                <!--Navigation Wrap End-->
-            </div>
-            <!--Logo Bar End-->
-        </div>
-    </header>
-    <!--Header 2 Wrap End-->
+<%@ include file="../staticFiles/head.html"%>
     <div class="kode_content_wrap">
         <section class="kf_overview_page">
             <div class="container">
@@ -94,7 +33,7 @@
                                         <!--Featured 3 thumb Start-->
                                         <div class="kf_featured_thumb">
                                             <figure>
-                                                <img src="../extra-images/feature_3.jpg" alt="">
+                                                <img src="extra-images/feature_3.jpg" alt="">
                                             </figure>
                                             <div class="text_wrper">
                                                 <div class="text">
@@ -112,7 +51,7 @@
                                         <!--Featured 3 thumb Start-->
                                         <div class="kf_featured_thumb">
                                             <figure>
-                                                <img src="../extra-images/feature_3.jpg" alt="">
+                                                <img src="extra-images/feature_3.jpg" alt="">
                                             </figure>
                                             <div class="text_wrper">
                                                 <div class="text">
@@ -130,7 +69,7 @@
                                         <!--Featured 3 thumb Start-->
                                         <div class="kf_featured_thumb">
                                             <figure>
-                                                <img src="../extra-images/feature_3.jpg" alt="">
+                                                <img src="extra-images/feature_3.jpg" alt="">
                                             </figure>
                                             <div class="text_wrper">
                                                 <div class="text">
@@ -148,7 +87,7 @@
                                         <!--Featured 3 thumb Start-->
                                         <div class="kf_featured_thumb">
                                             <figure>
-                                                <img src="../extra-images/feature_3.jpg" alt="">
+                                                <img src="extra-images/feature_3.jpg" alt="">
                                             </figure>
                                             <div class="text_wrper">
                                                 <div class="text">
@@ -388,59 +327,8 @@
             </div>
         </section>
     </div>
-    <!--Main Content Wrap End-->
-    <!--Footer Wrap Start-->
-    <footer class="kode_footer_2">
-        <div class="container">
-            <span class="go-up">
-                <i class="fa fa-angle-up"></i>
-            </span>
-            <div class="row">
-                <div class="col-md-3">
-                </div>
-                <div class="col-md-3">
-                    
-                </div>
-                <div class="col-md-3">
-                    
-                </div>
-                <div class="col-md-3">
-                    
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!--Footer Wrap End-->
-    <!--Copy Right Wrap Start-->
-    <div class="copy_right3">
-        <div class="container">
-            <p>主办单位：中国田径协会    运营机构：上海跑友信息科技有限公司    网站支持：上海跑友信息科技有限公司</p>
-            <p>咨询电话：021-50897802-601    Email：business@caa-paoyou.com</p>
-            <p>Copyright &copy; 2017.中国马拉松赛事联盟.  沪ICP备17004492号-1</p>
-        </div>
-    </div>
-    <!--Copy Right Wrap End-->
-
+	<%@ include file="../staticFiles/foot.html"%>
 </div>
-<!--memberMatch Wrapper End-->
-    <!--Jquery Library-->
-    <script src="../js/jquery.js"></script>
-    <!--Bootstrap core JavaScript-->
-    <script src="../js/bootstrap.js"></script>
-    <!--Slick Slider JavaScript-->
-    <script src="../js/slick.min.js"></script>
-    <!--Number Count (Waypoints) JavaScript-->
-    <script src="../js/downCount.js"></script>
-    <script src="../js/waypoints-min.js"></script>
-    <!--Dl Menu Script-->
-    <script src="../js/dl-menu/modernizr.custom.js"></script>
-    <script src="../js/dl-menu/jquery.dlmenu.js"></script>
-    <!--Progress bar JavaScript-->
-    <script src="../js/jprogress.js" type="text/javascript"></script>
-    <!--Pretty Photo JavaScript-->
-    <script src="../js/jquery.prettyPhoto.js"></script>
-    <!--Custom JavaScript-->
-    <script src="../js/custom.js"></script>
 
   </body>
 </html>
