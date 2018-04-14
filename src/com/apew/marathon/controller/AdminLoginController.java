@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alipay.util.ProUtil;
 import com.alipay.util.StringHelper;
 
+import net.sf.json.JSONObject;
+
 
 @Controller
 @RequestMapping(value = "/back")
@@ -58,5 +60,35 @@ public class AdminLoginController extends BaseController {
 		return returnapiSuccess("登陆成功!", "");
 	}
 	
+	/**
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/login2",produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String login2(HttpServletRequest request,HttpServletResponse response){
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("status", "0");	
+		
+		String username = request.getParameter("username");
+		if(StringHelper.isEmptyStr(username))
+			return jsonObj.toString();
+		
+		String password = request.getParameter("password");
+		if(StringHelper.isEmptyStr(password))
+			return jsonObj.toString();
+
+		
+		if(!username.equals("admin") || !password.equals("paoyou2018")){
+		 	return jsonObj.toString();
+		}
+		
+		request.getSession().setAttribute("user","1");
+		
+		jsonObj.put("status", "1");
+		
+		return jsonObj.toString();
+		
+	}
 
 }

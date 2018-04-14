@@ -1,5 +1,5 @@
 function loginFn(){
-	var url='back/login.do';
+	var url='back/login2.do';
 	var $username=$('#username');
 	var $password=$('#password');
 	var username=$username.val();
@@ -17,13 +17,29 @@ function loginFn(){
 	};
 	async(url,params,function(res){
 		var status = res.status;
-		if("ok" == status){
+		if(1 == status){
 			//登陆成功!
-			window.location.href="/Marathon/back/order.do";
+			window.location.href="system/systemIndex.jsp";
 		}else{
-			showRequestMessage('notice',res.message);
+			showRequestMessage('notice',"登录失败！");
 		}
 		
-		
 	},function(){},"POST");
+}
+
+window.onkeydown=function(e){
+	var keynum
+
+	if(window.event) // IE
+	  {
+	  keynum = e.keyCode
+	  }
+	else if(e.which) // Netscape/Firefox/Opera
+	  {
+	  keynum = e.which
+	  }
+	
+	if(e==13){
+		loginFn();
+	}
 }

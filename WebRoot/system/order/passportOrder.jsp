@@ -52,8 +52,8 @@
 <script src="js/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 	<script>
-	
-	layui.use('laydate', function(){
+	window.onload=function(){
+		layui.use('laydate', function(){
 	   laydate = layui.laydate;
 	   var start = {
 			       elem: '#startdate', //id为star的输入框
@@ -82,6 +82,8 @@
 	  //form.render();
 	});
 	
+
+	var tbHeight=$(".page-content").height()-200;
 	
 	layui.use('table', function(){
 	  var table = layui.table;
@@ -177,7 +179,7 @@
 		]
 	    ,id: 'testReload'
 	    ,page: true
-	    ,height: 550,
+	    ,height: tbHeight,
 	    limit:20
 	  });
 	  
@@ -206,6 +208,7 @@
 	    active[type] ? active[type].call(this) : '';
 	  });
 	});
+	}
 	</script>
 	
 	<script type="text/javascript">

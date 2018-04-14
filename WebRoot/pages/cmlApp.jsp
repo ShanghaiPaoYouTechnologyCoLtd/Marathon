@@ -348,5 +348,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     </body>
 <%@ include file="../staticFiles/globalScript.html"%>
+<script src="js/iconfont.js"></script>
 </html>
 

@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>中国马拉松护照</title>
 <%@ include file="../staticFiles/globalCSS.html"%>
 <script src="js/jquery.js"></script>
+<script src="js/iconfont.js"></script>
 <style>
 select {
     width: 24%;
@@ -175,6 +176,7 @@ select {
 	<%@ include file="../staticFiles/globalScript.html"%>
 	<script src="js/distpicker/distpicker.data.min.js"></script>
 	<script src="js/distpicker/distpicker.min.js"></script>
+	<script src="js/iconfont.js"></script>
 </body>
 </html>
 

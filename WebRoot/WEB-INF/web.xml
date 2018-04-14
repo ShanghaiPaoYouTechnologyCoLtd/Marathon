@@ -37,18 +37,15 @@
     <servlet-name>springmvc</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <display-name>upload</display-name>
     <servlet-name>upload</servlet-name>
     <servlet-class>com.apew.marathon.servlet.UploadServlet</servlet-class>
   </servlet>
-   
   <servlet-mapping>
     <servlet-name>upload</servlet-name>
     <url-pattern>/servlet/UploadServlet</url-pattern>
   </servlet-mapping>
-
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
