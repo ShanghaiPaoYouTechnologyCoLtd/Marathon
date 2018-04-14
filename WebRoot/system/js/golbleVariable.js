@@ -1,0 +1,1 @@
+﻿var gv_copyright = '2016 &copy; 上海恒生聚源数据服务有限公司';

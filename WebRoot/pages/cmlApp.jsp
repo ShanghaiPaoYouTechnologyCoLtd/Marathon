@@ -13,8 +13,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>中国马拉松赛事联盟APP</title>
-      <%@ include file="../staticFiles/globalCSS.html"%>
-      <script src="js/jquery.js"></script>
+     <%@ include file="../staticFiles/globalCSS.html"%>
+     <link href="css/appCommon.css" rel="stylesheet">
+     <script src="js/jquery.js"></script>
   </head>
 
   <body>
@@ -346,6 +347,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 
     </body>
-    <script src="js/custom.js"></script>
+<%@ include file="../staticFiles/globalScript.html"%>
 </html>
 

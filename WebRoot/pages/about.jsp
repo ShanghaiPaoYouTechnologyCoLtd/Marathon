@@ -11,7 +11,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<base href="<%=basePath%>" />
     <title>中国马拉松赛事联盟-关于我们</title>
      <%@ include file="../staticFiles/globalCSS.html"%>
          <script src="js/jquery.js"></script>
