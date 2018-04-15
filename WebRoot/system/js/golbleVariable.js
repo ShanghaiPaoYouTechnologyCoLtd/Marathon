@@ -1,1 +1,1 @@
-﻿var gv_copyright = '2016 &copy; 上海恒生聚源数据服务有限公司';
+﻿var gv_copyright = '2017 &copy; 上海跑友信息科技有限公司';

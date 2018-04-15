@@ -4,7 +4,11 @@
 <metadata></metadata>
 <defs>
 <font id="glyphiconsregular" horiz-adv-x="2400" >
-<font-face units-per-em="2400" ascent="1920" descent="-480" />
+   <font-face units-per-em="2400" ascent="1920" descent="-480">
+            <font-face-src>
+                <font-face-name name="Glyphicons Halflings"/>
+            </font-face-src>
+        </font-face>
 <missing-glyph horiz-adv-x="500" />
 <glyph />
 <glyph />

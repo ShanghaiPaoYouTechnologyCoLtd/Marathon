@@ -14,6 +14,11 @@
 <title>中国马拉松赛事联盟</title>
 <%@ include file="staticFiles/globalCSS.html"%>
 <script src="js/jquery.js"></script>
+<style>
+.carousel-inner {
+	cursor: pointer;
+}
+</style>
 </head>
 
 <body>
@@ -25,29 +30,32 @@
 					<!--Banner Thumb START-->
 					<div id="carousel-example-generic" class="carousel slide"
 						data-ride="carousel">
-						<!-- Indicators -->
+						<%
+							String diskPath = application.getRealPath("");
+							String[] bigBanners = com.apew.marathon.controller.FileReader.GetAllBigBanner(diskPath);
+						%>
 						<ol class="carousel-indicators">
-							<li data-target="#carousel-example-generic" data-slide-to="0"
-								class="active"></li>
-							<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+							<%
+								boolean active = false;
+								for (int i = 0; i < bigBanners.length; i++) {
+									out.print("<li data-target=''#carousel-example-generic' style='margin-right:5px;' data-slide-to='" + i
+											+ "'  " + (active ? "" : "class='active'") + "></li>");
+									active = true;
+								}
+							%>
 						</ol>
 
-						<!-- Wrapper for slides -->
 						<div class="carousel-inner" role="listbox">
-							<div class="item active">
-								<div class="thumb">
-									<img src="extra-images/banner/index_big_1.jpg" height="100%"
-										alt="广告图片" />
-								</div>
-							</div>
-							<div class="item">
-								<div class="thumb">
-									<img src="extra-images/banner/index_big_2.jpg" height="100%"
-										alt="广告图片" />
-								</div>
-							</div>
+							<%
+								active = false;
+								for (String f : bigBanners) {
+									String pathName = "upload/images/bigBanner/" + f;
+									out.print("<div class='item " + (active ? "" : "active") + "'><div class='thumb'><img src='" + pathName
+											+ "' height='100%'/></div></div>");
+									active = true;
+								}
+							%>
 						</div>
-						<!-- Controls -->
 						<a class="left carousel-control" href="#carousel-example-generic"
 							role="button" data-slide="prev"> <span
 							class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -67,20 +75,20 @@
 
 
 			<div class="result_slide_wrap" id="result_slide_wrap">
-	<script type='text/javascript'>
-			if (window.screen.availWidth > 480) {
-				var headH = document.getElementById("kode_header_2").offsetHeight; // $("#kode_header_2").height();
-				var flagH = document.getElementById("result_slide_wrap").offsetHeight; // $("#result_slide_wrap").height();
-				document.getElementById("kode_banner_1").style.height = (document.documentElement.clientHeight - flagH - headH) + "px";
-			} else {
-				document.getElementById("kode_banner_1").style.height = "160px";
-				$(".action_T_tit").width("200px");
-				$(".action_T_tit p").css({
-					"font-size" : "10px",
-					"line-height" : "30px"
-				});
-			}
-	</script>
+				<script type='text/javascript'>
+					if (window.screen.availWidth > 480) {
+						var headH = document.getElementById("kode_header_2").offsetHeight; // $("#kode_header_2").height();
+						var flagH = document.getElementById("result_slide_wrap").offsetHeight; // $("#result_slide_wrap").height();
+						document.getElementById("kode_banner_1").style.height = (document.documentElement.clientHeight - flagH - headH) + "px";
+					} else {
+						document.getElementById("kode_banner_1").style.height = "160px";
+						$(".action_T_tit").width("200px");
+						$(".action_T_tit p").css({
+							"font-size" : "10px",
+							"line-height" : "30px"
+						});
+					}
+				</script>
 				<div class="result_slider">
 					<div>
 						<!--Result Thumb Start-->
@@ -225,37 +233,6 @@
 									<div class="kf_border" style="padding:0px;">
 										<iframe src="passport/passportbook/passportbook.html"
 											width="320" height="330"></iframe>
-										<!--Widget Next Match Dec Start-->
-										<!-- <div class="nextmatch_dec">
-											<div class="match_teams marathon_passport">
-												Slider Widget Strat
-												<div class="slider_widget app-details">
-													<div>
-														<div class="slider_thumb">
-															<figure>
-																<img src="extra-images/passport_01.png" alt="">
-															</figure>
-														</div>
-													</div>
-													<div>
-														<div class="slider_thumb">
-															<figure>
-																<img src="extra-images/passport_02.png" alt="">
-															</figure>
-														</div>
-													</div>
-													<div>
-														<div class="slider_thumb">
-															<figure>
-																<img src="extra-images/passport_03.png" alt="">
-															</figure>
-														</div>
-													</div>
-												</div>
-												Slider Widget END
-											</div>
-										</div> -->
-										<!--Widget Next Match Dec End-->
 									</div>
 								</div>
 							</aside>
@@ -322,25 +299,48 @@
 											<img src="extra-images/feature_2.jpg" alt="">
 										</figure>
 									</div>
-									<div class="kf_featured_thumb">
-										<figure>
-											<img src="extra-images/tokyo.png" alt="">
-										</figure>
-										<div class="text_wrper">
+									<!-- 站点统计 start -->
+									<div class="kf_featured_thumb match-list">
+										<div class="text_wrper" style="width:100%;">
 											<div class="text">
-												<h2>奥运离我们更进一步</h2>
-												<p>2018年3月20日，田协召开了新闻发布会2018年3月20日，田协召开了新闻发布会2018年3月20日，田协召开了新闻发布会2018年3月20日，田协2018年3月20日，田协召开了新闻发布会2018年3月20日，田协召开了新闻发布会2018年3月20</p>
-												<a class="btn_2" href="webSite/details.html">查看详情&raquo;</a>
-											</div>
-											<div class="thumb_footer">
-												<div class="admin_thumb">
-													<img src="extra-images/admin.png" class="marathon-img">
-													<h6>中国马拉松赛事联盟</h6>
+												<h2><a href=" ">中国马拉松大奖赛福利</ a></h2>
+												<div class="what-we-do bg">
+													<div class="row">
+														<div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp">
+															<div class="single-block tran3s">
+																<img src="extra-images/1.png" alt="" class="tran4s">
+																<h6>奥运会参赛名额</h6>
+																<h5>总决赛前十名可获得奥运会参赛名额或助威名额</h5>
+															</div>
+															<!-- /.single-block -->
+														</div>
+														<!-- /.col- -->
+														<div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp"
+															data-wow-delay="0.1s">
+															<div class="single-block tran3s">
+																<img src="extra-images/2.png" alt="" class="tran4s">
+																<h6>免费直通车名额</h6>
+																<h5>万人名单的前100名可获得直通车名额且免交报名费</h5>
+																<h5>（任意一场认证赛事）</h5>
+															</div>
+															<!-- /.single-block -->
+														</div>
+														<!-- /.col- -->
+														<div class="col-md-4 hidden-sm col-xs-12 wow fadeInUp"
+															data-wow-delay="0.150s">
+															<div class="single-block tran3s">
+																<img src="extra-images/3.png" alt="" class="tran4s">
+																<h6>免抽签直通车名额</h6>
+																<h5>万人名单的前100名可获得直通车名额</h5>
+																<h5>（任意一场认证赛事）</h5>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-									<!--Featured 2 thumb End-->
+									<!-- 站点统计 end -->
 								</div>
 								<!--中国马拉松大奖赛 End-->
 							</div>
@@ -355,133 +355,12 @@
 									<!--Heading 1 END-->
 									<div class="kf_border">
 										<!--Table Wrap Start-->
-										<ul class="kf_table">
-											<li>
-												<div class="table_no">
-													<span>1</span>
-												</div>
-												<div class="team_logo">
-													<!--  <span><img src="images/team_logo.png" alt=""></span> -->
-													<a href="#">杨雨琪NO.1</a>
-												</div>
-												<div class="team_point">
-													<span>1:30:30</span>
-												</div>
-											</li>
-											<li>
-												<div class="table_no">
-													<span>2</span>
-												</div>
-												<div class="team_logo">
-													<!-- <span><img src="images/team_logo2.png" alt=""></span> -->
-													<a href="#">杨雨琪NO.2</a>
-												</div>
-												<div class="team_point">
-													<span>1:30:31</span>
-												</div>
-											</li>
-											<li>
-												<div class="table_no">
-													<span>3</span>
-												</div>
-												<div class="team_logo">
-													<!--  <span><img src="images/team_logo3.png" alt=""></span> -->
-													<a href="#">Real Madrid</a>
-												</div>
-												<div class="team_point">
-													<span>1:30:32</span>
-												</div>
-											</li>
-											<li>
-												<div class="table_no">
-													<span>4</span>
-												</div>
-												<div class="team_logo">
-													<!-- <span><img src="images/team_logo4.png" alt=""></span> -->
-													<a href="#">Bryan munich</a>
-												</div>
-												<div class="team_point">
-													<span>1:30:33</span>
-												</div>
-											</li>
-											<li>
-												<div class="table_no">
-													<span>5</span>
-												</div>
-												<div class="team_logo">
-													<!-- <span><img src="images/team_logo5.png" alt=""></span> -->
-													<a href="#">Sevilla FC</a>
-												</div>
-												<div class="team_point">
-													<span>1:30:34</span>
-												</div>
-											</li>
-											<li>
-												<div class="table_no">
-													<span>6</span>
-												</div>
-												<div class="team_logo">
-													<!-- <span><img src="images/team_logo6.png" alt=""></span> -->
-													<a href="#">Athletico Madris</a>
-												</div>
-												<div class="team_point">
-													<span>1:30:35</span>
-												</div>
-											</li>
-											<li>
-												<div class="table_no">
-													<span>7</span>
-												</div>
-												<div class="team_logo">
-													<!-- <span><img src="images/team_logo7.png" alt=""></span> -->
-													<a href="#">Valencia FC</a>
-												</div>
-												<div class="team_point">
-													<span>1:30:36</span>
-												</div>
-											</li>
-											<li>
-												<div class="table_no">
-													<span>8</span>
-												</div>
-												<div class="team_logo">
-													<!-- <span><img src="images/team_logo8.png" alt=""></span> -->
-													<a href="#">Real Belts</a>
-												</div>
-												<div class="team_point">
-													<span>1:30:37</span>
-												</div>
-											</li>
-											<li>
-												<div class="table_no">
-													<span>9</span>
-												</div>
-												<div class="team_logo">
-													<!-- <span><img src="images/team_logo9.png" alt=""></span> -->
-													<a href="#">FC barcelona</a>
-												</div>
-												<div class="team_point">
-													<span>1:30:38</span>
-												</div>
-											</li>
-											<li>
-												<div class="table_no">
-													<span>10</span>
-												</div>
-												<div class="team_logo">
-													<!-- <span><img src="images/team_logo10.png" alt=""></span> -->
-													<a href="#">malaga FC</a>
-												</div>
-												<div class="team_point">
-													<span>1:30:39</span>
-												</div>
-											</li>
+										<ul class="kf_table" id="ul_tlist">
+		
+									
 										</ul>
-										<!--Table Wrap End-->
 									</div>
 								</div>
-
-								<!--Widget Next Match Start-->
 								<div class="widget widget_nextmatch">
 									<!--Heading 1 Start-->
 									<h6 class="kf_hd1">

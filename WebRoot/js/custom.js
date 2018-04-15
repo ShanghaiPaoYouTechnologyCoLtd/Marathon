@@ -8,7 +8,8 @@ $(document).ready(function(){
 	*/
   if($('.main_banner').length){
   	$('.main_banner').slick({
-      fade: true
+      fade: true,
+      dots:true
     });
   }
 	/* 
@@ -41,7 +42,6 @@ $(document).ready(function(){
   */
   if($('.result_slider').length){
   	$('.result_slider').slick({
-  	   dots: true,
   	  infinite: false,
   	  speed: 300,
   	  slidesToShow: 5,

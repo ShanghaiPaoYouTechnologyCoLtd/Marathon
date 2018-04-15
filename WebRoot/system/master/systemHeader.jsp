@@ -1,5 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
+	if (session.getAttribute("user")==null) {
+		response.sendRedirect("/Marathon/system/systemLogin.jsp");
+	}
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
@@ -73,7 +76,7 @@
 					<td class="l-dialog-cc">
 						<div class="l-dialog-body" style="width: 390px;">
 							<div id="tmsg-class" class="l-dialog-content l-dialog-image-done">
-							 ${message}</div>
+								${message}</div>
 						</div>
 					</td>
 					<td class="l-dialog-cr"></td>
@@ -91,7 +94,7 @@
 			<div class="container-fluid">
 				<a class="brand" href="#" style="font-size:10px; color:#e6e6e6">
 					<img src="system/image/logo.png" alt="logo" width="32" height="32"
-					style="margin-top:-3px" /> 恒生聚源新流程平台
+					style="margin-top:-3px" /> 跑友科技管理平台
 				</a> <a href="javascript:;" class="btn-navbar collapsed"
 					data-toggle="collapse" data-target=".nav-collapse"> <img
 					src="system/image/menu-toggler.png" alt="" />
