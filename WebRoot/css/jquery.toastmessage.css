@@ -15,7 +15,7 @@
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	color: #eee;
+	color: #fff;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	padding-left: 6px;
@@ -93,6 +93,10 @@
     border-color: #B32B2B;
 }
 
+.toast-item p{
+	color:#fff !important;
+}
+
 /**
  * positions
  *
@@ -131,7 +135,7 @@
     left: 50%;
     margin-left: -140px;
     margin-top: -40px;
-    top: 50%;
+    top: 35%;
 }
 
 .toast-position-middle-right {

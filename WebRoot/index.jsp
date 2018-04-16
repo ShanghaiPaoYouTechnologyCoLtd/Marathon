@@ -48,11 +48,14 @@
 						<div class="carousel-inner" role="listbox">
 							<%
 								active = false;
+								String[] links = new String[]{"pages/runnerList.jsp"};
+								int i = 0;
 								for (String f : bigBanners) {
 									String pathName = "upload/images/bigBanner/" + f;
-									out.print("<div class='item " + (active ? "" : "active") + "'><div class='thumb'><img src='" + pathName
-											+ "' height='100%'/></div></div>");
+									out.print("<div class='item " + (active ? "" : "active") + "'><div class='thumb'><a href='" + links[i]
+											+ "'><img src='" + pathName + "' height='100%'/></a></div></div>");
 									active = true;
+									i++;
 								}
 							%>
 						</div>
@@ -91,92 +94,179 @@
 				</script>
 				<div class="result_slider">
 					<div>
-						<!--Result Thumb Start-->
 						<div class="kf_result_thumb">
-							<span>2018/3/15</span>
+							<span>2018年3月25日</span>
 							<div class="kf_result">
-								<img src="extra-images/chongqing.png" alt="">
+								<img src="extra-images/gamesLog/glog_1.png" alt="" width="100px"
+									height="100px" />
 							</div>
-							<a href="">北京通州马拉松1</a>
+							<a class="p_gname">重庆国际马拉松<br />&lt;首站&gt;
+							</a>
 						</div>
-						<!--Result Slider Thumb End-->
 					</div>
 					<div>
-						<!--Result Thumb Start-->
 						<div class="kf_result_thumb">
-							<span>2018/3/15</span>
+							<span>2018年3月25日</span>
 							<div class="kf_result">
-								<img src="extra-images/beijing.png" alt="">
+								<img src="extra-images/gamesLog/glog_2.png" alt="" width="100px"
+									height="100px" />
 							</div>
-							<a href="">北京通州马拉松2</a>
+							<a class="p_gname">徐州国际马拉松<br />&lt;第二站&gt;
+							</a>
 						</div>
-						<!--Result Slider Thumb End-->
 					</div>
 					<div>
-						<!--Result Thumb Start-->
 						<div class="kf_result_thumb">
-							<span>2018/3/15</span>
+							<span>2018年4月15日</span>
 							<div class="kf_result">
-								<img src="extra-images/chongqing.png" alt="">
+								<img src="extra-images/gamesLog/glog_3.png" alt="" width="100px"
+									height="100px" />
 							</div>
-							<a href="">北京通州马拉松3</a>
+							<a class="p_gname">杨凌国际马拉松<br />&lt;第三站&gt;
+							</a>
 						</div>
-						<!--Result Slider Thumb End-->
 					</div>
 					<div>
-						<!--Result Thumb Start-->
 						<div class="kf_result_thumb">
-							<span>2018/3/15</span>
+							<span>2018年5月13日</span>
 							<div class="kf_result">
-								<img src="extra-images/xuzhou.png" alt="">
+								<img src="extra-images/gamesLog/glog_4.png" alt="" width="100px"
+									height="100px" />
 							</div>
-							<a href="">北京通州马拉松4</a>
+							<a class="p_gname">秦皇岛马拉松<br />&lt;第四站&gt;
+							</a>
 						</div>
-						<!--Result Slider Thumb End-->
 					</div>
 					<div>
-						<!--Result Thumb Start-->
 						<div class="kf_result_thumb">
-							<span>2018/3/15</span>
+							<span>2018年5月15日</span>
 							<div class="kf_result">
-								<img src="extra-images/chongqing.png" alt="">
+								<img src="extra-images/gamesLog/glog_5.png" alt="" width="100px"
+									height="100px" />
 							</div>
-							<a href="">北京通州马拉松5</a>
+							<a class="p_gname">黄河口（东营）马拉松<br />&lt;第五站&gt;
+							</a>
 						</div>
-						<!--Result Slider Thumb End-->
 					</div>
 					<div>
-						<!--Result Thumb Start-->
 						<div class="kf_result_thumb">
-							<span>2018/3/15</span>
+							<span>2018年6月(待定)</span>
 							<div class="kf_result">
-								<img src="extra-images/beijing.png" alt="">
+								<img src="extra-images/gamesLog/glog_6.png" alt="" width="100px"
+									height="100px" />
 							</div>
-							<a href="">北京通州马拉松6</a>
+							<a class="p_gname">兰州国际马拉松<br />&lt;第六站&gt;
+							</a>
 						</div>
-						<!--Result Slider Thumb End-->
 					</div>
 					<div>
-						<!--Result Thumb Start-->
 						<div class="kf_result_thumb">
-							<span>2018/3/15</span>
+							<span>2018年6月24日</span>
 							<div class="kf_result">
-								<img src="extra-images/xuzhou.png" alt="">
+								<img src="extra-images/gamesLog/glog_7.png" alt="" width="100px"
+									height="100px" />
 							</div>
-							<a href="">北京通州马拉松7</a>
+							<a class="p_gname">吉林市国际马拉松<br />&lt;第七站&gt;
+							</a>
 						</div>
-						<!--Result Slider Thumb End-->
 					</div>
 					<div>
-						<!--Result Thumb Start-->
 						<div class="kf_result_thumb">
-							<span>2018/3/15</span>
+							<span>2018年7月28日</span>
 							<div class="kf_result">
-								<img src="extra-images/chongqing.png" alt="">
+								<img src="extra-images/gamesLog/glog_8.png" alt="" width="100px"
+									height="100px" />
 							</div>
-							<a href="">北京通州马拉松8</a>
+							<a class="p_gname">六盘水国际马拉松<br />&lt;第八站&gt;
+							</a>
 						</div>
-						<!--Result Slider Thumb End-->
+					</div>
+					<div>
+						<div class="kf_result_thumb">
+							<span>2018年9月22日</span>
+							<div class="kf_result">
+								<img src="extra-images/gamesLog/glog_9.png" alt="" width="100px"
+									height="100px" />
+							</div>
+							<a class="p_gname">衡水湖国际马拉松<br />&lt;第九站&gt;
+							</a>
+						</div>
+					</div>
+					<div>
+						<div class="kf_result_thumb">
+							<span>2018年9月23日(待定)</span>
+							<div class="kf_result">
+								<img src="extra-images/gamesLog/glog_10.png" alt=""
+									width="100px" height="100px" />
+							</div>
+							<a class="p_gname">北京国际马拉松<br />&lt;第十站&gt;
+							</a>
+						</div>
+					</div>
+					<div>
+						<div class="kf_result_thumb">
+							<span>2018年10月21日</span>
+							<div class="kf_result">
+								<img src="extra-images/gamesLog/glog_11.png" alt=""
+									width="100px" height="100px" />
+							</div>
+							<a class="p_gname">南京国际马拉松<br />&lt;第十一站&gt;
+							</a>
+						</div>
+					</div>
+					<div>
+						<div class="kf_result_thumb">
+							<span>2018年11月04日</span>
+							<div class="kf_result">
+								<img src="extra-images/gamesLog/glog_12.png" alt=""
+									width="100px" height="100px" />
+							</div>
+							<a class="p_gname">宜昌国际马拉松<br />&lt;第十二站&gt;
+							</a>
+						</div>
+					</div>
+					<div>
+						<div class="kf_result_thumb">
+							<span>2018年11月1日</span>
+							<div class="kf_result">
+								<img src="extra-images/gamesLog/glog_13.png" alt=""
+									width="100px" height="100px" />
+							</div>
+							<a class="p_gname">合肥国际马拉松<br />&lt;第十三站&gt;
+							</a>
+						</div>
+					</div>
+					<div>
+						<div class="kf_result_thumb">
+							<span>2018年11月(待定)</span>
+							<div class="kf_result">
+								<img src="extra-images/gamesLog/glog_14.png" alt=""
+									width="100px" height="100px" />
+							</div>
+							<a class="p_gname">上海国际马拉松<br />&lt;第十四站&gt;
+							</a>
+						</div>
+					</div>
+					<div>
+						<div class="kf_result_thumb">
+							<span>2019年01月07日</span>
+							<div class="kf_result">
+								<img src="extra-images/gamesLog/glog_15.png" alt=""
+									width="100px" height="100px" />
+							</div>
+							<a class="p_gname">厦门国际马拉松<br />&lt;第十五站&gt;
+							</a>
+						</div>
+					</div>
+					<div>
+						<div class="kf_result_thumb">
+							<span>(待定)</span>
+							<div class="kf_result">
+								<!-- 	<img src="extra-images/gamesLog/glog_14.png" alt=""> -->
+							</div>
+							<a class="p_gname">敬请期待<br />&lt;第十六站&gt;
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -196,7 +286,7 @@
 									<!--Heading 1 Start-->
 									<h6 class="kf_hd1">
 										<span>中国马拉松护照</span> <a class="prv_btn"
-											href="passport/marathonInstructions.html">了解更多&raquo;</a>
+											href="passport/marathonInstructions.jsp">了解更多&raquo;</a>
 									</h6>
 									<!--Heading 1 END-->
 									<!--Featured 2 thumb Start-->
@@ -204,12 +294,15 @@
 										<div class="text_wrper">
 											<div class="text">
 												<h2>
-													<a href="#">中国马拉松护照简介</a>
+													<a href="javascript:;">中国马拉松护照简介</a>
 												</h2>
 												<p>中国马拉松护照是马拉松文化推广的核心载体之一。</p>
-												<p>为了更好的推广马拉松文化，为了更好的提升马拉松爱好者的体验感，让每一名马拉松爱好者拥有一份专属于自己的身份识别码；让每一名马拉松爱好者能记载自己参赛的历程，见证属于自己的荣耀，中国田径协会授权中国马拉松赛事联盟颁发《中国马拉松护照》</p>
-												<p>为了更好的推广马拉松文化，为了更好的提升马拉松爱好者的体验感，让每一名马拉松爱好者拥有一份专属于自己的身份识别码；让每一名马拉松爱好者能记载自己参赛的历程，见证属于自己的荣耀，中国田径协会授权中国马拉松赛事联盟颁发《中国马拉松护照》</p>
-												<a class="btn_2" href="#">查看详情&raquo;</a>
+												<p>为了更好的推广马拉松文化，为了更好的提升马拉松爱好者的体验感，让每一名马拉松爱好者拥有一份专属于自己的身份识别码；让每一名马拉松爱好者能记载自己参赛的历程，见证属于自己的荣耀，中国田径协会授权中国马拉松赛事联盟颁发《中国马拉松护照》。</p>
+												<p>
+													《中国马拉松护照》为中国田径协会下属认证赛事的官方认证材料，是极具收藏价值和实用价值的官方认证书，一人一证，护照号与参赛者身份证号绑定，具备唯一性，由参赛者第一次参加部分田径协会认证赛事报名自动生成。非认证赛事参赛者，目前可通过中国马拉松赛事联盟APP申请购买。同时，中国马拉松护照的使用者，可通过中国马拉松赛事联盟APP进行相应的更换和遗失申领。
+												</p>
+												<br /> <a class="btn_2"
+													href="passport/marathonInstructions.jsp">查看详情&raquo;</a>
 											</div>
 											<!-- <div class="thumb_footer">
                                         <div class="admin_thumb">
@@ -261,13 +354,16 @@
 									<!--Featured 2 thumb Start-->
 									<div class="kf_featured_thumb">
 										<figure>
-											<img src="extra-images/tokyo.png" alt="">
+											<img src="extra-images/olympics/img2.png" alt="">
 										</figure>
 										<div class="text_wrper">
 											<div class="text">
-												<h2>奥运离我们更进一步</h2>
-												<p>2018年3月20日，田协召开了新闻发布会2018年3月20日，田协召开了新闻发布会2018年3月20日，田协召开了新闻发布会2018年3月20日，田协2018年3月20日，田协召开了新闻发布会2018年3月20日，田协召开了新闻发布会2018年3月20</p>
-												<a class="btn_2" href="webSite/details.html">查看详情&raquo;</a>
+												<h2>我要上奥运细则说明</h2>
+												<p>搭载全新精品系列赛事——中国马拉松大奖赛，利用现有优秀赛事资源，选拔大众跑者最优秀选手。</p>
+												<p>选手资格
+													以2018年2月中国田径协会官方公布的“万人大名单”（男子5000人，女子5000人）为基础，利用赛事进行动态更新。考虑到2017年中国马拉松比赛参赛选手实际男女比例为73%：27%，为了更接近实际情况，及提升比赛的竞争程度，缩短总决赛关门......
+												</p>
+												<a class="btn_2" href="pages/temp/temp1.jsp">查看详情&raquo;</a>
 											</div>
 											<div class="thumb_footer">
 												<div class="admin_thumb">
@@ -277,16 +373,14 @@
 											</div>
 										</div>
 									</div>
-									<!--Featured 2 thumb End-->
-									<!--Featured 2 thumb Start-->
 									<div class="kf_featured_thumb">
 										<div class="text_wrper">
 											<div class="text">
 												<h2>
-													<a href="#">我要上奥运细则简介</a>
+													<a href="javascript:;">中国跑友与奥运同行</a>
 												</h2>
-												<p>2018年3月20日，田协召开了新闻发布会2018年3月20日，田协召开了新闻发布会2018年3月20日，田协召开了新闻发布会2018年3月20日，田协2018年3月20日，田协召开了新闻发布会2018年3月20日，田协召开了新闻发布会2018年3月20</p>
-												<a class="btn_2" href="#">查看详情&raquo;</a>
+												<p>3月20日，“我要上奥运”新闻发布会在京召开。本次发布会由中国田径协会领导以及来自“我要上奥运”系列活动的指定马拉松赛事组委会代表、合作赛事运营单位代表、特邀嘉宾和媒体出席。国家体育总局田径运动管理中心党委书记、副主任，中国田径协会副主席......</p>
+												<a class="btn_2" href="pages/temp/temp2.jsp">查看详情&raquo;</a>
 											</div>
 											<div class="thumb_footer">
 												<div class="admin_thumb">
@@ -296,14 +390,16 @@
 											</div>
 										</div>
 										<figure>
-											<img src="extra-images/feature_2.jpg" alt="">
+											<img src="extra-images/olympics/img1.png" alt="">
 										</figure>
 									</div>
 									<!-- 站点统计 start -->
 									<div class="kf_featured_thumb match-list">
 										<div class="text_wrper" style="width:100%;">
 											<div class="text">
-												<h2><a href=" ">中国马拉松大奖赛福利</ a></h2>
+												<h2>
+													<a href=" ">中国马拉松大奖赛福利</ a> 
+												</h2>
 												<div class="what-we-do bg">
 													<div class="row">
 														<div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp">
@@ -356,18 +452,18 @@
 									<div class="kf_border">
 										<!--Table Wrap Start-->
 										<ul class="kf_table" id="ul_tlist">
-		
-									
+
+
 										</ul>
 									</div>
 								</div>
-								<div class="widget widget_nextmatch">
-									<!--Heading 1 Start-->
+								<!-- <div class="widget widget_nextmatch">
+									Heading 1 Start
 									<h6 class="kf_hd1">
 										<span>近期比赛倒计时</span> <a class="prv_btn"
 											href="pages/memberEvents.jsp">查看更多赛事&raquo;</a>
 									</h6>
-									<!--Heading 1 END-->
+									Heading 1 END
 									<div class="kf_border">
 										<div class="nextmatch_dec">
 											<h6>北京马拉松</h6>
@@ -396,9 +492,9 @@
 														</div>
 													</div>
 												</div>
-												<!--Slider Widget END-->
+												Slider Widget END
 											</div>
-											<!--Widget COUNT Down Start-->
+											Widget COUNT Down Start
 											<ul class="kf_countdown countdown">
 												<li><span class="days">69</span>
 													<p class="days_ref">天</p></li>
@@ -409,11 +505,11 @@
 												<li><span class="seconds last">12</span>
 													<p class="seconds_ref">秒</p></li>
 											</ul>
-											<!--Widget COUNT Down End-->
+											Widget COUNT Down End
 										</div>
-										<!--Widget Next Match Dec End-->
+										Widget Next Match Dec End
 									</div>
-								</div>
+								</div> -->
 								<!--Widget Next Match End-->
 							</aside>
 						</div>
@@ -434,7 +530,7 @@
 									<!--Heading 1 Start-->
 									<h6 class="kf_hd1">
 										<span>中国马拉松赛事联盟APP</span> <a class="prv_btn"
-											href="pages/marathonPassport.jsp">了解更多&raquo;</a>
+											href="pages/cmlApp.jsp">了解更多&raquo;</a>
 									</h6>
 									<!--Heading 1 END-->
 									<!--Featured 2 thumb Start-->
@@ -442,11 +538,12 @@
 										<div class="text_wrper">
 											<div class="text">
 												<h2>
-													<a href="#">中国马拉松赛事联盟APP简介</a>
+													<a href="javascript:;">中国马拉松赛事联盟APP简介</a>
 												</h2>
-												<p>为方便跑者随时随地了解马拉松赛事资讯，轻松管理中国马拉松护照、一键查看自己的奔跑历史数据，中国马拉松赛事联盟推出了中国马拉松赛事联盟APP</p>
+												<p>中国马拉松赛事联盟APP作为中国马拉松赛事联盟唯一运营平台，希望打造成中国最大的马拉松衍生服务和社区入口，配合中国马拉松让用户拥有更好的体验，同时通过产业信息化合作模式以及庞大的用户交互数据，为中国马拉松赛事联盟提升商业价值。</p>
+												<p>为方便跑者随时随地了解马拉松赛事资讯，轻松管理中国马拉松护照、一键查看自己的奔跑历史数据，中国马拉松赛事联盟推出了中国马拉松赛事联盟APP。</p>
 												<p>若您已拥有中国马拉松护照，您可在APP上查看到对应的电子护照，完赛后还可查看到您的完赛勋章，集齐指定勋章数量还可兑换相应奖品。</p>
-												<a class="btn_2" href="#">查看详情&raquo;</a>
+												<a class="btn_2" href="pages/cmlApp.jsp">查看详情&raquo;</a>
 											</div>
 											<div class="thumb_footer">
 												<div class="admin_thumb">

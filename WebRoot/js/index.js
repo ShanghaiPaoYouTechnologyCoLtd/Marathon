@@ -10,12 +10,16 @@ window.onresize = function() {
 	});
 }
 
+$(".slick-slide").click(function(){
+	location.href="pages/olympicGames.jsp";
+});
+
 window.onload = function() {
 	$.ajax({
 		type : "POST",
 		url : "tlist/getList.do",
 		data : {
-			"pageSize" : 10,
+			"pageSize" : 20,
 			"pageNumber" : 0,
 			"qType" : 0,
 		},

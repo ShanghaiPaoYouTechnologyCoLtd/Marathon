@@ -46,6 +46,43 @@ public class OrderModel {
 	//合作方
 	private String cooperaterName;
 	
+	private String province;
+	private String city;
+	private String district;
+	private String address;
+	
+	public String getProvince(){
+		return province;
+	}
+
+	public void setProvince(String p){
+		province=p;
+	}
+	
+	public String getCity(){
+		return city;
+	}
+
+	public void setCity(String p){
+		city=p;
+	}
+	
+	public String getDistrict(){
+		return district;
+	}
+
+	public void setDistrict(String p){
+		district=p;
+	}
+	
+	public String getAddress(){
+		return address;
+	}
+
+	public void setAddress(String p){
+		address=p;
+	}
+	
 	public String getCooperateName(){
 		return cooperaterName;
 	}

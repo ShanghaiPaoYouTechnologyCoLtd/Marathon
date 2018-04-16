@@ -14,13 +14,13 @@ import com.apew.marathon.service.IOrderService;
 public class OrderServiceImpl extends BaseService<OrderModel> implements IOrderService {
 
 	public int createOrder(OrderModel order) {
-		String sql = "INSERT INTO `tb_order` (`SERIAL_NUM`,`USER_NAME`,`SEX`,`CARD_TYPE`,`CARD_NO`,`PHONE_NO`,`PAY_TYPE`,`PAY_FEE`,`ORDER_TIME`,`CREATE_TIME`,`COOPERATER_NAME`) VALUES "
-				+ "(?,?,?,?,?,?,?,?,NOW(),NOW(),?)";
+		String sql = "INSERT INTO `tb_order` (`SERIAL_NUM`,`USER_NAME`,`SEX`,`CARD_TYPE`,`CARD_NO`,`PHONE_NO`,`PAY_TYPE`,`PAY_FEE`,`ORDER_TIME`,`CREATE_TIME`,`COOPERATER_NAME`,`PROVINCE`,`CITY`,`DISTRICT`,`ADDRESS`) VALUES "
+				+ "(?,?,?,?,?,?,?,?,NOW(),NOW(),?,?,?,?,?)";
 
 		int count = create(sql,
 				new Object[] { order.getSerialNum(), order.getUserName(), order.getSex(), order.getCardType(),
 						order.getCardNo(), order.getPhoneNo(), order.getPayType(), order.getPayFee(),
-						order.getCooperateName() });
+						order.getCooperateName(),order.getProvince(),order.getCity(),order.getDistrict(),order.getAddress() });
 		return count;
 	}
 

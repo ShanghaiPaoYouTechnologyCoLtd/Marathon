@@ -84,13 +84,36 @@ public class OrderController extends BaseController {
 			return returnapiParError("微信支付方式暂未开通！");
 		}
 
-		String purcahseType = request.getParameter("purcahseType"); // 支付方式
-		if (!AlipayConfig.payCashType.containsKey(purcahseType)) {
-			return returnapiFail("支付类型错误！");
-		}
-		float payFee = AlipayConfig.payCashType.get(purcahseType); // 支付金额
+		float payFee = 0f;
 
 		String coName = request.getParameter("coName"); // 合作方名称,可空
+		String province = request.getParameter("province");
+		String city = request.getParameter("city");
+		String district = request.getParameter("district");
+		String address = request.getParameter("address");
+		if (coName != null && coName.equals("paoyou")) { // 在官网购买，必须填写地址
+			if (StringHelper.isEmptyStr(province)) {
+				return returnapiParError("请选择省份!");
+			}
+			if (StringHelper.isEmptyStr(city)) {
+				return returnapiParError("请选择城市!");
+			}
+			/*
+			 * if (StringHelper.isEmptyStr(district)) { //非必要 return
+			 * returnapiParError("请选择地区!"); }
+			 */
+			if (StringHelper.isEmptyStr(address)) {
+				return returnapiParError("请填写详细地址!");
+			}
+
+			payFee = 0.01f;
+		} else {
+			String purcahseType = request.getParameter("purcahseType"); // 支付方式
+			if (!AlipayConfig.payCashType.containsKey(purcahseType)) {
+				return returnapiFail("支付类型错误！");
+			}
+			payFee = AlipayConfig.payCashType.get(purcahseType); // 支付金额
+		}
 
 		String serialNum = RandomOrder.generateNum().toUpperCase();
 		boolean isReadToPay = false;
@@ -115,6 +138,10 @@ public class OrderController extends BaseController {
 			orderDetail.setPayFee(payFee);
 			orderDetail.setOutTradeNo(RandomOrder.getCurrentTime());
 			orderDetail.setCooperaterName(coName);
+			orderDetail.setProvince(province);
+			orderDetail.setCity(city);
+			orderDetail.setDistrict(district);
+			orderDetail.setAddress(address);
 			int addCount = orderService.createOrder(orderDetail);
 			isReadToPay = addCount > 0;
 		}
@@ -240,12 +267,12 @@ public class OrderController extends BaseController {
 	@RequestMapping(value = "/queryPassport", method = RequestMethod.GET)
 	@ResponseBody
 	public String queryPassport(String cardNo) throws Exception {
-		int status=0;
+		int status = 0;
 		try {
 			status = orderService.getPassportStatus(cardNo);
 		} catch (Exception e) {
 			status = -1;
-		} finally{
+		} finally {
 			JSONObject json = new JSONObject();
 			json.put("passportStatus", status);
 			return json.toString();

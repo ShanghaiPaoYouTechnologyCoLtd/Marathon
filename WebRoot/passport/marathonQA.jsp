@@ -16,6 +16,11 @@
 <title>中国马拉松护照-简介</title>
 <%@ include file="../staticFiles/globalCSS.html"%>
 <script src="js/jquery.js"></script>
+<style>
+ .text h2 a{
+    font-size:14px;
+ }
+</style>
 </head>
 
 <body>
@@ -54,12 +59,40 @@
 								<div class="text_wrper">
 									<div class="text">
 										<h2>
-											<a href="#">中国马拉松护照简介</a>
+											<a href="javascript:;">Q:中国马拉松护照可以做什么？</a>
 										</h2>
-										<p>中国马拉松护照是马拉松文化推广的核心载体之一。</p>
-										<p>为了更好的推广马拉松文化，为了更好的提升马拉松爱好者的体验感，让每一名马拉松爱好者拥有一份专属于自己的身份识别码；让每一名马拉松爱好者能记载自己参赛的历程，见证属于自己的荣耀，中国田径协会授权中国马拉松赛事联盟颁发《中国马拉松护照》。</p>
-										<p>《中国马拉松护照》为中国田径协会下属认证赛事的官方认证材料，是极具收藏价值和实用价值的官方认证书，一人一证，护照号与参赛者身份证号绑定，具备唯一性，由参赛者第一次参加部分田径协会认证赛事报名自动生成。非认证赛事参赛者，目前可通过中国马拉松赛事联盟APP申请购买。同时，中国马拉松护照的使用者，可通过中国马拉松赛事联盟APP进行相应的更换和遗失申领。</p>
+										<p>A:购买中国马拉松护照可以在赛道终点盖章处盖印完赛章，记录您的每一场马拉松赛事。参与的每场田协认证的赛事还可兑换相应的护照积分，积分到达一定等级可换取相应福利。</p>
 									</div>
+																		<div class="text">
+										<h2>
+											<a href="javascript:;">Q：我的中国马拉松护照遗失了怎么办？</a>
+										</h2>
+										<p>A：您可在「中国马拉松赛事联盟APP」进行补办操作。</p>
+									</div>
+																					<div class="text">
+										<h2>
+											<a href="javascript:;">Q：我的中国马拉松护照印章收集满了怎么办？</a>
+										</h2>
+										<p>A：若您收集满了印章，您可在「中国马拉松赛事联盟APP」进行更换操作。</p>
+									</div>
+																								<div class="text">
+										<h2>
+											<a href="javascript:;">Q:中国马拉松电子护照是什么？需要单独购买吗？</a>
+										</h2>
+										<p>A:若您购买了中国马拉松护照纸质版，则会立即生成电子版中国马拉松护照。</p>
+									</div>
+																<div class="text">
+										<h2>
+											<a href="javascript:;">Q：电子护照也有印章吗？</a>
+										</h2>
+										<p>A：线下比赛中，若设立了盖章点且您已完赛，则会显示您的电子章。</p>
+									</div>
+						<div class="text">
+										<h2>
+											<a href="javascript:;">Q：我已经购买了护照，但是为什么一直没发货？</a>
+										</h2>
+										<p>A：中国马拉松护照是定制类商品，从制作到打印需要大约一周时间，请您耐心等待，制作完毕，会立即为您安排发货。</p>
+									</div>					
 									<div class="thumb_footer">
 										<div class="admin_thumb">
 											<img src="extra-images/admin.png" class="marathon-img">
