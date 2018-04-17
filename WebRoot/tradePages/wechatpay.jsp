@@ -175,7 +175,7 @@
 								if (isTitle)
 									showRequestMessage('notice', "尚未获取到支付信息,请稍候重试或联系客服人员。");
 							} else {
-								window.location = "tradePages/purchase_success.jsp";
+								window.location = "tradePages/marathonPassportSuccess.jsp";
 							}
 						} else {
 							var message = result.message;
