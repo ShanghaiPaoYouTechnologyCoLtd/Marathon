@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="keywords" content="马拉松,马拉松赛事联盟,跑友科技,上海跑友,上海跑友科技,中国马拉松赛事联盟">
-<meta name="description" content="中国马拉松赛事联盟，权威的马拉松赛事组织。">
+<meta name="description" content="中国马拉松赛事联盟（Chinese Marathon League,简称CML）是中国田径协会发起，由符合条件的全国各马拉松及相关运动赛事联合组成。旨在适应全国迅猛发展的马拉松及相关运动赛事数量的快速增长，吸引高水平赛事聚集，促进赛事间以及与国际同行间的培训、交流和协作，整合资源，共同开发市场，宣传、提升赛事的品牌形象，推动马拉松以及相关运动赛事健康发展。">
 <title>中国马拉松赛事联盟</title>
 <%@ include file="staticFiles/globalCSS.html"%>
 <script src="js/jquery.js"></script>
