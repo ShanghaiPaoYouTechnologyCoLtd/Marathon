@@ -19,43 +19,40 @@ window.onload = function() {
 		type : "POST",
 		url : "tlist/getList.do",
 		data : {
-			"pageSize" : 20,
+			"pageSize" : 10,
 			"pageNumber" : 0,
-			"qType" : 0,
+			"qType" : '男',
+			"gType":0
 		},
 		success : function(result) {
 			var jsonS = JSON.parse(result);
 			if (jsonS != null) {
+				$("#ul_tlist").append('<li><div class="table_no" style=""><span>男子组</span></div></li>');
 				for (var i = 0; i < jsonS.rows.length; i++) {
-					$("#ul_tlist").append('<li><div class="table_no"><span>' + jsonS.rows[i].ranking + '</span></div><div class="team_logo"><a href="javascript:;">' + jsonS.rows[i].name + '</a></div><div class="team_point"><span>' + arrive_timer_format(jsonS.rows[i].sourceSeconds) + '</span></div></li>');
+					$("#ul_tlist").append('<li><div class="table_no"><span>' + jsonS.rows[i].ranking + '</span></div><div class="team_logo"><a href="javascript:;">' + jsonS.rows[i].name + '</a></div><div class="team_point"><span>' + jsonS.rows[i].gameName + '</span></div></li>');
 				}
 			} else {
 			}
 		}
 	});
-}
-
-function arrive_timer_format(s) {
-	var t;
-	if (s > -1) {
-		hour = Math.floor(s / 3600);
-		min = Math.floor(s / 60) % 60;
-		sec = s % 60;
-		day = parseInt(hour / 24);
-		if (day > 0) {
-			hour = hour - 24 * day;
-			t = day + "day " + hour + ":";
+	$.ajax({
+		type : "POST",
+		url : "tlist/getList.do",
+		data : {
+			"pageSize" : 10,
+			"pageNumber" : 0,
+			"qType" : '女',
+			"gType":1
+		},
+		success : function(result) {
+			var jsonS = JSON.parse(result);
+			if (jsonS != null) {
+				$("#ul_tlist").append('<li><div class="table_no" style=""><span>女子组</span></div></li>');
+				for (var i = 0; i < jsonS.rows.length; i++) {
+					$("#ul_tlist").append('<li><div class="table_no"><span>' + jsonS.rows[i].ranking + '</span></div><div class="team_logo"><a href="javascript:;">' + jsonS.rows[i].name + '</a></div><div class="team_point"><span>' + jsonS.rows[i].gameName + '</span></div></li>');
+				}
+			} else {
+			}
 		}
-		else
-			t = hour + ":";
-		if (min < 10) {
-			t += "0";
-		}
-		t += min + ":";
-		if (sec < 10) {
-			t += "0";
-		}
-		t += sec;
-	}
-	return t;
+	});
 }

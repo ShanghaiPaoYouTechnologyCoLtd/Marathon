@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <!--begin sixcol -->
                     <div class="sixcol left_fade">
                         
-                        <img src="extra-images/shape-1.png" alt="picture" style="width:90%">
+                        <img src="extra-images/shape-2.png" alt="picture" style="width:90%">
                                                                
                     </div>
                     <!--end sixcol -->
@@ -201,7 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <!--begin sixcol -->
                     <div class="sixcol last right_fade">
                         
-                        <img src="extra-images/shape-2.png" alt="picture">
+                        <img src="extra-images/shape-1.png" alt="picture">
                                                                
                     </div>
                     <!--end sixcol -->

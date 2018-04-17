@@ -74,8 +74,9 @@ select {
 							<div style="display:block;">
 								<div class="kf_overview kf_overview_roster">
 									<h6 class="kf_hd1 margin_0">
-										<span>中国马拉松护照-购买</span> <a class="prv_btn"
-											href="javascript:alert('暂未开放');">批量购买（10人起购）&raquo;</a>
+										<span>中国马拉松护照-购买</span>
+									<!-- 	 <a class="prv_btn"
+											href="javascript:alert('暂未开放');">批量购买（10人起购）&raquo;</a> -->
 									</h6>
 								</div>
 								<div id="passport-sell">

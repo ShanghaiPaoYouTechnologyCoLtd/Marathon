@@ -10,7 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="keywords" content="马拉松,马拉松赛事联盟,跑友科技,上海跑友,上海跑友科技,中国马拉松赛事联盟">
+<meta name="description" content="中国马拉松赛事联盟，权威的马拉松赛事组织。">
 <title>中国马拉松赛事联盟</title>
 <%@ include file="staticFiles/globalCSS.html"%>
 <script src="js/jquery.js"></script>
@@ -31,33 +32,55 @@
 					<div id="carousel-example-generic" class="carousel slide"
 						data-ride="carousel">
 						<%
-							String diskPath = application.getRealPath("");
-							String[] bigBanners = com.apew.marathon.controller.FileReader.GetAllBigBanner(diskPath);
+							/* 	String diskPath = application.getRealPath("");
+								String[] bigBanners = com.apew.marathon.controller.FileReader.GetAllBigBanner(diskPath); */
 						%>
 						<ol class="carousel-indicators">
+							<li data-target='carousel-example-generic'
+								style='margin-right:5px;' data-slide-to='0' class='active'></li>
+							<li data-target='carousel-example-generic'
+								style='margin-right:5px;' data-slide-to='1'></li>
 							<%
-								boolean active = false;
-								for (int i = 0; i < bigBanners.length; i++) {
-									out.print("<li data-target=''#carousel-example-generic' style='margin-right:5px;' data-slide-to='" + i
-											+ "'  " + (active ? "" : "class='active'") + "></li>");
-									active = true;
-								}
+								/* 								boolean active = false;
+																if (bigBanners != null) {
+																	for (int i = 0; i < bigBanners.length; i++) {
+																		out.print("<li data-target=''#carousel-example-generic' style='margin-right:5px;' data-slide-to='"
+																				+ i + "'  " + (active ? "" : "class='active'") + "></li>");
+																		active = true;
+																	}
+																} */
 							%>
 						</ol>
 
 						<div class="carousel-inner" role="listbox">
 							<%
-								active = false;
-								String[] links = new String[]{"pages/runnerList.jsp"};
-								int i = 0;
-								for (String f : bigBanners) {
-									String pathName = "upload/images/bigBanner/" + f;
-									out.print("<div class='item " + (active ? "" : "active") + "'><div class='thumb'><a href='" + links[i]
-											+ "'><img src='" + pathName + "' height='100%'/></a></div></div>");
-									active = true;
-									i++;
-								}
+								/* 							active = false;
+															String[] links = new String[]{"pages/runnerList.jsp"};
+															int i = 0;
+															if (bigBanners != null) {
+																for (String f : bigBanners) {
+																	String pathName = "upload/images/bigBanner/" + f;
+																	out.print("<div class='item " + (active ? "" : "active") + "'><div class='thumb'><a href='"
+																			+ links[i] + "'><img src='" + pathName + "' height='100%'/></a></div></div>");
+																	active = true;
+																	i++;
+																}
+															} */
 							%>
+
+							<div class='item active'>
+								<div class='thumb'>
+									<a href='pages/runnerList.jsp'><img
+										src='upload/images/bigBanner/big_banner_1.png' height='100%' /></a>
+								</div>
+							</div>
+							<div class='item'>
+								<div class='thumb'>
+									<a href='passport/marathonPassport.jsp'><img
+										src='upload/images/bigBanner/big_banner_2.png' height='100%' /></a>
+								</div>
+							</div>
+
 						</div>
 						<a class="left carousel-control" href="#carousel-example-generic"
 							role="button" data-slide="prev"> <span
@@ -79,17 +102,12 @@
 
 			<div class="result_slide_wrap" id="result_slide_wrap">
 				<script type='text/javascript'>
-					if (window.screen.availWidth > 480) {
+					if (window.screen.availWidth > 680) {
 						var headH = document.getElementById("kode_header_2").offsetHeight; // $("#kode_header_2").height();
 						var flagH = document.getElementById("result_slide_wrap").offsetHeight; // $("#result_slide_wrap").height();
 						document.getElementById("kode_banner_1").style.height = (document.documentElement.clientHeight - flagH - headH) + "px";
 					} else {
-						document.getElementById("kode_banner_1").style.height = "160px";
-						$(".action_T_tit").width("200px");
-						$(".action_T_tit p").css({
-							"font-size" : "10px",
-							"line-height" : "30px"
-						});
+						document.getElementById("kode_banner_1").style.height = window.screen.availWidth*0.4+"px";
 					}
 				</script>
 				<div class="result_slider">

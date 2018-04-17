@@ -35,10 +35,10 @@
 				<div class="container">
 					<div class="row kf_query_ranking" id="ranking-details-search">
 						<div class="col-md-5 search-info">
-							<input type="text" placeholder="请输入姓名" id="txt_uname"  />
+							<input type="text" placeholder="请输入姓名" id="txt_uname" />
 						</div>
 						<div class="col-md-5 search-info">
-							<input type="text" placeholder="请输入证件号" id="txt_cardNo"/>
+							<input type="text" placeholder="请输入证件号" id="txt_cardNo" />
 						</div>
 						<div class="col-md-2 search-btn">
 							<button type="button" class="btn btn-primary" id="queryRanking">查询排名</button>
@@ -50,13 +50,43 @@
 						</div>
 					</div>
 					<!--filter conditions Start-->
-					<ul class="nav nav-pills filter-conditions">
+					<!-- 					<ul class="nav nav-pills filter-conditions">
 						<li role="presentation" class="active"><a>全部</a></li>
 						<li role="presentation"><a>男子组</a></li>
 						<li role="presentation"><a>女子组</a></li>
-					</ul>
+					</ul> -->
+					<div class="btn-group" id="div-male">
+						<button type="button" class="btn btn-primary btn-query"
+							data-sex="男" data-type="0">男子(完整名单)</button>
+						<button type="button" class="btn btn-primary dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="caret"></span> <span class="sr-only"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="javascript:;" data-type="0">男子(完整名单)</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="javascript:;" data-type="1">男子(十人跑团)</a></li>
+							<li><a href="javascript:;" data-type="2">男子(百人跑团)</a></li>
+							<li><a href="javascript:;" data-type="3">男子(千人跑团)</a></li>
+						</ul>
+					</div>
+					<div class="btn-group" style="margin-left:10px; " id="div-female">
+						<button type="button" class="btn btn-default btn-query"
+							data-sex="女" data-type="0">女子(完整名单)</button>
+						<button type="button" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="caret"></span> <span class="sr-only"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="javascript:;" data-type="0">女子(完整名单)</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="javascript:;" data-type="1">女子(十人跑团)</a></li>
+							<li><a href="javascript:;" data-type="2">女子(百人跑团)</a></li>
+							<li><a href="javascript:;" data-type="3">女子(千人跑团)</a></li>
+						</ul>
+					</div>
 					<!--filter conditions end-->
-					<div class="kf_overview_contant">
+					<div class="kf_overview_contant" style="margin-top:20px;">
 						<!--Heading 1 Start-->
 						<h6 class="kf_hd1 margin_0">
 							<span>万人动态名单<i
@@ -71,15 +101,41 @@
 		</div>
 		<%@ include file="../staticFiles/foot.html"%>
 	</div>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap/bootstraptable/bootstrap-table.min.js"></script>
 	<script src="js/bootstrap/bootstraptable/bootstrap-table-zh-CN.min.js"></script>
 	<script>
-		$(".nav-pills li").click(function() {
-			$(this).siblings("li").removeClass("active");
-			$(this).addClass("active");
-			var type = $(".nav-pills li").index($(this));
-			bootstraptableReg(type, 1);
+		var shiningIndex = -1;
+		$(".btn-query").click(function() {
+			/* 			if ($(this).attr("class").indexOf("btn-primary") >= 0) {
+							return;
+						} */
+	
+			$(this).parent().siblings(".btn-group").find(".dropdown-toggle").removeClass("btn-primary");
+			$(this).parent().siblings(".btn-group").find(".dropdown-toggle").addClass("btn-default");
+			$(this).parent().siblings(".btn-group").find(".btn-query").removeClass("btn-primary");
+			$(this).parent().siblings(".btn-group").find(".btn-query").addClass("btn-default");
+	
+			$(this).removeClass("btn-default");
+			$(this).addClass("btn-primary");
+			$(this).next().removeClass("btn-default");
+			$(this).next().addClass("btn-primary");
+	
+			reloadQuery();
 		});
+	
+		$(".dropdown-menu li a").click(function() {
+			$(this).parents(".dropdown-menu").siblings(".btn-query").html($(this).html());
+			$(this).parents(".dropdown-menu").siblings(".btn-query").data("type", $(this).data("type"));
+	
+			$(this).parents(".dropdown-menu").siblings(".btn-query").click();
+		});
+	
+		function reloadQuery(page, index) {
+			var sextype = $(".btn-primary.btn-query").data("sex");
+			var grouptype = $(".btn-primary.btn-query").data("type");
+			bootstraptableReg(sextype, grouptype, 1);
+		}
 	
 		$("#queryRanking").click(function() {
 			if ($("#txt_uname").val() == null || $("#txt_uname").val().length <= 0) {
@@ -101,7 +157,19 @@
 				success : function(result) {
 					var jsonS = JSON.parse(result);
 					if (jsonS != null && jsonS.ranking != null) {
-						$(".p_searchtitle").html($("#txt_uname").val() + "的当前排名为：第" + jsonS.ranking + "名！");
+						$(".p_searchtitle").html("选手姓名：" + $("#txt_uname").val() + "，性别：" + jsonS.sex + "，当前排名为：第" + jsonS.ranking + "名！");
+						var idStr = jsonS.sex == '男' ? "#div-male" : "#div-female";
+						var ridStr = jsonS.sex == '男' ? "#div-female" : "#div-male";
+						$(ridStr + " .btn-query").removeClass("btn-primary");
+						$(ridStr + " .dropdown-toggle").removeClass("btn-primary");
+						$(ridStr + " .btn-query").addClass("btn-default");
+						$(ridStr + " .dropdown-toggle").addClass("btn-default");
+						$(idStr + " .btn-query").removeClass("btn-default");
+						$(idStr + " .dropdown-toggle").removeClass("btn-default");
+						$(idStr + " .btn-query").addClass("btn-primary");
+						$(idStr + " .dropdown-toggle").addClass("btn-primary");
+						$(idStr + " .btn-query").html(jsonS.sex + "子(完整名单)");
+						$(idStr + " .btn-query").data("type", 0);
 						focusRow(jsonS.ranking);
 					} else {
 						$(".p_searchtitle").html("抱歉，" + $("#txt_uname").val() + "当前不在排行榜上。");
@@ -116,17 +184,20 @@
 			var index = rank - (page - 1) * pageSize;
 			$(".nav-pills li").removeClass("active");
 			$(".nav-pills li:eq(0)").addClass("active");
-			bootstraptableReg(0, page, index);
+	
+			var sextype = $(".btn-primary.btn-query").data("sex");
+			var grouptype = $(".btn-primary.btn-query").data("type");
+	
+			shiningIndex = index;
+			bootstraptableReg(sextype, grouptype, page);
 		}
 	
 		var $table = $("#table");
 		var colSet;
 		var pageSize = 15;
-		var bootstraptableReg = function(type, page, index) {
+		var bootstraptableReg = function(type, gtype, page) {
 			$("#tb_con").html("<table id='table'></table>");
-	
-			colInit(type);
-	
+			colInit();
 			$("#table").bootstrapTable({ // 对应table标签的id
 				method : "post",
 				url : "tlist/getList.do", // 获取表格数据的url
@@ -142,13 +213,14 @@
 					return {
 						pageSize : params.limit, //页面大小
 						pageNumber : params.offset,
-						qType : type
+						qType : type,
+						gType : gtype
 					}
 				},
 				columns : colSet,
-				onLoadSuccess  : function() { //加载成功时执行
-					if (page > 1 && index != null) { //搜索进入
-						theShining(index);
+				onLoadSuccess : function() { //加载成功时执行
+					if (page > 1 && shiningIndex >= 0) { //搜索进入
+						theShining();
 					}
 				},
 				onLoadError : function() { //加载失败时执行
@@ -156,23 +228,22 @@
 				}
 			})
 		}
-		bootstraptableReg(0, 1);
+		bootstraptableReg("男", 0, 1);
 		var currentIndex;
 		var sCount = 0;
 		var tempTimer;
 		function theShining(index) {
-			currentIndex = index;
 			tempTimer = setInterval("_theShining()", 400);
 		}
 	
-		function _theShining(index) {
-			$("#table tr:eq(" + currentIndex + ")").css({
+		function _theShining() {
+			$("#table tr:eq(" + shiningIndex + ")").css({
 				"background-color" : sCount % 2 == 0 ? "pink" : "white"
 			});
 			sCount++;
-	
-			if (sCount >= 3) {
+			if (sCount >= 5) {
 				window.clearInterval(tempTimer);
+				shiningIndex = -1;
 				sCount = 0;
 			}
 		}
@@ -202,7 +273,7 @@
 			return t;
 		}
 	
-		function colInit(type) {
+		function colInit() {
 			colSet = [ {
 				field : 'ranking',
 				title : '排名',
@@ -212,7 +283,44 @@
 			}, {
 				field : 'name', // 返回json数据中的name
 				title : '姓名', // 表格表头显示文字
-				width : '40%',
+				width : '35%',
+				align : 'center', // 左右居中
+				valign : 'middle' // 上下居中
+			}, {
+				field : 'sex',
+				title : '性別',
+				width : '20%',
+				align : 'center',
+				valign : 'middle'
+			}, {
+				field : 'gameName',
+				title : '赛事名称',
+				width : '35%',
+				align : 'center',
+				valign : 'middle'
+			}
+			];
+	
+		/* if (type > 0) { //小组
+			colSet = [ {
+				title : '小组排名',
+				align : 'center', // 左右居中
+				valign : 'middle', // 上下居中
+				width : '15%',
+				formatter : function(value, row, index) {
+					var page = $(".pagination .active a").html();
+					return (page - 1) * pageSize + index + 1;
+				}
+			}, {
+				field : 'ranking',
+				title : '总排名',
+				align : 'center', // 左右居中
+				valign : 'middle', // 上下居中
+				width : '15%'
+			}, {
+				field : 'name', // 返回json数据中的name
+				title : '姓名', // 表格表头显示文字
+				width : '30%',
 				align : 'center', // 左右居中
 				valign : 'middle' // 上下居中
 			}, {
@@ -232,47 +340,7 @@
 				}
 			}
 			];
-	
-			if (type > 0) { //小组
-				colSet = [ {
-					title : '小组排名',
-					align : 'center', // 左右居中
-					valign : 'middle', // 上下居中
-					width : '15%',
-					formatter : function(value, row, index) {
-						var page = $(".pagination .active a").html();
-						return (page - 1) * 10 + index + 1;
-					}
-				}, {
-					field : 'ranking',
-					title : '总排名',
-					align : 'center', // 左右居中
-					valign : 'middle', // 上下居中
-					width : '15%'
-				}, {
-					field : 'name', // 返回json数据中的name
-					title : '姓名', // 表格表头显示文字
-					width : '30%',
-					align : 'center', // 左右居中
-					valign : 'middle' // 上下居中
-				}, {
-					field : 'sex',
-					title : '性別',
-					width : '15%',
-					align : 'center',
-					valign : 'middle'
-				}, {
-					field : 'sourceSeconds',
-					title : '成绩',
-					width : '25%',
-					align : 'center',
-					valign : 'middle',
-					formatter : function(value, row, index) { // 单元格格式化函数
-						return arrive_timer_format(value);
-					}
-				}
-				];
-			}
+		} */
 		}
 	</script>
 </body>

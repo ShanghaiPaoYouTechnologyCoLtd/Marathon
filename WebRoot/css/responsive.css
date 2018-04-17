@@ -774,6 +774,11 @@
 	}
 	.action_T_tit{
 		top: -27px;
+		width:240px;
+	}
+	.action_T_tit p{
+			font-size:15px;
+		line-height:28px;
 	}
 	.kf_result_thumb{
 		padding: 10px;

@@ -32,10 +32,11 @@ public class ThousandsList extends BaseController {
 		String pagesize = request.getParameter("pageSize");
 		String pageNumber = request.getParameter("pageNumber");
 		String qType = request.getParameter("qType");
+		String gType=request.getParameter("gType");
 
-		String result = tsService.TList(Integer.parseInt(pageNumber), Integer.parseInt(pagesize),qType);
+		String result = tsService.TList(Integer.parseInt(pageNumber), Integer.parseInt(pagesize),qType,Integer.parseInt(gType));
 		if (result != null) {
-			Integer count = tsService.TListCount(qType);
+			Integer count = tsService.TListCount(qType,Integer.parseInt(gType));
 			return "{\"rows\":" + result + ",\"total\":" + count.toString() + "}";
 		}
 

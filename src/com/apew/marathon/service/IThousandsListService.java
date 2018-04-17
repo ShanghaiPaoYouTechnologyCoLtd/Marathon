@@ -11,12 +11,12 @@ public interface IThousandsListService {
 	 * @param topNum 查找数，小于等于0则全部查找
 	 * @return
 	 */
-	public String TList(int page,int pageSize,String qType);
+	public String TList(int page,int pageSize,String qType,int gtype);
 
 	/**
 	 * 返回行數
 	 */
-	public Integer TListCount(String qType);
+	public Integer TListCount(String qType,int gtype);
 	
 	public String queryOnesRanking(String name,String cardno);
 }
