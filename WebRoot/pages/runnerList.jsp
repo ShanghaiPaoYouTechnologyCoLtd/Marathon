@@ -24,6 +24,14 @@
 .nav-pills li {
 	cursor: pointer;
 }
+
+#div_logs {
+	
+}
+
+#div_logs img {
+	
+}
 </style>
 </head>
 
@@ -55,38 +63,53 @@
 						<li role="presentation"><a>男子组</a></li>
 						<li role="presentation"><a>女子组</a></li>
 					</ul> -->
-					<div class="btn-group" id="div-male">
-						<button type="button" class="btn btn-primary btn-query"
-							data-sex="男" data-type="0">男子(完整名单)</button>
-						<button type="button" class="btn btn-primary dropdown-toggle"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="caret"></span> <span class="sr-only"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="javascript:;" data-type="0">男子(完整名单)</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="javascript:;" data-type="1">男子(十人跑团)</a></li>
-							<li><a href="javascript:;" data-type="2">男子(百人跑团)</a></li>
-							<li><a href="javascript:;" data-type="3">男子(千人跑团)</a></li>
-						</ul>
+					<div class="row">
+						<div class="col-md-4" style="margin-top:30px">
+							<div class="btn-group" id="div-male">
+								<button type="button" class="btn btn-primary btn-query"
+									data-sex="男" data-type="0">男子(完整名单)</button>
+								<button type="button" class="btn btn-primary dropdown-toggle"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">
+									<span class="caret"></span> <span class="sr-only"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="javascript:;" data-type="0">男子(完整名单)</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="javascript:;" data-type="1">男子(十人跑团)</a></li>
+									<li><a href="javascript:;" data-type="2">男子(百人跑团)</a></li>
+									<li><a href="javascript:;" data-type="3">男子(千人跑团)</a></li>
+								</ul>
+							</div>
+							<div class="btn-group" style="margin-left:10px; " id="div-female">
+								<button type="button" class="btn btn-default btn-query"
+									data-sex="女" data-type="0">女子(完整名单)</button>
+								<button type="button" class="btn btn-default dropdown-toggle"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">
+									<span class="caret"></span> <span class="sr-only"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="javascript:;" data-type="0">女子(完整名单)</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="javascript:;" data-type="1">女子(十人跑团)</a></li>
+									<li><a href="javascript:;" data-type="2">女子(百人跑团)</a></li>
+									<li><a href="javascript:;" data-type="3">女子(千人跑团)</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-8 text-right">
+							<div id="div_logs">
+								<img src="extra-images/logs/caa.png" width="100px"
+									height="100px" /> <img src="extra-images/logs/wysay.png"
+									width="100px" height="100px" /> <img
+									src="extra-images/logs/cmgp.png" width="100px" height="100px" />
+							</div>
+						</div>
 					</div>
-					<div class="btn-group" style="margin-left:10px; " id="div-female">
-						<button type="button" class="btn btn-default btn-query"
-							data-sex="女" data-type="0">女子(完整名单)</button>
-						<button type="button" class="btn btn-default dropdown-toggle"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="caret"></span> <span class="sr-only"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<li><a href="javascript:;" data-type="0">女子(完整名单)</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="javascript:;" data-type="1">女子(十人跑团)</a></li>
-							<li><a href="javascript:;" data-type="2">女子(百人跑团)</a></li>
-							<li><a href="javascript:;" data-type="3">女子(千人跑团)</a></li>
-						</ul>
-					</div>
+
 					<!--filter conditions end-->
-					<div class="kf_overview_contant" style="margin-top:20px;">
+					<div class="kf_overview_contant" style="margin-top:30px;">
 						<!--Heading 1 Start-->
 						<h6 class="kf_hd1 margin_0">
 							<span>万人动态名单<i
@@ -279,7 +302,11 @@
 				title : '排名',
 				align : 'center', // 左右居中
 				valign : 'middle', // 上下居中
-				width : '20%'
+				width : '20%',
+				formatter : function(value, row, index) { // 单元格格式化函数
+	
+					return value;
+				}
 			}, {
 				field : 'name', // 返回json数据中的name
 				title : '姓名', // 表格表头显示文字

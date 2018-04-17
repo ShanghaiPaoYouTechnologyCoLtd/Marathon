@@ -148,7 +148,7 @@ section{
 }
 .logo a img{
 	float: left;
-	width: 200px;
+	width: 240px;
 	position: relative;
 }
 .kode_navigation{
@@ -909,7 +909,7 @@ section{
     border: 1px solid #f8f8f8;
     border-radius: 4px;
     background-color: #e7eaf0;
-    margin: 0 0 70px;
+    margin: 0 0 40px;
     padding: 28px 0;
 }
 .kf_query_ranking .search-info{
