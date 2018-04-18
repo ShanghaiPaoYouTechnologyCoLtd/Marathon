@@ -261,8 +261,10 @@ function confirmPopOrderInfo() {
 				if (data.payType == 1) { //支付宝支付
 					var serialNum = data.serialNum;
 					var payFee = data.payFee;
+					var title = data.title;
 					$('#WIDout_trade_no').val(serialNum);
 					$('#WIDtotal_amount').val(payFee);
+					$('#WIDsubject').val(title);
 					document.getElementById("payform").submit(); //付款
 					return;
 				} else { //微信支付

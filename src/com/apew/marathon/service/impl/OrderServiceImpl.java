@@ -20,8 +20,15 @@ public class OrderServiceImpl extends BaseService<OrderModel> implements IOrderS
 		int count = create(sql,
 				new Object[] { order.getSerialNum(), order.getUserName(), order.getSex(), order.getCardType(),
 						order.getCardNo(), order.getPhoneNo(), order.getPayType(), order.getPayFee(),
-						order.getCooperateName(),order.getProvince(),order.getCity(),order.getDistrict(),order.getAddress() });
+						order.getCooperateName(), order.getProvince(), order.getCity(), order.getDistrict(),
+						order.getAddress() });
 		return count;
+	}
+
+	public String GetKeyValuePair(String key) {
+		String sql = "SELECT * FROM KeyValuePair Where id=? limit 1";
+		Map<String, Object> map = queryForMap(sql, new Object[] { key });
+		return map.get("value").toString();
 	}
 
 	@Override
@@ -163,7 +170,7 @@ public class OrderServiceImpl extends BaseService<OrderModel> implements IOrderS
 
 		return queryForList(sql, new Object[] {}, OrderModel.class);
 	}
-	
+
 	public int getPassportStatus(String cardNo) {
 
 		String sql = "SELECT COUNT(1) FROM tb_order WHERE CARD_NO=? AND TRADE_STATE=1";

@@ -16,6 +16,16 @@
 <title>我要上奥运 ▪ 中国马拉松大奖赛</title>
 <%@ include file="../staticFiles/globalCSS.html"%>
 <script src="js/jquery.js"></script>
+<style>
+.div_logs {
+margin-bottom:40px;
+}
+.div_logs td{
+   width:50%;
+   border:none;
+   text-align:center;
+}
+</style>
 </head>
 
 <body>
@@ -57,8 +67,8 @@
 								<div class="kf_overview kf_overview_roster">
 									<!--Heading 1 Start-->
 									<h6 class="kf_hd1 margin_0">
-										<span>中国马拉松大奖赛-成员赛事</span> 
-									<!-- 	<a class="prv_btn"
+										<span>中国马拉松大奖赛-成员赛事</span>
+										<!-- 	<a class="prv_btn"
 											href="pages/memberEvents.jsp">查看更多&raquo;</a> -->
 									</h6>
 									<!--Heading 1 End-->
@@ -401,6 +411,23 @@
 								</div>
 							</div>
 							<aside class="col-md-4">
+								<div class="div_logs">
+									<table>
+										<tr>
+											<td><img src="extra-images/logs/caa.png" width="90%"/></td>
+											<td><img src="extra-images/logs/wysay.png" width="90%"/></td>
+										</tr>
+										<tr style="padding-top:30px;">
+											<td><img src="extra-images/logs/cmgp.png" width="90%"/></td>
+											<td><img src="extra-images/logs/CML.png" width="90%"/></td>
+										</tr>
+									</table>
+								</div>
+								<script>
+								   $(".div_logs img").each(function(){
+								   $(this).attr("height",$(this).width());
+								   });
+								</script>
 								<!--Widget Ranking Start-->
 								<div class="widget widget_ranking">
 									<!--Heading 1 Start-->
@@ -450,46 +477,46 @@
 		<%@ include file="../staticFiles/foot.html"%>
 	</div>
 	<script>
-$.ajax({
-		type : "POST",
-		url : "tlist/getList.do",
-		data : {
-			"pageSize" : 10,
-			"pageNumber" : 0,
-			"qType" : '男',
-			"gType":0
-		},
-		success : function(result) {
-			var jsonS = JSON.parse(result);
-			if (jsonS != null) {
-				$("#ul_tlist").append('<li><div class="table_no" style=""><span>男子组</span></div></li>');
-				for (var i = 0; i < jsonS.rows.length; i++) {
-					$("#ul_tlist").append('<li><div class="table_no"><span>' + jsonS.rows[i].ranking + '</span></div><div class="team_logo"><a href="javascript:;">' + jsonS.rows[i].name + '</a></div><div class="team_point"><span>' + jsonS.rows[i].gameName + '</span></div></li>');
+		$.ajax({
+			type : "POST",
+			url : "tlist/getList.do",
+			data : {
+				"pageSize" : 10,
+				"pageNumber" : 0,
+				"qType" : '男',
+				"gType" : 0
+			},
+			success : function(result) {
+				var jsonS = JSON.parse(result);
+				if (jsonS != null) {
+					$("#ul_tlist").append('<li><div class="table_no" style=""><span>男子组</span></div></li>');
+					for (var i = 0; i < jsonS.rows.length; i++) {
+						$("#ul_tlist").append('<li><div class="table_no"><span>' + jsonS.rows[i].ranking + '</span></div><div class="team_logo"><a href="javascript:;">' + jsonS.rows[i].name + '</a></div><div class="team_point"><span>' + jsonS.rows[i].gameName + '</span></div></li>');
+					}
+				} else {
 				}
-			} else {
 			}
-		}
-	});
-	$.ajax({
-		type : "POST",
-		url : "tlist/getList.do",
-		data : {
-			"pageSize" : 10,
-			"pageNumber" : 0,
-			"qType" : '女',
-			"gType":1
-		},
-		success : function(result) {
-			var jsonS = JSON.parse(result);
-			if (jsonS != null) {
-				$("#ul_tlist").append('<li><div class="table_no" style=""><span>女子组</span></div></li>');
-				for (var i = 0; i < jsonS.rows.length; i++) {
-					$("#ul_tlist").append('<li><div class="table_no"><span>' + jsonS.rows[i].ranking + '</span></div><div class="team_logo"><a href="javascript:;">' + jsonS.rows[i].name + '</a></div><div class="team_point"><span>' + jsonS.rows[i].gameName + '</span></div></li>');
+		});
+		$.ajax({
+			type : "POST",
+			url : "tlist/getList.do",
+			data : {
+				"pageSize" : 10,
+				"pageNumber" : 0,
+				"qType" : '女',
+				"gType" : 1
+			},
+			success : function(result) {
+				var jsonS = JSON.parse(result);
+				if (jsonS != null) {
+					$("#ul_tlist").append('<li><div class="table_no" style=""><span>女子组</span></div></li>');
+					for (var i = 0; i < jsonS.rows.length; i++) {
+						$("#ul_tlist").append('<li><div class="table_no"><span>' + jsonS.rows[i].ranking + '</span></div><div class="team_logo"><a href="javascript:;">' + jsonS.rows[i].name + '</a></div><div class="team_point"><span>' + jsonS.rows[i].gameName + '</span></div></li>');
+					}
+				} else {
 				}
-			} else {
 			}
-		}
-	});
+		});
 	</script>
 </body>
 </html>

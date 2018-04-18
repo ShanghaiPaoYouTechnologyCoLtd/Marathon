@@ -85,8 +85,9 @@ public class OrderController extends BaseController {
 		}
 
 		float payFee = 0f;
-
+		String title = "中国马拉松护照";
 		String coName = request.getParameter("coName"); // 合作方名称,可空
+		coName = coName.trim();
 		String province = request.getParameter("province");
 		String city = request.getParameter("city");
 		String district = request.getParameter("district");
@@ -113,6 +114,9 @@ public class OrderController extends BaseController {
 				return returnapiFail("支付类型错误！");
 			}
 			payFee = AlipayConfig.payCashType.get(purcahseType); // 支付金额
+			String gameName = orderService.GetKeyValuePair(coName);
+			if (gameName != null)
+				title = "中国马拉松护照(" + gameName + ")";
 		}
 
 		String serialNum = RandomOrder.generateNum().toUpperCase();
@@ -151,10 +155,10 @@ public class OrderController extends BaseController {
 			json.put("payType", payType);
 			json.put("serialNum", serialNum);
 			json.put("payFee", String.valueOf(payFee));
-
+			json.put("title", title);
 			if (Integer.parseInt(payType.trim()) == 2) { // 微信支付时，同时返回二维码地址
 				String wechatPrice = String.valueOf(payFee * 100);
-				json.put("QRUrl", weixin_pay(serialNum, wechatPrice));
+				json.put("QRUrl", weixin_pay(serialNum, wechatPrice,title));
 			}
 
 			return returnapiSuccess("下单成功!", json.toString());
@@ -164,7 +168,7 @@ public class OrderController extends BaseController {
 
 	}
 
-	public String weixin_pay(String tradeNo, String price) throws Exception {
+	public String weixin_pay(String tradeNo, String price, String title) throws Exception {
 		// 账号信息
 		String appid = WechatPayConfig.APP_ID; // appid
 		// String appsecret = PayConfigUtil.APP_SECRET; // appsecret
@@ -177,7 +181,7 @@ public class OrderController extends BaseController {
 		String nonce_str = strTime + strRandom;
 
 		String order_price = price.replace(".0", ""); // 价格 注意：价格的单位是分
-		String body = "中国马拉松护照"; // 商品名称
+		String body = title;// 商品名称
 		String out_trade_no = tradeNo; // 订单号
 
 		// 获取发起电脑 ip

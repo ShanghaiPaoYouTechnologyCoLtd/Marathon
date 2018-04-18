@@ -23,6 +23,11 @@ public interface IOrderService {
 	public OrderModel checkOrderByUNAndMobile(String userName,String mobile);
 	
 	/**
+	 * 获取比赛名
+	 * @return
+	 */
+	public String GetKeyValuePair(String key);
+	/**
 	 * 是否存在一个用户信息
 	 * @return  0不存在  1存在于订单表但是未付款，需要前往付款  2已付款或者存在于护照表，无需继续
 	 */

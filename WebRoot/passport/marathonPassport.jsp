@@ -75,13 +75,13 @@ select {
 								<div class="kf_overview kf_overview_roster">
 									<h6 class="kf_hd1 margin_0">
 										<span>中国马拉松护照-购买</span>
-									<!-- 	 <a class="prv_btn"
+										<!-- 	 <a class="prv_btn"
 											href="javascript:alert('暂未开放');">批量购买（10人起购）&raquo;</a> -->
 									</h6>
 								</div>
 								<div id="passport-sell">
 									<form class="form-horizontal">
-							<!-- 			<div class="form-group title_a">
+										<!-- 			<div class="form-group title_a">
 											<div class="col-sm-10" style="text-align: center;">
 												<a href="passport/marathonPassport_third.jsp"
 													style="font-size:12px; ">本页面为个人购买页面，如果您是赛事选手购买，点击跳转到赛事购买页面。</a>
@@ -226,8 +226,10 @@ select {
 							if (data.payType == 1) { //支付宝支付
 								var serialNum = data.serialNum;
 								var payFee = data.payFee;
+								var title = data.title;
 								$('#WIDout_trade_no').val(serialNum);
 								$('#WIDtotal_amount').val(payFee);
+								$('#WIDsubject').val(title);
 								document.getElementById("payform").submit(); //付款
 								return;
 							} else { //微信支付
