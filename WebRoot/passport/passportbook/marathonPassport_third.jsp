@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>中国马拉松护照</title>
-<%@ include file="../../staticFiles/globalCSS.html"%>
+<%@ include file="../staticFiles/globalCSS.html"%>
 <script src="js/jquery.js"></script>
 <script src="js/iconfont.js"></script>
 <style>
@@ -42,7 +42,7 @@ select {
 
 <body>
 	<div class="kode_wrapper">
-	<%@ include file="../../staticFiles/head.html"%>
+	<%@ include file="../staticFiles/head.html"%>
 		<div class="kode_content_wrap section">
 			<div class="kf_shoppage">
 				<div class="container">
@@ -55,7 +55,7 @@ select {
 									<h5>中国马拉松护照</h5>
 								</div>
 								<div class="kf_border-2">
-									<%@ include file="../../staticFiles/passportMenu.html"%>
+									<%@ include file="../staticFiles/passportMenu.html"%>
 								</div>
 								<div style="clear:both;"></div>
 							</div>
@@ -171,9 +171,9 @@ select {
 				</div>
 			</div>
 		</div>
-	<%@ include file="../../staticFiles/foot.html"%>
+	<%@ include file="../staticFiles/foot.html"%>
 	</div>
-	<%@ include file="../../staticFiles/globalScript.html"%>
+	<%@ include file="../staticFiles/globalScript.html"%>
 	<script src="js/distpicker/distpicker.data.min.js"></script>
 	<script src="js/distpicker/distpicker.min.js"></script>
 	<script src="js/iconfont.js"></script>

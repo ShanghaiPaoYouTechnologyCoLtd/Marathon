@@ -107,7 +107,7 @@ public class OrderController extends BaseController {
 				return returnapiParError("请填写详细地址!");
 			}
 
-			payFee = 0.01f;
+			payFee = 50f;
 		} else {
 			String purcahseType = request.getParameter("purcahseType"); // 支付方式
 			if (!AlipayConfig.payCashType.containsKey(purcahseType)) {
