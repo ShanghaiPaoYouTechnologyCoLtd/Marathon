@@ -79,6 +79,17 @@ select {
 													placeholder="请填写您的真实姓名">
 											</div>
 										</div>
+																				<div class="form-group">
+											<label for="selectIdType" class="col-sm-2 control-label">*赛事选择</label>
+											<div class="col-sm-10">
+												<select class="form-control">
+													<option>通州马拉松</option>
+													<option>鸟巢马拉松</option>
+													<option>北京国际马拉松</option>
+													<option>武汉东风雷诺马拉松</option>
+												</select>
+											</div>
+										</div>
 										<div class="form-group">
 											<label for="selectIdType" class="col-sm-2 control-label">*证件类型</label>
 											<div class="col-sm-10">

@@ -26,9 +26,16 @@ public class OrderServiceImpl extends BaseService<OrderModel> implements IOrderS
 	}
 
 	public String GetKeyValuePair(String key) {
+		try
+		{
 		String sql = "SELECT * FROM KeyValuePair Where id=? limit 1";
 		Map<String, Object> map = queryForMap(sql, new Object[] { key });
+		if(map==null || map.size()==0)
+			return "";
 		return map.get("value").toString();
+		}catch(Exception e){
+			return "";
+		}finally{}
 	}
 
 	@Override
@@ -54,7 +61,7 @@ public class OrderServiceImpl extends BaseService<OrderModel> implements IOrderS
 		if (r2 > 0) // 已存在于护照表
 			return 2;
 
-		sql = "select TRADE_STATE from tb_order where  USER_NAME=? and CARD_NO=?";
+		sql = "select TRADE_STATE from tb_order where  USER_NAME=? and CARD_NO=? order by ID DESC LIMIT 1";
 		Map<String, Object> r = queryForMap(sql, new Object[] { name, cardNo });
 		if (r == null || r.size() == 0 || r.get("TRADE_STATE") == null) // 不存在于订单表
 			return 0;

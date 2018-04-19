@@ -80,10 +80,6 @@ public class OrderController extends BaseController {
 			return returnapiParError("请选择支付方式!");
 		}
 
-		if (payType == "2") {
-			return returnapiParError("微信支付方式暂未开通！");
-		}
-
 		float payFee = 0f;
 		String title = "中国马拉松护照";
 		String coName = request.getParameter("coName"); // 合作方名称,可空
@@ -115,7 +111,7 @@ public class OrderController extends BaseController {
 			}
 			payFee = AlipayConfig.payCashType.get(purcahseType); // 支付金额
 			String gameName = orderService.GetKeyValuePair(coName);
-			if (gameName != null)
+			if (gameName != null && gameName.length() > 0)
 				title = "中国马拉松护照(" + gameName + ")";
 		}
 
@@ -124,13 +120,15 @@ public class OrderController extends BaseController {
 		int isExist = orderService.IsExist(userName, cardNo);
 		if (isExist == 2) {
 			return returnapiFail("您已报名,请勿重复提交!");
-		} else if (isExist == 1) { // 未付款的订单
+		}  
+/*		else if (isExist == 1) { // 未付款的订单   //将未付款的订单提出来，会导致用户修改数据无效
 			isReadToPay = true;
 			serialNum = orderService.getOrderNum(userName, cardNo);
 			if (serialNum == null) {
 				return returnapiFail("订单提交失败!");
 			}
-		} else { // 全新的订单
+		} */
+		else { // 全新的订单
 			OrderModel orderDetail = new OrderModel();
 			orderDetail.setSerialNum(serialNum);
 			orderDetail.setUserName(userName.trim());
@@ -158,7 +156,7 @@ public class OrderController extends BaseController {
 			json.put("title", title);
 			if (Integer.parseInt(payType.trim()) == 2) { // 微信支付时，同时返回二维码地址
 				String wechatPrice = String.valueOf(payFee * 100);
-				json.put("QRUrl", weixin_pay(serialNum, wechatPrice,title));
+				json.put("QRUrl", weixin_pay(serialNum, wechatPrice, title));
 			}
 
 			return returnapiSuccess("下单成功!", json.toString());

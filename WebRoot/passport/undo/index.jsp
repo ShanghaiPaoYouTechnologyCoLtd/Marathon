@@ -48,9 +48,8 @@
 				<p style="margin-top:40px;">
 					<a href="purchase_success.jsp?t"
 						style="padding: 10px 15px;background-color: #1E2B5B;color: #fff;font-size: 16px;border-radius: 4px;">点击下载APP</a>
-					<br />
-					<br />
-					<a id="link_cancel" style="cursor:pointer;font-size:16px;">取消</a>
+					<br /> <br /> <a id="link_cancel"
+						style="cursor:pointer;font-size:16px;">取消</a>
 				</p>
 			</div>
 			<div class='pop_prompt_body'>
@@ -158,12 +157,17 @@
 							<div id="alarmPrivate" class='div_alarmTitle'>
 								警告！！该链接为内部测试连接，订单不具备法律效应！！！任何操作均视为无效！</div>
 							<button class='btn purchase_submit' onclick='submitOrder()'>购买</button>
-							<a id='link_queryStatus' style='display:block; cursor:pointer; color:#25abee; font-size:14px; margin:15px 0px 20px 0px;' onclick='queryPassport()'>查询是否已购买</a>
+							<a id='link_queryStatus'
+								style='display:block; cursor:pointer; color:#25abee; font-size:14px; margin:15px 0px 20px 0px;'
+								onclick='queryPassport()'>查询是否已购买</a>
 							<div id="div_loading">
 								<img src="/Marathon/images/loading.gif" /><br /> 正在获取，请稍候
 							</div>
 							<div id="alarmError" class='div_alarmTitle'>
 								参数错误！请返回上级网站重新输入，或重新复制正确完整的连接进入！</div>
+							<div id="alarmError2" class='div_alarmTitle' style="font-size:16px; margin-bottom:20px">
+								<span id="gameName"></span>报名已截至！<br/>如果您依旧希望购买马拉松护照，可访问中国
+								<a href="http://www.caa-paoyou.com/passport/marathonInstructions.jsp">马拉松赛事联盟官网</a>进行购买。<br/></div>
 						</div>
 					</form>
 				</div>
@@ -173,8 +177,7 @@
 					style="width: 64%;margin: auto;color: #808080;">
 					<div class="pull-left" style="width: 7%;">说明：</div>
 					<div class="pull-left" style="width: 93%;">
-						仅本赛事报名成功者可在本页面进行购买，若未报名成功、违规报名或被禁赛者，核实信息后将进行退款
-					</div>
+						仅本赛事报名成功者可在本页面进行购买，若未报名成功、违规报名或被禁赛者，核实信息后将进行退款</div>
 					<div class="clearfix"></div>
 				</div>
 			</div>

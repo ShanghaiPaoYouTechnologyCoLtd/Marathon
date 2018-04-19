@@ -27,12 +27,25 @@ $(function() {
 	var userAgent = navigator.userAgent; //为IE浏览器时需要特殊处理
 	var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1;
 
+	var stopArr=new Array("tongzhou");
+	var gameNames=new Array("通州马拉松");
+	
+	var coName=decodeURI(getPar("coname"));
+	for(var i=0;i<stopArr.length;i++){
+		if(coName==stopArr[i]){
+			$("#gameName").html(gameNames[i]);
+			$('.purchase_submit').remove();
+			document.getElementById("alarmError2").style.display = "inherit";
+			return;
+		}	
+	}
+	
 	var paycahsetype = getPar("t");
 	var paycahsetypeKey="";
 	if(paycahsetype!=null && paycahsetype.length>0){
 		paycahsetypeKey= hex_md5(paycahsetype.toUpperCase())
 	}
-
+  
 	switch (paycahsetypeKey) {
 	case '84f85c2249db98a652660e5c2830395d': //d
 		$("#purcahseType").val("payDiscount");
