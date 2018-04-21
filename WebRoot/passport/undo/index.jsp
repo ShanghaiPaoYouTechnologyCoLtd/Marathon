@@ -196,14 +196,14 @@
 		</div>
 	</div>
 	</div>
-	<form name='alipayment' action='alipay.trade.page.pay.jsp'
+	<form name='alipayment' action='tradePages/alipay.trade.page.pay.jsp'
 		method='post' target="_self" id="payform" style="display:none">
 		<input id="WIDout_trade_no" name="WIDout_trade_no" value="" /> <input
 			id="WIDsubject" name="WIDsubject" value="" /> <input
 			id="WIDtotal_amount" name="WIDtotal_amount" value="0" /> <input
 			id="WIDbody" name="WIDbody" value="" />
 	</form>
-	<form name='wechatpay' action='wechatpay.jsp' method='post'
+	<form name='wechatpay' action='tradePages/wechatpay.jsp' method='post'
 		target="_self" id="payWechatform" style="display:none">
 		<input id="pay_wechat_QRCode" name="pay_wechat_QRCode" value="" /> <input
 			id="pay_wechat_tradeno" name="pay_wechat_tradeno" value="" /> <input

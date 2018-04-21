@@ -47,6 +47,28 @@ select {
 	color: blue;
 	text-decoration: underline;
 }
+
+.modal-body table {
+	font-size: 17px;
+}
+
+.modal-body table td {
+	border: none !important;
+	border-top: 1px solid #dddddd !important;
+	padding-top: 7px;
+}
+
+.modal-body table tr td:first-child {
+	text-align: right;
+	width: 25%;
+}
+
+.td_title {
+	text-align: left;
+	font-size: 14px;
+	line-height: 20px;
+	color: red;
+}
 </style>
 </head>
 
@@ -81,12 +103,13 @@ select {
 								</div>
 								<div id="passport-sell">
 									<form class="form-horizontal">
-										<!-- 			<div class="form-group title_a">
-											<div class="col-sm-10" style="text-align: center;">
+										<div class="form-group title_a">
+											<label for="realName" class="col-sm-2 control-label"></label>
+											<div class="col-sm-10">
 												<a href="passport/marathonPassport_third.jsp"
-													style="font-size:12px; ">本页面为个人购买页面，如果您是赛事选手购买，点击跳转到赛事购买页面。</a>
+													style="font-size:13px; ">本页面为个人购买页面，如果您是赛事选手购买，点击跳转到赛事合作购买页面。</a>
 											</div>
-										</div> -->
+										</div>
 										<div class="form-group">
 											<label for="realName" class="col-sm-2 control-label">*真实姓名</label>
 											<div class="col-sm-10">
@@ -110,7 +133,6 @@ select {
 												<select class="form-control" id="sel_cardtype">
 													<option value='1'>身份证</option>
 													<option value='2'>护照</option>
-													<option value='3'>港澳通行证</option>
 												</select>
 											</div>
 										</div>
@@ -172,8 +194,10 @@ select {
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10">
-												<button type="button" onclick="confirmPopOrderInfo()"
-													class="btn btn-primary passport-sell-btn">去购买</button>
+												<button type="button" style="width:120px"
+													class="btn btn-primary" data-toggle="modal" id="btn_buy">购买</button>
+												<!-- 	<button type="button" onclick="confirmPopOrderInfo()"
+													class="btn btn-primary passport-sell-btn">去购买</button> -->
 											</div>
 										</div>
 									</form>
@@ -196,151 +220,77 @@ select {
 				<input id="pay_wechat_tradeno" name="pay_wechat_tradeno" value="" />
 				<input id="pay_wechat_fee" name="pay_wechat_fee" value="" />
 			</form>
+			<!-- Modal -->
+			<div class="modal fade" id="div_infoCheck" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalCenterTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">请确认您的信息正确无误</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<table>
+								<tr>
+									<td>姓名：</td>
+									<td><span id="sp_info_name"></span></td>
+								</tr>
+								<tr>
+									<td>性别：</td>
+									<td><span id="sp_info_sex"></span></td>
+								</tr>
+								<tr>
+									<td>证件类型：</td>
+									<td><span id="sp_info_cardtype"></span></td>
+								</tr>
+								<tr>
+									<td>证件号：</td>
+									<td><span id="sp_info_cardno"></span></td>
+								</tr>
+								<tr>
+									<td>联系电话：</td>
+									<td><span id="sp_info_phone"></span></td>
+								</tr>
+								<tr>
+									<td>收件地址：</td>
+									<td><span id="sp_info_address"></span></td>
+								</tr>
+								<tr>
+									<td>支付方式：</td>
+									<td><span id="sp_info_paytype"></span></td>
+								</tr>
+								<tr>
+									<td colspan="2" class="td_title">*本购买为个人购买，护照会寄送到您填写的地址。<br />
+										*如果您是赛事选手，您可以前往和作购买页面享受优惠价购买。
+										*合作购买的护照将会发送到赛事场地，您须前往赛事场地指定地点领取护照。
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<div style="display:none" id="div_loading">
+								<img src="images/loading.gif" /> 正在加载,清稍后...
+							</div>
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">返回修改</button>
+							<button type="button" class="btn btn-primary"
+								onclick="confirmPopOrderInfo()">提交购买</button>
+						</div>
+					</div>
+				</div>
+			</div>
 			<%@ include file="../staticFiles/foot.html"%>
 		</div>
-		<%@ include file="../staticFiles/globalScript.html"%>
-		<script src="js/distpicker/distpicker.data.min.js"></script>
-		<script src="js/distpicker/distpicker.min.js"></script>
-		<script src="js/iconfont.js"></script>
-		<script type="text/javascript" src="js/jquery.toastmessage.js"></script>
-		<script type="text/javascript" src="js/ajax.js"></script>
-		<script>
-			var params;
-			function confirmPopOrderInfo() {
-				$("#div_loading").show();
-		
-				var url = 'order.do';
-				if (!getOrderParams())
-					return;
-				async(url, params, function(res) {
-					var result = {};
-					if (typeof res == 'string') {
-						result = JSON.parse(res);
-					} else {
-						result = res;
-					}
-					var status = result.status;
-					if (status == 'ok') { //购买成功
-						var data = result.data;
-						if (data) {
-							if (data.payType == 1) { //支付宝支付
-								var serialNum = data.serialNum;
-								var payFee = data.payFee;
-								var title = data.title;
-								$('#WIDout_trade_no').val(serialNum);
-								$('#WIDtotal_amount').val(payFee);
-								$('#WIDsubject').val(title);
-								document.getElementById("payform").submit(); //付款
-								return;
-							} else { //微信支付
-								var QRUrl = data.QRUrl;
-								if (QRUrl == "QRCODE_ERROR") {
-									alert("微信支付链接生成失败！请检查网络稍后再试！");
-								} else {
-									$("#pay_wechat_QRCode").val(QRUrl);
-									$("#pay_wechat_tradeno").val(data.serialNum);
-									$("#pay_wechat_fee").val(data.payFee);
-									document.getElementById("payWechatform").submit(); //微信付款页面
-									return;
-								}
-							}
-						} else {
-							var message = result.message;
-							message = message ? message : '订单提交失败!';
-							showRequestMessage('notice', message);
-						}
-					} else {
-						var message = result.message;
-						if (message == "您已报名,请勿重复提交!") {
-							$(".div_title_already").show();
-							$(".pop_prompt_body").hide();
-							$(".mask").show();
-							$(".pop_prompt_title").hide();
-							$("#zc_pop_prompt").show();
-						} else {
-							message = message ? message : '订单提交失败!';
-							showRequestMessage('notice', message);
-						}
-					}
-					$(".purchase_submit").show();
-					$("#div_loading").hide();
-				}, function() {
-					$("").hide();
-					$("#div_loading").show();
-					showRequestMessage('notice', '请检查您的网络!');
-				}, 'POST');
-			}
-		
-			function getOrderParams() {
-				var userName = $("#txt_uname").val();
-				var sex = $("#rab_male").is(":checked") ? 1 : 2;
-				var cardType = $("#sel_cardtype").val();
-				var cardNo = $("#txt_cardno").val();
-				var phoneNo = $("#txt_phone").val();
-				var coName = "paoyou";
-				var province = $("#sel_prov").val();
-				var city = $("#sel_city").val();
-				var district = $("#sel_dist").val();
-				var address = $("#txt_address").val();
-				var purcahseType = "";
-				var payTtpe = $("#rab_zfb").is(":checked") ? 1 : 2;
-		
-				var telReg = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/;
-				var cardNumReg = /(^\d{15}$)|(^\d{17}([0-9]|X)$)/;
-				var mobileReg = /^\d{7,11}$/;
-				if (userName == null || userName.length <= 0) {
-					showRequestMessage('notice', "请填写姓名！");
-					return false;
-				}
-		
-				if (isNaN(cardType)) {
-					showRequestMessage('notice', "请选择证件类型！");
-					return false;
-				}
-		
-				if (!cardNumReg.test(cardNo)) {
-					showRequestMessage('notice', "请填写正确的证件号！");
-					return false;
-				}
-		
-				if (!(mobileReg.test(phoneNo.trim()) || telReg.test(phoneNo.trim()))) {
-					showRequestMessage('notice', "请填写正确的手机号！");
-					return false;
-				}
-		
-				if (province == null || province.length <= 0) {
-					showRequestMessage('notice', "请选择省份！");
-					return false;
-				}
-		
-				if (city == null || city.length <= 0) {
-					showRequestMessage('notice', "请选择城市！");
-					return false;
-				}
-		
-				if (address == null || address.length <= 4) {
-					showRequestMessage('notice', "详细地址不能少于5个字符！");
-					return false;
-				}
-		
-		
-				params = {
-					userName : userName,
-					sex : sex,
-					cardType : cardType,
-					cardNo : cardNo,
-					phoneNo : phoneNo,
-					payType : payTtpe,
-					purcahseType : purcahseType,
-					coName : coName,
-					province : province,
-					district : district,
-					address : address,
-					city : city
-				};
-				return true;
-			}
-		</script>
+	</div>
+	<%@ include file="../staticFiles/globalScript.html"%>
+	<script src="js/distpicker/distpicker.data.min.js"></script>
+	<script src="js/distpicker/distpicker.min.js"></script>
+	<script src="js/iconfont.js"></script>
+	<script type="text/javascript" src="js/jquery.toastmessage.js"></script>
+	<script type="text/javascript" src="js/ajax.js"></script>
+	<script type="text/javascript" src="passport/passportOrder.js"></script>
 </body>
 </html>
 

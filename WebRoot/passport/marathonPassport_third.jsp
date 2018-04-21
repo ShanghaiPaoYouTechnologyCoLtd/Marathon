@@ -17,6 +17,8 @@
 <%@ include file="../staticFiles/globalCSS.html"%>
 <script src="js/jquery.js"></script>
 <script src="js/iconfont.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="css/jquery.toastmessage.css" />
 <style>
 select {
 	width: 24%;
@@ -39,6 +41,33 @@ select {
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 	display: inline-block;
 	vertical-align: middle;
+}
+
+.title_a a:hover {
+	color: blue;
+	text-decoration: underline;
+}
+
+.modal-body table {
+	font-size: 17px;
+}
+
+.modal-body table td {
+	border: none !important;
+	border-top: 1px solid #dddddd !important;
+	padding-top: 7px;
+}
+
+.modal-body table tr td:first-child {
+	text-align: right;
+	width: 25%;
+}
+
+.td_title {
+	text-align: left;
+	font-size: 14px;
+	line-height: 20px;
+	color: red;
 }
 </style>
 </head>
@@ -67,61 +96,76 @@ select {
 							<div style="display:block;">
 								<div class="kf_overview kf_overview_roster">
 									<h6 class="kf_hd1 margin_0">
-										<span>中国马拉松护照-购买(赛事选手)</span>
+										<span>中国马拉松护照-购买(赛事合作)</span>
+										<!-- 	 <a class="prv_btn"
+											href="javascript:alert('暂未开放');">批量购买（10人起购）&raquo;</a> -->
 									</h6>
 								</div>
 								<div id="passport-sell">
 									<form class="form-horizontal">
+										<div class="form-group title_a">
+											<label for="realName" class="col-sm-2 control-label"></label>
+											<div class="col-sm-10">
+												<span style="font-size:13px; color:red">*赛事合作购买的护照将会发送到赛事场地，您须前往赛事场地指定地点领取护照。</span>
+											</div>
+										</div>
 										<div class="form-group">
 											<label for="realName" class="col-sm-2 control-label">*真实姓名</label>
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="inputEmail3"
+												<input type="text" class="form-control" id="txt_uname"
 													placeholder="请填写您的真实姓名">
 											</div>
 										</div>
-																				<div class="form-group">
-											<label for="selectIdType" class="col-sm-2 control-label">*赛事选择</label>
+										<div class="form-group">
+											<label for="realName" class="col-sm-2 control-label">*性
+												别</label>
 											<div class="col-sm-10">
-												<select class="form-control">
-													<option>通州马拉松</option>
-													<option>鸟巢马拉松</option>
-													<option>北京国际马拉松</option>
-													<option>武汉东风雷诺马拉松</option>
-												</select>
+												<input type="radio" name='sex' checked id="rab_male" /><label
+													for="rab_male" style="display:inline;">男</label>&nbsp;&nbsp;&nbsp;&nbsp;
+												<input type="radio" name='sex' id="rab_female" /><label
+													for="rab_female" style="display:inline;">女</label>
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="selectIdType" class="col-sm-2 control-label">*证件类型</label>
 											<div class="col-sm-10">
-												<select class="form-control">
-													<option>请选择证件类型</option>
-													<option>身份证</option>
-													<option>护照</option>
-													<option>港澳通行证</option>
+												<select class="form-control" id="sel_cardtype">
+													<option value='1'>身份证</option>
+													<option value='2'>护照</option>
 												</select>
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="inputID" class="col-sm-2 control-label">*证件号</label>
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="inputPassword3"
+												<input type="text" class="form-control" id="txt_cardno"
 													placeholder="请填写您的证件号">
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="inputTel" class="col-sm-2 control-label">*联系电话</label>
 											<div class="col-sm-10">
-												<input type="text" class="form-control" id="inputPassword3"
+												<input type="text" class="form-control" id="txt_phone"
 													placeholder="请填写您联系电话">
 											</div>
 										</div>
 										<div class="form-group">
+											<label for="selectIdType" class="col-sm-2 control-label">*和作赛事</label>
+											<div class="col-sm-10">
+												<select class="form-control" id="sel_race">
+													<option value='-1'>赛事获取中...</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
 											<label for="selectPaymentMethod"
-												class="col-sm-2 control-label">*选择支付方式(￥50.00)</label>
+												class="col-sm-2 control-label">*选择支付方式<br /> (￥<span
+												id="sp_price" style="float:none;">50.00</span>)
+											</label>
 											<div class="col-sm-10">
 												<label class="radio-inline"> <input type="radio"
 													name="inlineRadioOptions" class="pay-way-radio"
-													id="inlineRadio1" value="zhifubao" checked> <span>
+													id="rab_zfb" value="zhifubao" checked> <span>
 														<svg class="icon pay-way-icon" aria-hidden="true">
                                                     <use
 																xlink:href="#icon-zhifubaozhifu"></use>
@@ -129,7 +173,7 @@ select {
 												</span>
 												</label> <label class="radio-inline"> <input type="radio"
 													name="inlineRadioOptions" class="pay-way-radio"
-													id="inlineRadio2" value="weixin"> <span> <svg
+													id="rab_wechat" value="weixin"> <span> <svg
 															class="icon pay-way-icon" aria-hidden="true">
                                                     <use
 																xlink:href="#icon-weixinzhifu1"></use>
@@ -147,37 +191,171 @@ select {
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10">
-												<button type="submit"
-													class="btn btn-primary passport-sell-btn">去购买</button>
+												<button type="button" style="width:120px"
+													class="btn btn-primary" data-toggle="modal" id="btn_buy">已截止</button>
+												<span id="sp_btnTitle" style="color:red; display:none"></span>
+												<!-- 	<button type="button" onclick="confirmPopOrderInfo()"
+													class="btn btn-primary passport-sell-btn">去购买</button> -->
 											</div>
 										</div>
 									</form>
-								</div>
-							</div>
-							<div style="display:none;">
-								<div class="kf_overview kf_overview_roster">
-									<!--Heading 1 Start-->
-									<h6 class="kf_hd1 margin_0">
-										<span>中国马拉松护照-问答中心</span>
-									</h6>
-								</div>
-								<div id="passport-QA">
-									<p>中国马拉松护照是巴拉巴拉啊啊啊</p>
-									<p>中国马拉松护照是巴拉巴拉啊啊啊</p>
-									<p>中国马拉松护照是巴拉巴拉啊啊啊</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<form name='alipayment' action='tradePages/alipay.trade.page.pay.jsp'
+				method='post' target="_self" id="payform" style="display:none">
+				<input id="WIDout_trade_no" name="WIDout_trade_no" value="" /> <input
+					id="WIDsubject" name="WIDsubject" value="" /> <input
+					id="WIDtotal_amount" name="WIDtotal_amount" value="0" /> <input
+					id="WIDbody" name="WIDbody" value="" />
+			</form>
+			<form name='wechatpay' action='tradePages/wechatpay.jsp'
+				method='post' target="_self" id="payWechatform" style="display:none">
+				<input id="pay_wechat_QRCode" name="pay_wechat_QRCode" value="" />
+				<input id="pay_wechat_tradeno" name="pay_wechat_tradeno" value="" />
+				<input id="pay_wechat_fee" name="pay_wechat_fee" value="" />
+			</form>
+			<!-- Modal -->
+			<div class="modal fade" id="div_infoCheck" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalCenterTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">请确认您的信息正确无误</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<table>
+								<tr>
+									<td>姓名：</td>
+									<td><span id="sp_info_name"></span></td>
+								</tr>
+								<tr>
+									<td>性别：</td>
+									<td><span id="sp_info_sex"></span></td>
+								</tr>
+								<tr>
+									<td>证件类型：</td>
+									<td><span id="sp_info_cardtype"></span></td>
+								</tr>
+								<tr>
+									<td>证件号：</td>
+									<td><span id="sp_info_cardno"></span></td>
+								</tr>
+								<tr>
+									<td>联系电话：</td>
+									<td><span id="sp_info_phone"></span></td>
+								</tr>
+								<tr>
+									<td>收件地址：</td>
+									<td><span id="sp_info_address"></span></td>
+								</tr>
+								<tr>
+									<td>支付方式：</td>
+									<td><span id="sp_info_paytype"></span></td>
+								</tr>
+								<tr>
+									<td colspan="2" class="td_title">*本购买为个人购买，护照会寄送到您填写的地址。<br />
+										*如果您是赛事选手，您可以前往和作购买页面享受优惠价购买。
+										*合作购买的护照将会发送到赛事场地，您须前往赛事场地指定地点领取护照。
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<div style="display:none" id="div_loading">
+								<img src="images/loading.gif" /> 正在加载,清稍后...
+							</div>
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">返回修改</button>
+							<button type="button" class="btn btn-primary"
+								onclick="confirmPopOrderInfo()">提交购买</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<%@ include file="../staticFiles/foot.html"%>
 		</div>
-		<%@ include file="../staticFiles/foot.html"%>
 	</div>
 	<%@ include file="../staticFiles/globalScript.html"%>
 	<script src="js/distpicker/distpicker.data.min.js"></script>
 	<script src="js/distpicker/distpicker.min.js"></script>
 	<script src="js/iconfont.js"></script>
+	<script type="text/javascript" src="js/jquery.toastmessage.js"></script>
+	<script type="text/javascript" src="js/ajax.js"></script>
+	<script type="text/javascript" src="passport/passportOrder.js"></script>
+	<script>
+		var raceChange = function() {
+			for (var i in races) {
+				if (races[i].ID == $("#sel_race").val()) {
+					$("#sp_price").html(races[i].Price.toFixed(2));
+					var now = new Date();
+					var sDate=new Date(parseInt(races[i].StartTime.time));
+					var eDate=new Date(parseInt(races[i].EndTime.time));
+					if (sDate > now || eDate < now) {
+						$("#sp_btnTitle").show();
+						$("#btn_buy").html("已截止");
+						$("#btn_buy").removeClass("btn-primary");
+						$("#btn_buy").addClass("btn-secondary");
+						$("#sp_btnTitle").html("*"+races[i].RaceName+"报名已截止,无法购买赛事合作护照");
+						buyEnable = false;
+					} else {
+						$("#sp_btnTitle").hide();
+						$("#btn_buy").html("购买");
+						$("#btn_buy").removeClass("btn-secondary");
+						$("#btn_buy").addClass("btn-primary");
+						buyEnable = true;
+					}
+					break;
+				}
+			}
+		}
+	
+		var rID = "-1";
+		if (sessionStorage.rid != null && sessionStorage.rid.length > 0) { //发现会话缓存
+			rID = sessionStorage.rid;
+		}
+		var paraID = getPar("rid");
+		if (paraID && paraID != null && paraID.length > 0) { //发现传入参数
+			rID = paraID;
+			sessionStorage.rid = paraID; //更新参数
+		}
+	
+		var races = {};
+		var url = 'getAllRaces.do';
+		var params = {
+			currentID : rID
+		};
+		async(url, params, function(res) {
+			var result = {};
+			if (result != null) {
+				if (typeof res == 'string') {
+					result = JSON.parse(res);
+				} else {
+					result = res;
+				}
+				races = result;
+				$("#sel_race").html("");
+				for (var i in result) {
+					$("#sel_race").append("<option value='" + result[i].ID + "'>" + result[i].RaceName + "</option>")
+				}
+				if (rID != -1)
+					$("#sel_race").val(rID);
+				raceChange();
+			} else {
+				$("#sel_race").html("赛事加载失败！");
+			}
+		}, function() {
+			$("#sel_race").html("赛事加载失败！");
+		}, 'POST');
+	
+		$("#sel_race").change(raceChange);
+	</script>
 </body>
 </html>
 

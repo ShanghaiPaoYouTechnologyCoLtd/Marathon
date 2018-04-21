@@ -193,4 +193,11 @@ public class OrderServiceImpl extends BaseService<OrderModel> implements IOrderS
 		return 0;
 	}
 
+	@Override
+	public String getAllRaces(String currentID) {
+		String sql="select * from passportrace WHERE (NOW() BETWEEN StartTime AND EndTime) OR ID =?";
+		String json=queryForJSON(sql,new Object[]{currentID});
+		return json;
+	}
+
 }

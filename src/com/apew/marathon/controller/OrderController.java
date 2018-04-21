@@ -2,6 +2,7 @@ package com.apew.marathon.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -120,14 +121,13 @@ public class OrderController extends BaseController {
 		int isExist = orderService.IsExist(userName, cardNo);
 		if (isExist == 2) {
 			return returnapiFail("您已报名,请勿重复提交!");
-		}  
-/*		else if (isExist == 1) { // 未付款的订单   //将未付款的订单提出来，会导致用户修改数据无效
-			isReadToPay = true;
-			serialNum = orderService.getOrderNum(userName, cardNo);
-			if (serialNum == null) {
-				return returnapiFail("订单提交失败!");
-			}
-		} */
+		}
+		/*
+		 * else if (isExist == 1) { // 未付款的订单 //将未付款的订单提出来，会导致用户修改数据无效
+		 * isReadToPay = true; serialNum = orderService.getOrderNum(userName,
+		 * cardNo); if (serialNum == null) { return returnapiFail("订单提交失败!"); }
+		 * }
+		 */
 		else { // 全新的订单
 			OrderModel orderDetail = new OrderModel();
 			orderDetail.setSerialNum(serialNum);
@@ -281,4 +281,9 @@ public class OrderController extends BaseController {
 		}
 	}
 
+	@RequestMapping(value = "/getAllRaces", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String getAllRaces(String currentID) throws Exception {
+		return orderService.getAllRaces(currentID);
+	}
 }
