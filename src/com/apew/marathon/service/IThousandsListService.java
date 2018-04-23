@@ -42,4 +42,12 @@ public interface IThousandsListService {
 	 * @return
 	 */
 	public int getRemainPaidQuotas(String raceID);
+	
+	/**
+	 * 检查选手是否已在赛事下获得名额
+	 * @param cardNo
+	 * @param raceID
+	 * @return
+	 */
+	public boolean playerInRace(String cardNo,String raceID);
 }

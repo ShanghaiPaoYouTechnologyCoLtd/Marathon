@@ -46,7 +46,7 @@
     <servlet-class>com.apew.marathon.servlet.UploadServlet</servlet-class>
   </servlet>
   <servlet>
-      <description>检查选手是否可获得直通车名额，返回信息：status:0免费直通车，1收费直通车，2名额已用完，3不在名单中,-1请求异常;msg:消息</description>
+      <description>检查选手是否可获得直通车名额，返回信息：status:0免费直通车，1收费直通车，2名额已用完，3不在名单中,4选手已获取直通车名额,-1请求异常;msg:消息</description>
       <display-name>选手名单校验</display-name>
     <servlet-name>ListCheck</servlet-name>
     <servlet-class>com.apew.marathon.servlet.ListCheck</servlet-class>

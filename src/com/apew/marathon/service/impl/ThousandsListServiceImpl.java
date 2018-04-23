@@ -70,4 +70,11 @@ public class ThousandsListServiceImpl extends BaseService<String> implements ITh
 		int count = queryForInt(sql, new Object[] { raceID });
 		return paidQuotasCount >= count ? paidQuotasCount - count : 0;
 	}
+
+	@Override
+	public boolean playerInRace(String cardNo, String raceID) {
+		String sql="SELECT * FROM thousandslist_discount RaceId=? and cardNo=?";
+		int count = queryForInt(sql, new Object[] { cardNo,raceID });
+		return count>0;
+	}
 }
