@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+<web-app
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
   <display-name>marathon</display-name>
   <filter>
     <filter-name>encodingFilter</filter-name>
@@ -42,9 +45,20 @@
     <servlet-name>upload</servlet-name>
     <servlet-class>com.apew.marathon.servlet.UploadServlet</servlet-class>
   </servlet>
+  <servlet>
+      <description>检查选手是否可获得直通车名额，返回信息：status:0免费直通车，1收费直通车，2名额已用完，3不在名单中,-1请求异常;msg:消息</description>
+      <display-name>选手名单校验</display-name>
+    <servlet-name>ListCheck</servlet-name>
+    <servlet-class>com.apew.marathon.servlet.ListCheck</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>upload</servlet-name>
     <url-pattern>/servlet/UploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListCheck</servlet-name>
+    <url-pattern>/api/tlist/ListCheck</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>30</session-timeout>

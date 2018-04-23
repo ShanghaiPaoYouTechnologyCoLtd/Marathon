@@ -19,4 +19,27 @@ public interface IThousandsListService {
 	public Integer TListCount(String qType,int gtype);
 	
 	public String queryOnesRanking(String name,String cardno);
+	
+	/**
+	 * 获取用户在选手名单中的状态
+	 * 0在万人名单中 1在千人名单中 2不在名单中
+	 * @return
+	 */
+	public int getPlayerStatusInList(String cardno);
+	
+	public boolean raceExists(String raceID);
+	
+	/**
+	 * 获取免费名额剩余数
+	 * @param raceID
+	 * @return
+	 */
+	public int getRemainFreeQuotas(String raceID);
+	
+	/**
+	 * 获取付费名额剩余数
+	 * @param raceID
+	 * @return
+	 */
+	public int getRemainPaidQuotas(String raceID);
 }

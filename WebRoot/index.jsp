@@ -157,7 +157,7 @@
 					</div>
 					<div>
 						<div class="kf_result_thumb">
-							<span>2018年5月15日</span>
+							<span>2018年5月5日</span>
 							<div class="kf_result">
 								<img src="extra-images/gamesLog/glog_5.png" alt="" width="100px"
 									height="100px" />

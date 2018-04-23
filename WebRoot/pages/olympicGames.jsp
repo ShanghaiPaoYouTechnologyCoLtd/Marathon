@@ -170,7 +170,7 @@ margin-bottom:40px;
 												<span>A类赛事</span>
 											</div>
 											<div class="tb2_age">
-												<span>2018/5/15</span>
+												<span>2018/5/5</span>
 											</div>
 											<div class="tb2_weight">
 												<span>东营</span>

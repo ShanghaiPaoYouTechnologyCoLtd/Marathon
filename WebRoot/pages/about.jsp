@@ -43,10 +43,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="kf_featured_slider">
                             <!--Heading 1 Start-->
                             <h6 class="kf_hd1">
-                                <span>联系我们</span>
+                                <span>上海跑友信息科技有限公司</span>
                             </h6>
-                            <!--Heading 1 END-->
+                            <p>中国马拉松赛事联盟隶属于上海跑友信息科技有限公司<br/>
+上海跑友信息科技有限公司是一家拥有国际、国内顶级赛事资源的专业体育平台公司。公司同时也是中国田径协会 中国马拉松赛事联盟独家官方运营商。</p>
                             <div class="row contact-details-container">
+                                                       
                                 <div class="col-md-6">
                                     <div class="icon-container">
                                         <i class="glyphicon glyphicon-phone-alt"></i>
@@ -57,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="col-md-6">
                                     <div class="icon-container"><i class="glyphicon glyphicon-envelope"></i></div>
                                     <h3>Email</h3>
-                                    <p>business@caa-paoyou.com</p>
+                                    <p>service@caa-paoyou.com</p>
                                 </div>
                             </div>
                         </div>
