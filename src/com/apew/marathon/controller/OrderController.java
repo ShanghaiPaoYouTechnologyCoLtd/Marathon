@@ -89,6 +89,7 @@ public class OrderController extends BaseController {
 		String city = request.getParameter("city");
 		String district = request.getParameter("district");
 		String address = request.getParameter("address");
+		String testE=request.getParameter("test");
 		if (coName != null && coName.equals("paoyou")) { // 在官网购买，必须填写地址
 			if (StringHelper.isEmptyStr(province)) {
 				return returnapiParError("请选择省份!");
@@ -115,7 +116,12 @@ public class OrderController extends BaseController {
 			if (gameName != null && gameName.length() > 0)
 				title = "中国马拉松护照(" + gameName + ")";
 		}
-
+		
+		if(testE.equals("1")){
+			payFee = 0.01f;
+			title = "中国马拉松护照测试数据，本数据不具备法律效应！";
+		}
+		
 		String serialNum = RandomOrder.generateNum().toUpperCase();
 		boolean isReadToPay = false;
 		int isExist = orderService.IsExist(userName, cardNo);

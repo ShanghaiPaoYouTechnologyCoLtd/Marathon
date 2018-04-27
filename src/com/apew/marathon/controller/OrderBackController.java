@@ -112,11 +112,12 @@ public class OrderBackController extends BaseController {
 		String status = request.getParameter("status");
 		
 		String feeAmount = request.getParameter("feeamount");
+		String coname = request.getParameter("coname");
 		
 		if(StringHelper.isEmptyStr(status))
 			status = "0";
 		
-		List<OrderModel> listOrders = orderService.exportOrders(startTime, endTime, Integer.valueOf(status),phoneno,feeAmount);
+		List<OrderModel> listOrders = orderService.exportOrders(startTime, endTime, Integer.valueOf(status),phoneno,feeAmount,coname);
 		if(null == listOrders || listOrders.size() == 0)
 			return;
 		
@@ -133,7 +134,7 @@ public class OrderBackController extends BaseController {
 			if(order.getSex() == 2)
 				sex = "女";
 			
-			String data[] = { (count+1)+"",order.getUserName(),order.getPayFee()+"",sex,order.getCardNo(),order.getPhoneNo()};
+			String data[] = { (count+1)+"",order.getUserName(),order.getPayFee()+"",sex,order.getCardNo(),order.getPhoneNo(),order.getCooperateName(),order.getProvince(),order.getCity(),order.getDistrict(),order.getAddress()};
 			rsList1[count] = data;
 			count ++;
 		}
@@ -172,7 +173,7 @@ public class OrderBackController extends BaseController {
         
         response.setContentType("application/msexcel");// 定义输出类型
         SimpleExcelWrites sw = new SimpleExcelWrites();
-        String header1[] = {"序号","跑者姓名","付款金额","性别","证件号","联系电话"};
+        String header1[] = {"序号","跑者姓名","付款金额","性别","证件号","联系电话","购买途径","省份","城市","地区","详细地址"};
         try {
             sw.createExcel1(os, header1, rsList1);
     } catch (WriteException e) {

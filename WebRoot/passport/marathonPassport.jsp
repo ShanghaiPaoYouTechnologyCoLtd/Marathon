@@ -96,7 +96,7 @@ select {
 							<div style="display:block;">
 								<div class="kf_overview kf_overview_roster">
 									<h6 class="kf_hd1 margin_0">
-										<span>中国马拉松护照-购买</span>
+										<span>中国马拉松护照-办理</span>
 										<!-- 	 <a class="prv_btn"
 											href="javascript:alert('暂未开放');">批量购买（10人起购）&raquo;</a> -->
 									</h6>
@@ -107,7 +107,7 @@ select {
 											<label for="realName" class="col-sm-2 control-label"></label>
 											<div class="col-sm-10">
 												<a href="passport/marathonPassport_third.jsp"
-													style="font-size:13px; ">本页面为个人购买页面，如果您是赛事选手购买，点击跳转到赛事合作购买页面。</a>
+													style="font-size:13px; display:none">本页面为个人购买页面，如果您是赛事选手购买，点击跳转到赛事合作购买页面。</a>
 											</div>
 										</div>
 										<div class="form-group">
@@ -189,13 +189,16 @@ select {
 											<label for="selectPaymentMethod"
 												class="col-sm-2 control-label"></label>
 											<div class="col-sm-10">
+												<p>办理费用50元，包含工本费、快递费、包装费。</p>
 												<p style="color: #b02126;font-weight: 300;">注：本产品为定制产品，一经购买，不可退换。</p>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-10">
+												<p style="display:none; color:red; font-size:20px;"
+													id="testTitle">本页面用于跑友科技内部测试，订单不具备法律效应！</p>
 												<button type="button" style="width:120px"
-													class="btn btn-primary" data-toggle="modal" id="btn_buy">购买</button>
+													class="btn btn-primary" data-toggle="modal" id="btn_buy">立即办理</button>
 												<!-- 	<button type="button" onclick="confirmPopOrderInfo()"
 													class="btn btn-primary passport-sell-btn">去购买</button> -->
 											</div>

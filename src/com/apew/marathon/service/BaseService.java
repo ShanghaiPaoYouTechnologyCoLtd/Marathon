@@ -316,4 +316,15 @@ public class BaseService<T> {
 		jdbcTemplate.update(creator);
 	}
 
+	public String queryFristString(String sql, Object[] args) {
+		try {
+			if (args == null) {
+				args = new Object[] {};
+			}
+			String result = jdbcTemplate.queryForObject(sql, args, java.lang.String.class);
+			return result;
+		} catch (Exception ex) {
+			return null;
+		}
+	}
 }

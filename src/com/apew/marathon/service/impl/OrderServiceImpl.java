@@ -158,15 +158,17 @@ public class OrderServiceImpl extends BaseService<OrderModel> implements IOrderS
 
 	@Override
 	public List<OrderModel> exportOrders(String startTime, String endTime, int status, String phoneno,
-			String feeAmount) {
+			String feeAmount,String coname) {
 		String sql = "SELECT `ID`,`SERIAL_NUM`,`USER_NAME`,`SEX`,`CARD_TYPE`,`CARD_NO`,`PHONE_NO`,"
 				+ "`PAY_TYPE`,`OUT_TRADE_NO`,`TRADE_STATE`,`PAY_FEE`,"
-				+ "`ORDER_TIME`,`PAY_TIME`,`CREATE_TIME`,`COOPERATER_NAME` FROM `tb_order` WHERE `TRADE_STATE`=1 ";
+				+ "`ORDER_TIME`,`PAY_TIME`,`CREATE_TIME`,`COOPERATER_NAME`,`PROVINCE`,`CITY`,`DISTRICT`,`ADDRESS` FROM `tb_order` WHERE `TRADE_STATE`=1 ";
 		if (!StringHelper.isEmptyStr(phoneno)) {
 			sql += " and PHONE_NO LIKE '%" + phoneno + "%' ";
 		}
 		if (!StringHelper.isEmptyStr(feeAmount))
 			sql += " and `PAY_FEE`=" + feeAmount;
+		if (!StringHelper.isEmptyStr(coname))
+			sql += " and `COOPERATER_NAME`='" + coname+"'";
 
 		if (!StringHelper.isEmptyStr(startTime) && !StringHelper.isEmptyStr(endTime)) {
 			sql += " and DATE_FORMAT(`PAY_TIME`,'%Y-%m-%d') between  DATE_FORMAT('" + startTime

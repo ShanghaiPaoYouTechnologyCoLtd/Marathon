@@ -1,5 +1,12 @@
 var buyEnable=true;
 
+window.onload=function(){
+	var test=getPar("pytest");
+	if(test!=null && test.length>0 && test=="1"){
+		$("#testTitle").show();
+	}
+};
+
 $("#btn_buy").click(function() {
 	if(!buyEnable)
 		return;
@@ -130,6 +137,7 @@ function getOrderParams() {
 		return false;
 	}
 
+	var test=getPar("pytest");
 
 	params = {
 		userName : userName,
@@ -143,7 +151,8 @@ function getOrderParams() {
 		province : province,
 		district : district,
 		address : address,
-		city : city
+		city : city,
+		test:test
 	};
 	var cardTypes = new Array("身份证", "护照", "港澳通行证");
 	$("#sp_info_name").html(userName);

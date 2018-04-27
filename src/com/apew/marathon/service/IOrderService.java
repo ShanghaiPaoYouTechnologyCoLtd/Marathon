@@ -79,7 +79,7 @@ public interface IOrderService {
 	 * @param status
 	 * @return
 	 */
-	public List<OrderModel> exportOrders(String startTime,String endTime,int status,String phoneno,String feeAmount);
+	public List<OrderModel> exportOrders(String startTime,String endTime,int status,String phoneno,String feeAmount,String coname);
 	
 	/**
 	 * 根据证件号获取护照状态 0未拥有 1已拥有 会查询tb_order与passport两张表

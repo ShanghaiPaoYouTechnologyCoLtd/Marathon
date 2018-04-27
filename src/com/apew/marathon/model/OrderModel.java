@@ -1,96 +1,104 @@
 package com.apew.marathon.model;
 
 public class OrderModel {
-	
-	//主键ID
+
+	// 主键ID
 	private Long id;
-	
-	//订单号
+
+	// 订单号
 	private String serialNum;
-	
-	//姓名
+
+	// 姓名
 	private String userName;
-	
-	//性别：1：男  2：女
+
+	// 性别：1：男 2：女
 	private int sex;
-	
-	//证件类型：1。身份证/2。台胞证/3。护照/4.军官证
+
+	// 证件类型：1。身份证/2。台胞证/3。护照/4.军官证
 	private int cardType;
-	
-	//证件号
+
+	// 证件号
 	private String cardNo;
-	
+
 	private String phoneNo;
-	
-	//'1:支付宝'
+
+	// '1:支付宝'
 	private int payType;
-	
-	//商户流水号
+
+	// 商户流水号
 	private String outTradeNo;
-	
-	//'-1支付失败  0： 未支付 1：已支付'
+
+	// '-1支付失败 0： 未支付 1：已支付'
 	private int tradeState;
-	
+
 	//
 	private float payFee;
-	
-	//下单时间
+
+	// 下单时间
 	private String orderTime;
-	
-	//支付时间
+
+	// 支付时间
 	private String payTime;
-	
-	//创建时间
+
+	// 创建时间
 	private String createTime;
-	
-	//合作方
+
+	// 合作方
 	private String cooperaterName;
-	
+
 	private String province;
 	private String city;
 	private String district;
 	private String address;
-	
-	public String getProvince(){
+
+	public String getProvince() {
+		if (province == null)
+			return "";
 		return province;
 	}
 
-	public void setProvince(String p){
-		province=p;
+	public void setProvince(String p) {
+		province = p;
 	}
-	
-	public String getCity(){
+
+	public String getCity() {
+		if (province == null)
+			return "";
 		return city;
 	}
 
-	public void setCity(String p){
-		city=p;
+	public void setCity(String p) {
+		city = p;
 	}
-	
-	public String getDistrict(){
+
+	public String getDistrict() {
+		if (province == null)
+			return "";
 		return district;
 	}
 
-	public void setDistrict(String p){
-		district=p;
+	public void setDistrict(String p) {
+		district = p;
 	}
-	
-	public String getAddress(){
+
+	public String getAddress() {
+		if (province == null)
+			return "";
 		return address;
 	}
 
-	public void setAddress(String p){
-		address=p;
+	public void setAddress(String p) {
+		address = p;
 	}
-	
-	public String getCooperateName(){
+
+	public String getCooperateName() {
 		return cooperaterName;
 	}
 
-	public void setCooperaterName(String coname){
-		cooperaterName=coname;
+	public void setCooperaterName(String coname) {
+		cooperaterName = coname;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}

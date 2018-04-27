@@ -34,14 +34,14 @@ public interface IThousandsListService {
 	 * @param raceID
 	 * @return
 	 */
-	public int getRemainFreeQuotas(String raceID);
+	public int getRemainFreeQuotas(String raceID,String tbname);
 	
 	/**
 	 * 获取付费名额剩余数
 	 * @param raceID
 	 * @return
 	 */
-	public int getRemainPaidQuotas(String raceID);
+	public int getRemainPaidQuotas(String raceID,String tbname);
 	
 	/**
 	 * 检查选手是否已在赛事下获得名额
@@ -49,5 +49,29 @@ public interface IThousandsListService {
 	 * @param raceID
 	 * @return
 	 */
-	public boolean playerInRace(String cardNo,String raceID);
+	public boolean playerInRace(String cardNo,String raceID,String tbname);
+	
+	/**
+	 * 上传选手获取名额信息
+	 * @param cardNo
+	 * @param raceID
+	 * @return
+	 */
+	public int uploadPlayerInDiscount(String cardNo,String raceID,int disType,String tbname);
+	
+	/**
+	 * 安全标识检查
+	 * @param token
+	 * @param raccID
+	 * @return
+	 */
+	public boolean tokenCheck(String token,String raccID);
+	
+	/**
+	 * 查询选手的名额状态
+	 * @param raceID
+	 * @return
+	 */
+	public int queryPlayersQuota(String cardno,String raceno,String tbname);
+	
 }

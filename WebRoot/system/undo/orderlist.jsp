@@ -49,8 +49,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <div class="layui-input-block">
 		    <select name="coname" id="coname">
 		        <option value="">选择合作方</option>
-		        <option value="测试1">测试1</option>
-		        <option value="我爱测试">我爱测试</option>
+		        <option value="tongzhou">通州马拉松</option>
+		        <option value="niaochao">鸟巢马拉松</option>
+		        <option value="北京长跑节">北京长跑节</option>
+		         <option value="上海半程马拉松">上海半程马拉松</option>
+		          <option value="paoyou">官网购买</option>
 	        </select>
         </div>
 	  </div>
@@ -224,7 +227,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script type="text/javascript">
 	function exportExcel(){
-	  window.location.href = "<%=basePath%>back/exportorders.do?startTime="+$("#startdate").val()+"&endTime="+$("#enddate").val()+"&phoneno="+$("#phoneno").val()+"&feeamount="+$("#feeamount").val();
+	  window.location.href = "<%=basePath%>back/exportorders.do?startTime="+$("#startdate").val()+"&endTime="+$("#enddate").val()+"&phoneno="+$("#phoneno").val()+"&feeamount="+$("#feeamount").val()+"&coname="+$("#coname").val();
 	}
 	
 	
