@@ -15,6 +15,8 @@ import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import com.apew.marathon.model.RaceModel;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -212,6 +214,20 @@ public class BaseService<T> {
 		if (t != null && t.size() > 0)
 			return t.get(0);
 		return null;
+	}
+
+	public RaceModel queryForRaceObject(String sql, Object[] args, Class<RaceModel> clazz) {
+		try {
+			if (args == null) {
+				args = new Object[] {};
+			}
+			List<RaceModel> t = jdbcTemplate.query(sql, args, ParameterizedBeanPropertyRowMapper.newInstance(clazz));
+			if (t != null && t.size() > 0)
+				return t.get(0);
+			return null;
+		} catch (Exception ex) {
+			return null;
+		}
 	}
 
 	/**

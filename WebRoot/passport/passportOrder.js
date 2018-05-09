@@ -1,16 +1,27 @@
-var buyEnable=true;
+var buyEnable = true; //是否允许购买 
+var rID = "-1"; //比赛ID -1为无传入，为跑友官网购买
+var defaultCoName="paoyou";
+var test = "";
 
-window.onload=function(){
-	var test=getPar("pytest");
-	if(test!=null && test.length>0 && test=="1"){
+window.onload = function() {
+	test = getPar("pytest");
+	if (test != null && test.length > 0 && test == "1") {
 		$("#testTitle").show();
+		testF();
+		$(".td_title").html("*本页面为测试页面，仅供上海跑友信息科技内部使用。<br/>*所有订单无效且不具备法律效应，请悉知。<br/>*若您希望返回正常页面进行购买，请点击左侧菜单。");
 	}
 };
 
+function testF(){
+	$("#txt_uname").val("跑友测试数据"+Math.ceil(Math.random()*10000));
+	$("#txt_cardno").val("520203199404140000");
+	$("#txt_phone").val("18040500000");
+}
+
 $("#btn_buy").click(function() {
-	if(!buyEnable)
+	if (!buyEnable)
 		return;
-	
+
 	if (!getOrderParams())
 		return;
 
@@ -19,9 +30,9 @@ $("#btn_buy").click(function() {
 
 var params;
 function confirmPopOrderInfo() {
-	if(!buyEnable)
+	if (!buyEnable)
 		return;
-	
+
 	$("#div_loading").show();
 	$(".modal-footer button").hide();
 
@@ -85,13 +96,20 @@ function confirmPopOrderInfo() {
 	}, 'POST');
 }
 
+function getCoName() {
+	if ($("#sel_race") && $("#sel_race").val() != null)
+		return $("#sel_race").val();
+	else
+		return defaultCoName;
+}
+
 function getOrderParams() {
 	var userName = $("#txt_uname").val();
 	var sex = $("#rab_male").is(":checked") ? 1 : 2;
 	var cardType = $("#sel_cardtype").val();
 	var cardNo = $("#txt_cardno").val();
 	var phoneNo = $("#txt_phone").val();
-	var coName = "paoyou";
+	var coName = getCoName();
 	var province = $("#sel_prov").val();
 	var city = $("#sel_city").val();
 	var district = $("#sel_dist").val();
@@ -102,6 +120,12 @@ function getOrderParams() {
 	var telReg = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/;
 	var cardNumReg = /(^\d{15}$)|(^\d{17}([0-9]|X)$)/;
 	var mobileReg = /^\d{7,11}$/;
+
+	if(coName==-1){
+		showRequestMessage('notice', "未找到您对应的赛事，请返回您跳转前的马拉松网站重新操作，或联系工作人员！");
+		return false;
+	}
+	
 	if (userName == null || userName.length <= 0) {
 		showRequestMessage('notice', "请填写姓名！");
 		return false;
@@ -122,22 +146,24 @@ function getOrderParams() {
 		return false;
 	}
 
-	if (province == null || province.length <= 0) {
-		showRequestMessage('notice', "请选择省份！");
-		return false;
+	if (coName == defaultCoName) { //官网购买才需要地址
+		if (province == null || province.length <= 0) {
+			showRequestMessage('notice', "请选择省份！");
+			return false;
+		}
+
+		if (city == null || city.length <= 0) {
+			showRequestMessage('notice', "请选择城市！");
+			return false;
+		}
+
+		if (address == null || address.length <= 4) {
+			showRequestMessage('notice', "详细地址不能少于5个字符！");
+			return false;
+		}
 	}
 
-	if (city == null || city.length <= 0) {
-		showRequestMessage('notice', "请选择城市！");
-		return false;
-	}
-
-	if (address == null || address.length <= 4) {
-		showRequestMessage('notice', "详细地址不能少于5个字符！");
-		return false;
-	}
-
-	var test=getPar("pytest");
+	var test = getPar("pytest");
 
 	params = {
 		userName : userName,
@@ -152,7 +178,7 @@ function getOrderParams() {
 		district : district,
 		address : address,
 		city : city,
-		test:test
+		test : test
 	};
 	var cardTypes = new Array("身份证", "护照", "港澳通行证");
 	$("#sp_info_name").html(userName);
@@ -160,7 +186,11 @@ function getOrderParams() {
 	$("#sp_info_cardtype").html(cardTypes[cardType - 1]);
 	$("#sp_info_cardno").html(cardNo);
 	$("#sp_info_phone").html(phoneNo);
-	$("#sp_info_address").html(province + " " + city + " " + district + "<br/>" + address);
+	if (coName == defaultCoName) {
+		$("#sp_info_address").html(province + " " + city + " " + district + "<br/>" + address);
+	} else {
+		$("#sp_info_address").html("<span style='font-size:18px;color:black'>"+$("#sel_race").text()+"</span><br/><span class='td_title'>*请检查赛事是否选择正确</span>");
+	}
 	$("#sp_info_paytype").html(payTtpe == 1 ? "支付宝支付" : "微信支付");
 	return true;
 }
@@ -185,16 +215,16 @@ function getPar(par) {
 }
 //json日期格式转换为正常格式
 function jsonDateFormat(jsonDate) {
-	 try {
-	  var date = new Date(parseInt(jsonDate.replace("/Date(", "").replace(")/", ""), 10));
-	  var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-	  var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-	  var hours = date.getHours();
-	  var minutes = date.getMinutes();
-	  var seconds = date.getSeconds();
-	  var milliseconds = date.getMilliseconds();
-	  return date.getFullYear() + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds + "." + milliseconds;
-	 } catch (ex) {
-	  return "";
-	 }
+	try {
+		var date = new Date(parseInt(jsonDate.replace("/Date(", "").replace(")/", ""), 10));
+		var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+		var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		var seconds = date.getSeconds();
+		var milliseconds = date.getMilliseconds();
+		return date.getFullYear() + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+	} catch (ex) {
+		return "";
 	}
+}

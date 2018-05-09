@@ -27,8 +27,8 @@ $(function() {
 	var userAgent = navigator.userAgent; //为IE浏览器时需要特殊处理
 	var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1;
 
-	var stopArr=new Array("tongzhou");
-	var gameNames=new Array("通州马拉松");
+	var stopArr=new Array("tongzhou","niaochao");
+	var gameNames=new Array("通州马拉松","鸟巢马拉松");
 	
 	var coName=decodeURI(getPar("coname"));
 	for(var i=0;i<stopArr.length;i++){

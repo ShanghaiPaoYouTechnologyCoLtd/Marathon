@@ -93,21 +93,24 @@ select {
 							</div>
 						</aside>
 						<div class="col-md-9 kf_shop_wrap">
-							<div style="display:block;">
+							<div>
 								<div class="kf_overview kf_overview_roster">
 									<h6 class="kf_hd1 margin_0">
 										<span>中国马拉松护照-办理</span>
+
 										<!-- 	 <a class="prv_btn"
 											href="javascript:alert('暂未开放');">批量购买（10人起购）&raquo;</a> -->
 									</h6>
+
 								</div>
 								<div id="passport-sell">
+									<a style="font-size:16px;color: #337ab7;padding-left:20px;" href="passport/marathonInstructions.jsp">什么是马拉松护照？</a>
 									<form class="form-horizontal">
 										<div class="form-group title_a">
 											<label for="realName" class="col-sm-2 control-label"></label>
-											<div class="col-sm-10">
-												<a href="passport/marathonPassport_third.jsp"
-													style="font-size:13px; display:none">本页面为个人购买页面，如果您是赛事选手购买，点击跳转到赛事合作购买页面。</a>
+											<div class="col-sm-10" style="text-align:right;">
+													 <a href="passport/marathonPassport_third.jsp"
+													style="font-size:13px; ">本页面为个人购买页面，如果您是赛事选手购买，点击跳转到赛事合作购买页面。</a>
 											</div>
 										</div>
 										<div class="form-group">
@@ -190,7 +193,7 @@ select {
 												class="col-sm-2 control-label"></label>
 											<div class="col-sm-10">
 												<p>办理费用50元，包含工本费、快递费、包装费。</p>
-												<p style="color: #b02126;font-weight: 300;">注：本产品为定制产品，一经购买，不可退换。</p>
+												<p style="color: #b02126;font-weight: 300;">注：本产品为定制产品，一经购买，非质量问题不可退换。</p>
 											</div>
 										</div>
 										<div class="form-group">
@@ -267,7 +270,6 @@ select {
 								<tr>
 									<td colspan="2" class="td_title">*本购买为个人购买，护照会寄送到您填写的地址。<br />
 										*如果您是赛事选手，您可以前往和作购买页面享受优惠价购买。
-										*合作购买的护照将会发送到赛事场地，您须前往赛事场地指定地点领取护照。
 									</td>
 								</tr>
 							</table>

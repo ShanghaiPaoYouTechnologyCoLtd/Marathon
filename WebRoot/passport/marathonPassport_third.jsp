@@ -96,7 +96,7 @@ select {
 							<div style="display:block;">
 								<div class="kf_overview kf_overview_roster">
 									<h6 class="kf_hd1 margin_0">
-										<span>中国马拉松护照-购买(赛事合作)</span>
+										<span>中国马拉松护照-办理(赛事合作)</span>
 										<!-- 	 <a class="prv_btn"
 											href="javascript:alert('暂未开放');">批量购买（10人起购）&raquo;</a> -->
 									</h6>
@@ -186,18 +186,19 @@ select {
 											<label for="selectPaymentMethod"
 												class="col-sm-2 control-label"></label>
 											<div class="col-sm-10">
-												<p style="color: #b02126;font-weight: 300;">注：本产品为定制产品，一经购买，不可退换。</p>
+												<p style="color: #b02126;font-weight: 300;">注：本产品为定制产品，一经购买，非质量问题不可退换。</p>
 											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-10">
-												<button type="button" style="width:120px"
-													class="btn btn-primary" data-toggle="modal" id="btn_buy">已截止</button>
-												<span id="sp_btnTitle" style="color:red; display:none"></span>
-												<!-- 	<button type="button" onclick="confirmPopOrderInfo()"
+											<div class="form-group">
+												<div class="col-sm-offset-2 col-sm-10">
+													<p style="display:none; color:red; font-size:20px;"
+														id="testTitle">本页面用于跑友科技内部测试，订单不具备法律效应！</p>
+													<button type="button" style="width:120px"
+														class="btn btn-primary" data-toggle="modal" id="btn_buy">立即办理</button>
+													<span style="color:red; font-size:14px;" id="sp_btnTitle"></span>
+													<!-- 	<button type="button" onclick="confirmPopOrderInfo()"
 													class="btn btn-primary passport-sell-btn">去购买</button> -->
+												</div>
 											</div>
-										</div>
 									</form>
 								</div>
 							</div>
@@ -252,7 +253,7 @@ select {
 									<td><span id="sp_info_phone"></span></td>
 								</tr>
 								<tr>
-									<td>收件地址：</td>
+									<td>合作赛事：</td>
 									<td><span id="sp_info_address"></span></td>
 								</tr>
 								<tr>
@@ -260,9 +261,8 @@ select {
 									<td><span id="sp_info_paytype"></span></td>
 								</tr>
 								<tr>
-									<td colspan="2" class="td_title">*本购买为个人购买，护照会寄送到您填写的地址。<br />
-										*如果您是赛事选手，您可以前往和作购买页面享受优惠价购买。
-										*合作购买的护照将会发送到赛事场地，您须前往赛事场地指定地点领取护照。
+									<td colspan="2" class="td_title">*本购买赛事合作购买,护照将会发送到赛事场地。<br />
+										*您须前往赛事场地指定地点领取护照。
 									</td>
 								</tr>
 							</table>
@@ -295,18 +295,18 @@ select {
 				if (races[i].ID == $("#sel_race").val()) {
 					$("#sp_price").html(races[i].Price.toFixed(2));
 					var now = new Date();
-					var sDate=new Date(parseInt(races[i].StartTime.time));
-					var eDate=new Date(parseInt(races[i].EndTime.time));
+					var sDate = new Date(parseInt(races[i].StartTime.time));
+					var eDate = new Date(parseInt(races[i].EndTime.time));
 					if (sDate > now || eDate < now) {
 						$("#sp_btnTitle").show();
 						$("#btn_buy").html("已截止");
 						$("#btn_buy").removeClass("btn-primary");
 						$("#btn_buy").addClass("btn-secondary");
-						$("#sp_btnTitle").html("*"+races[i].RaceName+"报名已截止,无法购买赛事合作护照");
+						$("#sp_btnTitle").html("*" + races[i].RaceName + "报名已截止,无法购买赛事合作护照。但您可以选择其他赛事继续办理。");
 						buyEnable = false;
 					} else {
 						$("#sp_btnTitle").hide();
-						$("#btn_buy").html("购买");
+						$("#btn_buy").html("立即办理");
 						$("#btn_buy").removeClass("btn-secondary");
 						$("#btn_buy").addClass("btn-primary");
 						buyEnable = true;
@@ -316,16 +316,17 @@ select {
 			}
 		}
 	
-		var rID = "-1";
-		if (sessionStorage.rid != null && sessionStorage.rid.length > 0) { //发现会话缓存
-			rID = sessionStorage.rid;
+		function raceIDSet() {
+			if (sessionStorage.rid != null && sessionStorage.rid.length > 0) { //发现会话缓存
+				rID = sessionStorage.rid;
+			}
+			var paraID = getPar("rid");
+			if (paraID && paraID != null && paraID.length > 0) { //发现传入参数
+				rID = paraID;
+				sessionStorage.rid = paraID; //更新参数
+			}
 		}
-		var paraID = getPar("rid");
-		if (paraID && paraID != null && paraID.length > 0) { //发现传入参数
-			rID = paraID;
-			sessionStorage.rid = paraID; //更新参数
-		}
-	
+		raceIDSet();
 		var races = {};
 		var url = 'getAllRaces.do';
 		var params = {
@@ -341,11 +342,33 @@ select {
 				}
 				races = result;
 				$("#sel_race").html("");
+				var flag = false;
+				if (result == null || result.length == 0) {
+					$("#sel_race").html("<option value='-2'>没有正在进行的合作赛事</option>");
+					$("#sel_race").val(-2);
+					$("#sp_btnTitle").show();
+					$("#btn_buy").html("未选择赛事");
+					$("#btn_buy").removeClass("btn-primary");
+					$("#btn_buy").addClass("btn-secondary");
+					$("#sp_btnTitle").html("*当前没有正在进行的合作赛事，您可以<a href='passport/marathonPassport.jsp' style='color:blue'>点击返回个人办理页面</a>继续办理！");
+					return;
+				}
 				for (var i in result) {
 					$("#sel_race").append("<option value='" + result[i].ID + "'>" + result[i].RaceName + "</option>")
+					if (!flag && rID == result[i].ID)
+						flag = true;
 				}
-				if (rID != -1)
+				if (!flag) {
+					$("#sel_race").html("<option value='-1'>未找到您对应的赛事,请重新操作！！</option>");
+					$("#sel_race").val(-1);
+					$("#sp_btnTitle").show();
+					$("#btn_buy").html("无法办理");
+					$("#btn_buy").removeClass("btn-primary");
+					$("#btn_buy").addClass("btn-secondary");
+					$("#sp_btnTitle").html("*未找到您对应的赛事，请返回您跳转前的马拉松网站重新操作，或联系工作人员！");
+				} else if (rID != -1) {
 					$("#sel_race").val(rID);
+				}
 				raceChange();
 			} else {
 				$("#sel_race").html("赛事加载失败！");

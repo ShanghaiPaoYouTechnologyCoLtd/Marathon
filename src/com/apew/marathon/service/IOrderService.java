@@ -3,6 +3,7 @@ package com.apew.marathon.service;
 import java.util.List;
 
 import com.apew.marathon.model.OrderModel;
+import com.apew.marathon.model.RaceModel;
 
 public interface IOrderService {
 	
@@ -27,6 +28,12 @@ public interface IOrderService {
 	 * @return
 	 */
 	public String GetKeyValuePair(String key);
+	/**
+	 * 获取完整比赛信息
+	 * @param raceid
+	 * @return
+	 */
+	public RaceModel getRace(Long raceid);
 	/**
 	 * 是否存在一个用户信息
 	 * @return  0不存在  1存在于订单表但是未付款，需要前往付款  2已付款或者存在于护照表，无需继续

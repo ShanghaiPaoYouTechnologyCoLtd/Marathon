@@ -26,6 +26,7 @@ import com.alipay.util.RandomOrder;
 import com.alipay.util.StringHelper;
 import com.alipay.util.XMLUtil;
 import com.apew.marathon.model.OrderModel;
+import com.apew.marathon.model.RaceModel;
 import com.apew.marathon.service.IOrderService;
 
 @Controller
@@ -84,49 +85,49 @@ public class OrderController extends BaseController {
 		float payFee = 0f;
 		String title = "中国马拉松护照";
 		String coName = request.getParameter("coName"); // 合作方名称,可空
-		coName = coName.trim();
 		String province = request.getParameter("province");
 		String city = request.getParameter("city");
 		String district = request.getParameter("district");
 		String address = request.getParameter("address");
-		String testE=request.getParameter("test");
-		if (coName != null && coName.equals("paoyou")) { // 在官网购买，必须填写地址
-			if (StringHelper.isEmptyStr(province)) {
-				return returnapiParError("请选择省份!");
-			}
-			if (StringHelper.isEmptyStr(city)) {
-				return returnapiParError("请选择城市!");
-			}
-			/*
-			 * if (StringHelper.isEmptyStr(district)) { //非必要 return
-			 * returnapiParError("请选择地区!"); }
-			 */
-			if (StringHelper.isEmptyStr(address)) {
-				return returnapiParError("请填写详细地址!");
-			}
 
-			payFee = 50f;
-		} else {
-			String purcahseType = request.getParameter("purcahseType"); // 支付方式
-			if (!AlipayConfig.payCashType.containsKey(purcahseType)) {
-				return returnapiFail("支付类型错误！");
+		if (coName != null) {
+			coName = coName.trim();
+			if (coName.equals("paoyou")) { // 在官网购买，必须填写地址
+				if (StringHelper.isEmptyStr(province)) {
+					return returnapiParError("请选择省份!");
+				}
+				if (StringHelper.isEmptyStr(city)) {
+					return returnapiParError("请选择城市!");
+				}
+				/*
+				 * if (StringHelper.isEmptyStr(district)) { //非必要 return
+				 * returnapiParError("请选择地区!"); }
+				 */
+				if (StringHelper.isEmptyStr(address)) {
+					return returnapiParError("请填写详细地址!");
+				}
+
+				payFee = 50f;
+			} else {
+				RaceModel race = orderService.getRace(Long.parseLong(coName));
+				if (race == null)
+					return returnapiParError("赛事未找到!");
+
+				payFee = race.getPrice();
+				title = "中国马拉松护照(" + race.getRaceName() + ")";
 			}
-			payFee = AlipayConfig.payCashType.get(purcahseType); // 支付金额
-			String gameName = orderService.GetKeyValuePair(coName);
-			if (gameName != null && gameName.length() > 0)
-				title = "中国马拉松护照(" + gameName + ")";
 		}
-		
-		if(testE.equals("1")){
+
+		if (request.getParameter("test").equals("1")) { 	//测试模式打开
 			payFee = 0.01f;
 			title = "中国马拉松护照测试数据，本数据不具备法律效应！";
 		}
-		
+
 		String serialNum = RandomOrder.generateNum().toUpperCase();
 		boolean isReadToPay = false;
 		int isExist = orderService.IsExist(userName, cardNo);
 		if (isExist == 2) {
-			return returnapiFail("您已报名,请勿重复提交!");
+			return returnapiParError("您已报名,请勿重复提交!");
 		}
 		/*
 		 * else if (isExist == 1) { // 未付款的订单 //将未付款的订单提出来，会导致用户修改数据无效

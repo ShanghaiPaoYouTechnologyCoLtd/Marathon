@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.alipay.util.StringHelper;
 import com.apew.marathon.model.OrderModel;
+import com.apew.marathon.model.RaceModel;
 import com.apew.marathon.service.BaseService;
 import com.apew.marathon.service.IOrderService;
 
@@ -200,6 +201,12 @@ public class OrderServiceImpl extends BaseService<OrderModel> implements IOrderS
 		String sql="select * from races WHERE (NOW() BETWEEN StartTime AND EndTime) OR ID =?";
 		String json=queryForJSON(sql,new Object[]{currentID});
 		return json;
+	}
+
+	@Override
+	public RaceModel getRace(Long raceid) {
+		String sql = "SELECT * FROM Races where ID=? limit 1";
+		return queryForRaceObject(sql, new Object[] {raceid }, RaceModel.class);
 	}
 
 }
