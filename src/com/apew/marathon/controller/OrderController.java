@@ -113,7 +113,7 @@ public class OrderController extends BaseController {
 				if (race == null)
 					return returnapiParError("赛事未找到!");
 
-				payFee = race.getPrice();
+				payFee = race.getPrice(); //新的支付方式
 				title = "中国马拉松护照(" + race.getRaceName() + ")";
 			}
 		}
