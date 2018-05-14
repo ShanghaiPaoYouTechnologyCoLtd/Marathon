@@ -1,5 +1,5 @@
 package com.apew.marathon.model;
-
+//赛事模型
 public class RaceModel {
 	public Long getID() {
 		return ID;

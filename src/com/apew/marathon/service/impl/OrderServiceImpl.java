@@ -203,7 +203,7 @@ public class OrderServiceImpl extends BaseService<OrderModel> implements IOrderS
 		return json;
 	}
 
-	@Override
+	@Override//获取赛事
 	public RaceModel getRace(Long raceid) {
 		String sql = "SELECT * FROM Races where ID=? limit 1";
 		return queryForRaceObject(sql, new Object[] {raceid }, RaceModel.class);

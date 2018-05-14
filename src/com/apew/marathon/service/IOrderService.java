@@ -97,7 +97,7 @@ public interface IOrderService {
 	public int getPassportStatus(String cardNo);
 	
 	/**
-	 * 获取所有正在进行护照购买的赛事
+	 * 获取所有正在进行护照购买的赛事。
 	 * 
 	 * @param currentID 用户传入的赛事ID，为了保证用户体验度，必须将用户传入的赛事展示出来，无论是否已经结束购买，避免用户误解
 	 * @return
