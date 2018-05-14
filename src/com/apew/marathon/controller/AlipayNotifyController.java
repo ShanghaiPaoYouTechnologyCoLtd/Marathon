@@ -81,10 +81,7 @@ public class AlipayNotifyController extends BaseController {
 
 			String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
 
-			if (StringHelper.floatValue(total_amount) == AlipayConfig.payCashType.get("payTest")) {
-				// 测试金额
-			} else if (StringHelper.floatValue(total_amount) != AlipayConfig.payCashType.get("payDiscount")
-					&& StringHelper.floatValue(total_amount) != AlipayConfig.payCashType.get("payFull")) {
+			if (StringHelper.floatValue(total_amount) <=0) {
 				status = "fail";
 				BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
 				out.write(status.getBytes());
