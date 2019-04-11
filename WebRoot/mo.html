@@ -1,56 +1,125 @@
 <!DOCTYPE html>
 <html ga-id="UA-58953666-1" ga-pv="index">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta id="viewport" name="viewport" content="width=device-width" />
-    <title>中国马拉松赛事联盟</title>
-    <style>
-        *{margin: 0;  padding: 0;}
-        .mo{position: absolute;}
-        .btn{position: absolute;  top: 77%; left:31%;}
-		.zw{ text-align:center; position:absolute; top:0; left:0; max-width:640px;}
-    </style>
-    <script>
-        if(userAgent().isIOS) {document.getElementById('viewport').content='width=640,user-scalable=no';}
-        if(userAgent().isAndroid && navigator.userAgent.split('HUAWEI').length > 1) {document.getElementById('viewport').content='width=640,user-scalable=no';}
-        function userAgent()
-        {
-            var sUserAgent = navigator.userAgent.toLowerCase();
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta id="viewport" name="viewport" content="width=device-width" />
+<title>中国马拉松赛事联盟</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
 
-            var o = {};
-            o.isIpad = /ipad/i.test(sUserAgent);
-            o.isIpod = /ipod/i.test(sUserAgent);
-            o.isIphone = /iphone os/i.test(sUserAgent);
-            o.isUc7 = /rv:1.2.3.4/i.test(sUserAgent);
-            o.isUc = /ucweb/i.test(sUserAgent);
-            o.isAndroid = /android/i.test(sUserAgent);
-            o.isWM = /windows mobile/i.test(sUserAgent);
+.mo {
+	position: absolute;
+}
 
-            o.isPhone = o.isIphone || o.isAndroid || o.isWM || o.isUc7 || o.isUc;
-            o.isMobile = o.isIpad || o.isPhone || o.isAndroid;
-            o.isPc = !o.isMobile;
-            o.isIOS = o.isIpad || o.isIphone||o.isIpod;
+.btn {
+	position: absolute;
+	top: 77%;
+	left: 31%;
+}
 
-            return o;
-        }
-        
-        function downApp(){
-        	var uagent=userAgent();
-        	if(uagent.isIOS){
-        		//alert("ios");
-        		window.location.href="http://itunes.apple.com/cn/app/jie-zou-da-shi/id1297179847?mt=8";
-        	}else if(uagent.isAndroid){
-        		//alert("isAndroid");
-        		window.location.href="http://zhushou.360.cn/detail/index/soft_id/3902591";
-        	}
-        }
-    </script>
+.zw {
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 640px;
+}
+
+#mask {
+	width: 100%;
+	height: 100%;
+	min-height: 400px;
+	min-width: 300px;
+	background: #2b2b2b;
+	opacity: 0.9;
+	position: absolute;
+	z-index: 99998;
+	display: none;
+	right: 0px;
+	top: 0px;
+}
+
+#cover {
+	position: absolute;
+	z-index: 99999;
+	right: 0px;
+	top: 10px;
+	display: none;
+	width:90%;
+}
+</style>
+<script>
+	window.onload = function() {
+		if (userAgent().isIOS) {
+			document.getElementById('viewport').content = 'width=640,user-scalable=no';
+		}
+		if (userAgent().isAndroid && navigator.userAgent.split('HUAWEI').length > 1) {
+			document.getElementById('viewport').content = 'width=640,user-scalable=no';
+			if (isWeiXin()) {
+				document.getElementById('mask').style.width = document.documentElement.clientWidth;
+				document.getElementById('mask').style.height = document.documentElement.clientHeight;
+				document.getElementById('mask').style.display = "block";
+				document.getElementById('cover').style.display = "block";
+			}
+		}
+	}
+
+	function userAgent() {
+		var sUserAgent = navigator.userAgent.toLowerCase();
+
+		var o = {};
+		o.isIpad = /ipad/i.test(sUserAgent);
+		o.isIpod = /ipod/i.test(sUserAgent);
+		o.isIphone = /iphone os/i.test(sUserAgent);
+		o.isUc7 = /rv:1.2.3.4/i.test(sUserAgent);
+		o.isUc = /ucweb/i.test(sUserAgent);
+		o.isAndroid = /android/i.test(sUserAgent);
+		o.isWM = /windows mobile/i.test(sUserAgent);
+
+		o.isPhone = o.isIphone || o.isAndroid || o.isWM || o.isUc7 || o.isUc;
+		o.isMobile = o.isIpad || o.isPhone || o.isAndroid;
+		o.isPc = !o.isMobile;
+		o.isIOS = o.isIpad || o.isIphone || o.isIpod;
+
+		return o;
+	}
+
+	function isWeiXin() {
+		//window.navigator.userAgent属性包含了浏览器类型、版本、操作系统类型、浏览器引擎类型等信息，这个属性可以用来判断浏览器类型
+		var ua = window.navigator.userAgent.toLowerCase();
+		//通过正则表达式匹配ua中是否含有MicroMessenger字符串
+		if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function downApp() {
+		var uagent = userAgent();
+		if (uagent.isIOS) {
+			//alert("ios");
+			window.location.href = "http://itunes.apple.com/cn/app/jie-zou-da-shi/id1297179847?mt=8";
+		} else if (uagent.isAndroid) {
+			//alert("isAndroid");
+			window.location.href = "app/androiddownload.html";
+		}
+	}
+</script>
 </head>
 <body>
-    <img class="mo" src="images/mo.jpg">
-    <div class="zw">
-    <img src="images/zw.png">
-    <img src="images/downloadbtn.png" onclick="downApp()">
-    </div>
+	<img src="extra-images/weixin-cover.png" id="cover" />
+	<div id="mask"></div>
+	<script>
+		
+	</script>
+	<img class="mo" src="images/mo.jpg">
+	<div class="zw">
+		<img src="images/zw.png"> <img src="images/downloadbtn.png"
+			onclick="downApp()">
+	</div>
 </body>
 </html>

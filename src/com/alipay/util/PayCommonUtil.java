@@ -115,5 +115,4 @@ public class PayCommonUtil {
         String s = outFormat.format(now);  
         return s;  
     }  
-  
 }

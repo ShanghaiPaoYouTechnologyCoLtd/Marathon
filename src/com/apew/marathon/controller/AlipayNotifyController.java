@@ -1,6 +1,7 @@
 package com.apew.marathon.controller;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -17,12 +18,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.config.AlipayConfig;
+import com.alipay.config.StaticConfig;
 import com.alipay.config.WechatPayConfig;
 import com.alipay.util.PayCommonUtil;
 import com.alipay.util.StringHelper;
 import com.alipay.util.XMLUtil;
 import com.apew.marathon.model.OrderModel;
+import com.apew.marathon.model.RaceModel;
+import com.apew.marathon.model.ReceiveModel;
 import com.apew.marathon.service.IOrderService;
+import com.apew.marathon.service.IReceiveService;
 
 @Controller
 public class AlipayNotifyController extends BaseController {
@@ -30,10 +35,9 @@ public class AlipayNotifyController extends BaseController {
 	@Resource(name = "orderService")
 	private IOrderService orderService;
 
-	public void wechat_notify(){
-		
-	}
-	
+	@Resource(name = "receiveService")
+	private IReceiveService receiveService;
+
 	@RequestMapping(value = "/alipay_notify", method = RequestMethod.POST)
 	public void alipay_notify(HttpServletRequest request, HttpServletResponse response) throws Exception {// 获取支付宝POST过来反馈信息
 
@@ -81,7 +85,7 @@ public class AlipayNotifyController extends BaseController {
 
 			String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
 
-			if (StringHelper.floatValue(total_amount) <=0) {
+			if (StringHelper.floatValue(total_amount) <= 0) {
 				status = "fail";
 				BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
 				out.write(status.getBytes());
@@ -99,26 +103,46 @@ public class AlipayNotifyController extends BaseController {
 				// 注意：
 				// 退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
 
-				OrderModel existOrder = orderService.getOrderDetail(out_trade_no);
-				if (null != existOrder && 1 == existOrder.getTradeState()) {
-					status = "success";
-				} else {
-					OrderModel orderDetail = new OrderModel();
-					orderDetail.setSerialNum(out_trade_no);
-					orderDetail.setOutTradeNo(trade_no);
-					orderDetail.setPayType(1);
-					orderDetail.setTradeState(1);
-
-					int flag = orderService.updateOrderStatus(orderDetail);
-
-					System.out.println("支付宝回调*******修改订单状态*******************" + flag + "----" + out_trade_no);
-
-					if (flag == 1)
+				if (out_trade_no.toLowerCase().indexOf(StaticConfig.Receive_Express_TradeNo_Prev.toLowerCase()) >= 0) { // 支付快递费用
+					try {
+						ReceiveModel existOrder = receiveService.getModel(out_trade_no);
+						updateReceive(out_trade_no, trade_no, Integer.toString(existOrder.getOrderID()));
+					} catch (Exception ex) {
+						receiveService.insertLog(ex.toString() + ex.getMessage());
+					}
+				} else { // 护照购买
+					OrderModel existOrder = orderService.getOrderDetail(out_trade_no);
+					if (null != existOrder && 1 == existOrder.getTradeState()) {
 						status = "success";
-					else
-						status = "fail";
-				}
+					} else {
+						OrderModel orderDetail = new OrderModel();
+						orderDetail.setSerialNum(out_trade_no);
+						orderDetail.setOutTradeNo(trade_no);
+						orderDetail.setPayType(1);
+						orderDetail.setTradeState(1);
 
+						int flag = orderService.updateOrderStatus(orderDetail);
+						//orderService.genPassport(existOrder);
+
+						if (flag == 1) {
+							status = "success";
+							MessageSendController msc = new MessageSendController();
+
+							if (orderDetail.getCooperateName().equals("4")) { // 官网购买
+								msc.sendPassportBuyMsg(orderDetail.getUserName(), orderDetail.getPhoneNo());
+							} else {
+								String racename = "马拉松";
+								RaceModel rm = orderService.getRace(Long.parseLong(orderDetail.getCooperateName()));
+								if (rm != null && rm.getRaceName() != null) {
+									racename = rm.getRaceName();
+								}
+								msc.sendPassportBuyMsg_COOP(orderDetail.getUserName(), orderDetail.getPhoneNo(),
+										racename);
+							}
+						} else
+							status = "fail";
+					}
+				}
 			}
 
 		} else {// 验证失败
@@ -137,98 +161,138 @@ public class AlipayNotifyController extends BaseController {
 		out.close();
 
 	}
-	
+
 	@RequestMapping(value = "/wechat_notify", method = RequestMethod.POST)
-	public void weixin_notify(HttpServletRequest request,HttpServletResponse response) throws Exception{  
-        //读取参数  
-        InputStream inputStream ;  
-        StringBuffer sb = new StringBuffer();  
-        inputStream = request.getInputStream();  
-        String s ;  
-        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));  
-        while ((s = in.readLine()) != null){  
-            sb.append(s);  
-        }  
-        in.close();  
-        inputStream.close();  
+	public void weixin_notify(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 读取参数
+		InputStream inputStream;
+		StringBuffer sb = new StringBuffer();
+		inputStream = request.getInputStream();
+		String s;
+		BufferedReader in = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+		while ((s = in.readLine()) != null) {
+			sb.append(s);
+		}
+		in.close();
+		inputStream.close();
 
-        //解析xml成map  
-        Map<String, String> m = new HashMap<String, String>();  
-        m = XMLUtil.doXMLParse(sb.toString());  
+		// 解析xml成map
+		Map<String, String> m = new HashMap<String, String>();
+		m = XMLUtil.doXMLParse(sb.toString());
 
-        //过滤空 设置 TreeMap  
-        SortedMap<Object,Object> packageParams = new TreeMap<Object,Object>();        
-        Iterator it = m.keySet().iterator();  
-        while (it.hasNext()) {  
-            String parameter = (String) it.next();  
-            String parameterValue = m.get(parameter);  
-              
-            String v = "";  
-            if(null != parameterValue) {  
-                v = parameterValue.trim();  
-            }  
-            packageParams.put(parameter, v);  
-        }  
-          
-        // 账号信息  
-        String key = WechatPayConfig.API_KEY; // key  
-  
-        //判断签名是否正确  
-        if(PayCommonUtil.isTenpaySign("UTF-8", packageParams,key)) {  
-            //------------------------------  
-            //处理业务开始  
-            //------------------------------  
-            String resXml = "";  
-            if("SUCCESS".equals((String)packageParams.get("result_code"))){  
-                // 这里是支付成功  
-                //////////执行自己的业务逻辑////////////////  
-                String mch_id = (String)packageParams.get("mch_id");  
-                String openid = (String)packageParams.get("openid");  
-                String is_subscribe = (String)packageParams.get("is_subscribe");  
-                String out_trade_no = (String)packageParams.get("out_trade_no");  
-                  
-                String total_fee = (String)packageParams.get("total_fee");  
-                String transaction_id=(String)packageParams.get("transaction_id");  
-             //   String nonce_str=(String)packageParams.get("nonce_str");  
-                
+		// 过滤空 设置 TreeMap
+		SortedMap<Object, Object> packageParams = new TreeMap<Object, Object>();
+		Iterator it = m.keySet().iterator();
+		while (it.hasNext()) {
+			String parameter = (String) it.next();
+			String parameterValue = m.get(parameter);
 
-				OrderModel existOrder = orderService.getOrderDetail(out_trade_no);
-				if(existOrder==null){
-					existOrder = new OrderModel();
-					existOrder.setSerialNum(out_trade_no);
+			String v = "";
+			if (null != parameterValue) {
+				v = parameterValue.trim();
+			}
+			packageParams.put(parameter, v);
+		}
+
+		// 账号信息
+		String key = WechatPayConfig.API_KEY; // key
+
+		// 判断签名是否正确
+		if (PayCommonUtil.isTenpaySign("UTF-8", packageParams, key)) {
+			// ------------------------------
+			// 处理业务开始
+			// ------------------------------
+			String resXml = "";
+			if ("SUCCESS".equals((String) packageParams.get("result_code"))) {
+				// 这里是支付成功
+				////////// 执行自己的业务逻辑////////////////
+				String mch_id = (String) packageParams.get("mch_id");
+				String openid = (String) packageParams.get("openid");
+				String is_subscribe = (String) packageParams.get("is_subscribe");
+				String out_trade_no = (String) packageParams.get("out_trade_no");
+
+				String total_fee = (String) packageParams.get("total_fee");
+				String transaction_id = (String) packageParams.get("transaction_id");
+				// String nonce_str=(String)packageParams.get("nonce_str");
+
+				if (out_trade_no.toLowerCase().indexOf(StaticConfig.Receive_Express_TradeNo_Prev.toLowerCase()) >= 0) { // 支付快递费用
+					try {
+						ReceiveModel existOrder = receiveService.getModel(out_trade_no);
+						updateReceive(out_trade_no, transaction_id, Integer.toString(existOrder.getOrderID()));
+						resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
+								+ "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+					} catch (Exception ex) {
+						receiveService.insertLog(ex.toString() + ex.getMessage());
+					}
+				} else {
+					OrderModel existOrder = orderService.getOrderDetail(out_trade_no);
+					if (existOrder == null) {
+						existOrder = new OrderModel();
+						existOrder.setSerialNum(out_trade_no);
+					}
+					existOrder.setOutTradeNo(transaction_id);
+					existOrder.setTradeState(1);
+					existOrder.setPayType(2);
+
+					int flag = 0;
+					for (int i = 0; i <= 10; i++) {
+						flag = orderService.updateOrderStatus(existOrder);
+						if (flag == 1) {
+							//orderService.genPassport(existOrder);
+							break;
+						}
+					}
+					if (flag == 0) // 没有成功修改状态
+						logger.info("订单号" + out_trade_no + ";状态修改失败！");
+
+					// 通知微信.异步确认成功.必写.不然会一直通知后台.八次之后就认为交易失败了.
+					resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
+							+ "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+
+					MessageSendController msc = new MessageSendController();
+					if (existOrder.getCooperateName().equals("4")) { // 官网购买
+						msc.sendPassportBuyMsg(existOrder.getUserName(), existOrder.getPhoneNo());
+					} else {
+						String racename = "马拉松";
+						RaceModel rm = orderService.getRace(Long.parseLong(existOrder.getCooperateName()));
+						if (rm != null && rm.getRaceName() != null) {
+							racename = rm.getRaceName();
+						}
+						msc.sendPassportBuyMsg_COOP(existOrder.getUserName(), existOrder.getPhoneNo(), racename);
+					}
 				}
-				existOrder.setOutTradeNo(transaction_id);
-				existOrder.setTradeState(1);
-				existOrder.setPayType(2);
-				
-				int flag = 0;
-				for(int i=0;i<=10;i++){
-					flag = orderService.updateOrderStatus(existOrder);
-					if(flag==1)
-						break;
-				}
-				if(flag==0)  //没有成功修改状态
-					logger.info("订单号"+out_trade_no+";状态修改失败！");
-                
-                //通知微信.异步确认成功.必写.不然会一直通知后台.八次之后就认为交易失败了.  
-                resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"  
-                        + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";  
-                  
-            } else {  
-                logger.info("支付失败,错误信息：" + packageParams.get("err_code"));  
-                resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"  
-                        + "<return_msg><![CDATA[报文为空]]></return_msg>" + "</xml> ";  
-            }  
-            //------------------------------  
-            //处理业务完毕  
-            //------------------------------  
-            BufferedOutputStream out = new BufferedOutputStream(  
-                    response.getOutputStream());  
-            out.write(resXml.getBytes());  
-            out.flush();  
-            out.close();  
-        } else{  
-            logger.info("通知签名验证失败");  
-        }   
-    }  
+
+			} else {
+				logger.info("支付失败,错误信息：" + packageParams.get("err_code"));
+				resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
+						+ "<return_msg><![CDATA[报文为空]]></return_msg>" + "</xml> ";
+			}
+			// ------------------------------
+			// 处理业务完毕
+			// ------------------------------
+			BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+			out.write(resXml.getBytes());
+			out.flush();
+			out.close();
+		} else {
+			logger.info("通知签名验证失败");
+		}
+	}
+
+	private void updateReceive(String tradeno, String outno, String orderid) {
+		try {
+			ReceiveModel rm = receiveService.getModel(tradeno);
+			rm.PayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
+			rm.Status = 1;
+			rm.OutTradeNo = outno;
+
+			int r = receiveService.updateModel(rm);
+			int r2 = orderService.tagUnreceiveByOrderID(orderid, 1);
+			receiveService.insertLog("修改状态" + r + "，" + r2);
+		} catch (Exception ex) {
+			receiveService.insertLog(ex.getMessage());
+		}
+
+	}
+
 }

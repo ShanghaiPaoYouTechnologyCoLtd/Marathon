@@ -167,7 +167,7 @@
 								参数错误！请返回上级网站重新输入，或重新复制正确完整的连接进入！</div>
 							<div id="alarmError2" class='div_alarmTitle' style="font-size:16px; margin-bottom:20px">
 								<span id="gameName"></span>报名已截至！<br/>如果您依旧希望购买马拉松护照，可访问中国
-								<a href="http://www.caa-paoyou.com/passport/marathonInstructions.jsp">马拉松赛事联盟官网</a>进行购买。<br/></div>
+								<a href="http://www.caa-paoyou.com/passport/Instruction/marathonInstructions.jsp">马拉松赛事联盟官网</a>进行购买。<br/></div>
 						</div>
 					</form>
 				</div>
@@ -186,7 +186,7 @@
 					<img src='images/company_logo.png'>
 				</div>
 				<div class="pull-left customer_tel_container">
-					客服电话：<span>021-50897802-601</span>
+					客服电话：<span>021-50897802-615</span>
 				</div>
 				<div class="clearfix"></div>
 			</div>

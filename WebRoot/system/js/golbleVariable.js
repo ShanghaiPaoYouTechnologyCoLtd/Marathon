@@ -1,1 +1,1 @@
-﻿var gv_copyright = '2017 &copy; 上海跑友信息科技有限公司';
+﻿var gv_copyright = '2017 &copy; 跑友（上海）体育发展有限公司';

@@ -8,13 +8,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="baidu-site-verification" content="m7d0dwTe7t" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords" content="马拉松,马拉松赛事联盟,跑友科技,上海跑友,上海跑友科技,中国马拉松赛事联盟">
-<meta name="description" content="中国马拉松赛事联盟（Chinese Marathon League,简称CML）是中国田径协会发起，由符合条件的全国各马拉松及相关运动赛事联合组成。旨在适应全国迅猛发展的马拉松及相关运动赛事数量的快速增长，吸引高水平赛事聚集，促进赛事间以及与国际同行间的培训、交流和协作，整合资源，共同开发市场，宣传、提升赛事的品牌形象，推动马拉松以及相关运动赛事健康发展。">
+<meta name="keywords"
+	content="马拉松,马拉松赛事联盟,跑友科技,上海跑友,上海跑友科技,中国马拉松赛事联盟,马拉松护照">
+<meta name="description"
+	content="中国马拉松赛事联盟（Chinese Marathon League,简称CML）是中国田径协会发起，由符合条件的全国各马拉松及相关运动赛事联合组成。旨在适应全国迅猛发展的马拉松及相关运动赛事数量的快速增长，吸引高水平赛事聚集，促进赛事间以及与国际同行间的培训、交流和协作，整合资源，共同开发市场，宣传、提升赛事的品牌形象，推动马拉松以及相关运动赛事健康发展。">
 <title>中国马拉松赛事联盟</title>
 <%@ include file="staticFiles/globalCSS.html"%>
-<script src="js/jquery.js"></script>
 <style>
 .carousel-inner {
 	cursor: pointer;
@@ -107,7 +109,7 @@
 						var flagH = document.getElementById("result_slide_wrap").offsetHeight; // $("#result_slide_wrap").height();
 						document.getElementById("kode_banner_1").style.height = (document.documentElement.clientHeight - flagH - headH) + "px";
 					} else {
-						document.getElementById("kode_banner_1").style.height = window.screen.availWidth*0.4+"px";
+						document.getElementById("kode_banner_1").style.height = window.screen.availWidth * 0.4 + "px";
 					}
 				</script>
 				<div class="result_slider">
@@ -168,7 +170,7 @@
 					</div>
 					<div>
 						<div class="kf_result_thumb">
-							<span>2018年6月(待定)</span>
+							<span>2018年6月10日</span>
 							<div class="kf_result">
 								<img src="extra-images/gamesLog/glog_6.png" alt="" width="100px"
 									height="100px" />
@@ -179,7 +181,7 @@
 					</div>
 					<div>
 						<div class="kf_result_thumb">
-							<span>2018年6月24日</span>
+							<span>2018年6月10日</span>
 							<div class="kf_result">
 								<img src="extra-images/gamesLog/glog_7.png" alt="" width="100px"
 									height="100px" />
@@ -190,7 +192,7 @@
 					</div>
 					<div>
 						<div class="kf_result_thumb">
-							<span>2018年7月28日</span>
+							<span>2018年7月29日</span>
 							<div class="kf_result">
 								<img src="extra-images/gamesLog/glog_8.png" alt="" width="100px"
 									height="100px" />
@@ -201,7 +203,7 @@
 					</div>
 					<div>
 						<div class="kf_result_thumb">
-							<span>2018年9月22日</span>
+							<span>2018年9月29日</span>
 							<div class="kf_result">
 								<img src="extra-images/gamesLog/glog_9.png" alt="" width="100px"
 									height="100px" />
@@ -245,7 +247,7 @@
 					</div>
 					<div>
 						<div class="kf_result_thumb">
-							<span>2018年11月1日</span>
+							<span>2018年11月11日</span>
 							<div class="kf_result">
 								<img src="extra-images/gamesLog/glog_13.png" alt=""
 									width="100px" height="100px" />
@@ -290,7 +292,50 @@
 			</div>
 
 			<section style="padding-bottom:0px;">
-
+				<div class="express-entrance-wapper">
+					<div class="what-we-do bg">
+						<div class="row">
+							<div class="col-md-4 col-sm-6 col-xs-4 wow fadeInUp icon-buttons"
+								data-url="passport/marathonPassport.jsp">
+								<div class="single-block tran3s">
+									<img src="extra-images/icon/passport-buy.png" alt=""
+										class="tran4s">
+									<h6>马拉松护照办理</h6>
+									<h5>中国马拉松护照是马拉松跑者的唯一认证标识</h5>
+									<a class="tran3s theme-button" href="javascript:;">马拉松护照办理</a>
+								</div>
+								<!-- /.single-block -->
+							</div>
+							<!-- /.col- -->
+							<div class="col-md-4 col-sm-6 col-xs-4 wow fadeInUp icon-buttons"
+								data-wow-delay="0.1s" data-url="passport/passportUnreceive.jsp">
+								<div class="single-block tran3s">
+									<img src="extra-images/icon/passport-eplacement.png" alt=""
+										class="tran4s">
+									<h6>马拉松护照补领</h6>
+									<h5>在合作赛事官网购买的马拉松护照忘记领？</h5>
+									<a class="tran3s theme-button" href="javascript:;">马拉松护照补领</a>
+								</div>
+								<!-- /.single-block -->
+							</div>
+							<!-- /.col- -->
+							<div
+								class="col-md-4 hidden-sm col-xs-4 wow fadeInUp icon-buttons"
+								data-wow-delay="0.150s" data-url="pages/runnerList.jsp">
+								<div class="single-block tran3s">
+									<img src="extra-images/icon/select-range.png" alt=""
+										class="tran4s">
+									<h6>万人名单查询</h6>
+									<h5>万人跑团，你是否位列其中？马上查询！</h5>
+									<a class="tran3s theme-button" href="javascript:;">万人名单查询</a>
+								</div>
+								<!-- /.single-block -->
+							</div>
+							<!-- /.col- -->
+						</div>
+						<!-- /.row -->
+					</div>
+				</div>
 				<div
 					style="width:100%; background-color:#f8f8f8; padding:20px 0px 60px;">
 					<div class="container" style="margin:0px auto;">
@@ -304,7 +349,7 @@
 									<!--Heading 1 Start-->
 									<h6 class="kf_hd1">
 										<span>中国马拉松护照</span> <a class="prv_btn"
-											href="passport/marathonInstructions.jsp">了解更多&raquo;</a>
+											href="passport/Instruction/marathonInstructions.jsp">了解更多&raquo;</a>
 									</h6>
 									<!--Heading 1 END-->
 									<!--Featured 2 thumb Start-->
@@ -320,7 +365,7 @@
 													《中国马拉松护照》为中国田径协会下属认证赛事的官方认证材料，是极具收藏价值和实用价值的官方认证书，一人一证，护照号与参赛者身份证号绑定，具备唯一性。
 												</p>
 												<br /> <a class="btn_2"
-													href="passport/marathonInstructions.jsp">查看详情&raquo;</a>
+													href="passport/Instruction/marathonInstructions.jsp">查看详情&raquo;</a>
 											</div>
 											<!-- <div class="thumb_footer">
                                         <div class="admin_thumb">
@@ -591,31 +636,51 @@
 												<div class="slider_widget app-details">
 													<div>
 														<div class="slider_thumb">
-															<h6>护照购买</h6>
-															<h6>一键购买/挂失补办/更换</h6>
+															<h6>用户注册</h6>
+															<h6>5秒注册，数据永久保留</h6>
 															<br>
 															<figure>
-																<img src="extra-images/apps-1.png" alt="">
+																<img src="extra-images/app/apps-1.png" alt="">
 															</figure>
 														</div>
 													</div>
 													<div>
 														<div class="slider_thumb">
-															<h6>赛事日历</h6>
-															<h6>赛事日程早知道</h6>
+															<h6>个人数据</h6>
+															<h6>查看您的马拉松成绩，分析每场赛事数据</h6>
 															<br>
 															<figure>
-																<img src="extra-images/apps-3.png" alt="">
+																<img src="extra-images/app/apps-2.png" alt="">
 															</figure>
 														</div>
 													</div>
 													<div>
 														<div class="slider_thumb">
-															<h6>赛事新闻</h6>
-															<h6>及时了解最新最热的赛事新闻</h6>
+															<h6>成绩概览</h6>
+															<h6>生成您的赛事曲线，分享您马拉松记录</h6>
 															<br>
 															<figure>
-																<img src="extra-images/apps-4.png" alt="">
+																<img src="extra-images/app/apps-3.png" alt="">
+															</figure>
+														</div>
+													</div>
+													<div>
+														<div class="slider_thumb">
+															<h6>历史成绩</h6>
+															<h6>跑马每一场不丢失！</h6>
+															<br>
+															<figure>
+																<img src="extra-images/app/apps-4.png" alt="">
+															</figure>
+														</div>
+													</div>
+													<div>
+														<div class="slider_thumb">
+															<h6>积分商城</h6>
+															<h6>跑马累计积分，积分兑换装备！</h6>
+															<br>
+															<figure>
+																<img src="extra-images/app/apps-5.png" alt="">
 															</figure>
 														</div>
 													</div>
@@ -635,7 +700,6 @@
 		</div>
 		<%@ include file="staticFiles/foot.html"%>
 	</div>
-	<%@ include file="staticFiles/globalScript.html"%>
 	<script src="js/index.js"></script>
 </body>
 </html>

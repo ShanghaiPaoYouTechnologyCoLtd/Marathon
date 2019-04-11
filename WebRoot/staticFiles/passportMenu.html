@@ -1,15 +1,23 @@
 ﻿<ul class="widget_ul">
-	<li><a href="passport/marathonInstructions.jsp">介绍</a></li>
-	<li><a href="passport/marathonPassport.jsp">马拉松护照办理</a></li>
+	<li><a href="passport/Instruction/marathonInstructionsNAV.jsp">介绍</a></li>
+	<li><a href="passport/passportNav.jsp">纸质护照办理</a></li>
+	<li><a href="passport/passportReg.jsp">电子护照注册</a></li>
+	<li><a href="passport/passportQuery.jsp">护照查询</a></li>
+	<!-- <li><a href="passport/stampWall.jsp">护照印章墙</a></li> -->
 	<li><a href="passport/marathonQA.jsp">常见问题</a></li>
 </ul>
 <script>
-	var links = new Array("marathonInstructions","marathonPassport", "marathonQA");
+	var links = new Array("marathonInstructions", "passportNav","passportReg","passportQuery","marathonQA" );
 	var scr = location.href;
+	var flag = false;
 	for (i = 0; i < links.length; i++) {
 		if (scr.indexOf(links[i]) >= 0) {
 			$(".widget_ul a:eq(" + i + ")").addClass("current_intro");
+			flag = true;
 			break;
 		}
+	}
+	if (!flag) {
+		$(".widget_ul a:eq(1)").addClass("current_intro");
 	}
 </script>

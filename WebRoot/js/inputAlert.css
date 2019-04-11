@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+.arrow_box{animation: glow 500ms ease-out infinite alternate; }
+@keyframes glow {
+    0% {
+        border-color: #FF9740;
+        box-shadow: 0 0 5px rgba(255,151,64,.2), inset 0 0 5px rgba(255,151,64,.1), 0 1px 0 #FF9740;
+    }
+    100% {
+        border-color: #F83E4C;
+        box-shadow: 0 0 20px rgba(248,62,76,.6), inset 0 0 10px rgba(248,62,76,.4), 0 1px 0 #F83E4C;
+    }
+}

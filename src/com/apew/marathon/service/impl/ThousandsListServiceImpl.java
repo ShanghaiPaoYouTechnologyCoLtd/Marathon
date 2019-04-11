@@ -40,9 +40,9 @@ public class ThousandsListServiceImpl extends BaseService<String> implements ITh
 
 	@Override
 	public String queryOnesRanking(String name, String cardno) {
-		String sql = "SELECT * FROM thousandslist WHERE status=1 and name=? and idCard=? ";
+		String sql = "SELECT * FROM thousandslist WHERE status=1 and idCard=? order by batchNum desc limit 1";
 
-		Map<String, Object> map = queryForMap(sql, new Object[] { name, cardno });
+		Map<String, Object> map = queryForMap(sql, new Object[] { cardno });
 		JSONObject json = JSONObject.fromObject(map);
 		return json.toString();
 	}
@@ -70,28 +70,32 @@ public class ThousandsListServiceImpl extends BaseService<String> implements ITh
 	}
 
 	@Override
-	public int getRemainFreeQuotas(String raceID,String tbname) {
-		String sql = "select count(*) from  "+tbname+" where RaceId=? and DiscountType=0";
+	public int getRemainFreeQuotas(String raceID, String tbname) {
+		String sql = "select count(*) from  " + tbname + " where RaceId=? and DiscountType=0";
 		int count = queryForInt(sql, new Object[] { raceID });
+		int fCount = freeQuotasCount;
+		if (raceID.equals("8")) {
+			fCount = 2000;
+		}
 		return freeQuotasCount >= count ? freeQuotasCount - count : 0;
 	}
 
 	@Override
-	public int getRemainPaidQuotas(String raceID,String tbname) {
-		String sql = "select count(*) from  "+tbname+" where RaceId=? and DiscountType=1";
+	public int getRemainPaidQuotas(String raceID, String tbname) {
+		String sql = "select count(*) from  " + tbname + " where RaceId=? and DiscountType=1";
 		int count = queryForInt(sql, new Object[] { raceID });
 		return paidQuotasCount >= count ? paidQuotasCount - count : 0;
 	}
 
 	@Override
-	public boolean playerInRace(String cardNo, String raceID,String tbname) {
-		String sql = "SELECT count(1) FROM  "+tbname+" where RaceId=? and cardNo=?";
+	public boolean playerInRace(String cardNo, String raceID, String tbname) {
+		String sql = "SELECT count(1) FROM  " + tbname + " where RaceId=? and cardNo=?";
 		int count = queryForInt(sql, new Object[] { cardNo, raceID });
 		return count > 0;
 	}
 
-	public int uploadPlayerInDiscount(String raceID, String cardNo, int disType,String tbname) {
-		String sql = "insert into "+tbname+"(RaceID,CardNo,DiscountType,CreateTime) values(?,?,?,NOW())";
+	public int uploadPlayerInDiscount(String raceID, String cardNo, int disType, String tbname) {
+		String sql = "insert into " + tbname + "(RaceID,CardNo,DiscountType,CreateTime) values(?,?,?,NOW())";
 		int i = 0;
 		try {
 			i = create(sql, new Object[] { raceID, cardNo, disType });
@@ -99,9 +103,11 @@ public class ThousandsListServiceImpl extends BaseService<String> implements ITh
 			return 1;
 		}
 		if (i > 0) { // 溢出检查
-			sql = "delete from  "+tbname+" where DiscountType=? and RaceID=? AND ID NOT IN (select x.id from (select id from "+tbname+" where DiscountType=? and RaceID=? order by id limit ?) x)";
+			sql = "delete from  " + tbname
+					+ " where DiscountType=? and RaceID=? AND ID NOT IN (select x.id from (select id from " + tbname
+					+ " where DiscountType=? and RaceID=? order by id limit ?) x)";
 			int count = delete(sql, new Object[] { disType, raceID, disType, raceID, quotasCounts[disType] }); // 直接删除所有溢出数据
-			sql = "SELECT count(1) FROM  "+tbname+" where RaceID=? and cardNo=?";
+			sql = "SELECT count(1) FROM  " + tbname + " where RaceID=? and cardNo=?";
 			count = queryForInt(sql, new Object[] { raceID, cardNo });
 			if (count > 0) { // 没有被删除，此数据没有溢出
 				return 0;
@@ -146,18 +152,50 @@ public class ThousandsListServiceImpl extends BaseService<String> implements ITh
 	}
 
 	@Override
-	public int queryPlayersQuota(String cardno,String raceno, String tbname) {
-		String sql="select DiscountType from "+tbname+" where RaceID=? and CardNo=?";
-		String dtype=queryFristString(sql,new Object[]{raceno,cardno});
-		if(dtype==null){
+	public int queryPlayersQuota(String cardno, String raceno, String tbname) {
+		String sql = "select DiscountType from " + tbname + " where RaceID=? and CardNo=?";
+		String dtype = queryFristString(sql, new Object[] { raceno, cardno });
+		if (dtype == null) {
 			return 2;
 		}
 		try {
-		    int r = Integer.parseInt(dtype);
-		    return r;
+			int r = Integer.parseInt(dtype);
+			return r;
 		} catch (NumberFormatException e) {
-		    e.printStackTrace();
-		    return 2;
+			e.printStackTrace();
+			return 2;
 		}
+	}
+
+	@Override
+	public String queryRacePrice(String raceno) {
+		String sql = "select price from races where id=? limit 1";
+		String payfee = queryFristString(sql, new Object[] { raceno });
+		if (payfee == null || payfee.length() == 0) {
+			return "0";
+		}
+		return payfee;
+	}
+
+	@Override
+	public String getBatchsJSON() {
+		String sql = "select name,number from thousandslist_names order by ID DESC";
+		return queryForJSON(sql, null);
+	}
+
+	@Override
+	public String getSqlJSON(String sql, Object[] par) {
+		return queryForJSON(sql, par);
+	}
+
+	@Override
+	public int getPlayersRank(String cardno) {
+		String sql = "select ranking from thousandslist where Status=1 and idcard=? limit 1";
+
+		String map = queryFristString(sql, new Object[] { cardno });
+		if (map == null || map.length() == 0)
+			return -1;
+
+		return Integer.parseInt(map.toString());
 	}
 }

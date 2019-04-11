@@ -7,8 +7,9 @@ public class WechatPayConfig {
      public static String API_KEY="ASFSAIOFJCIO1I932498FUSA98FY1237";
      
      public static String UFDODER_URL="https://api.mch.weixin.qq.com/pay/unifiedorder";  //微信统一支付API
+     public static String ORDER_URL="https://api.mch.weixin.qq.com/pay/unifiedorder";  //微信的统一下单API
      
-     public static String NOTIFY_URL= "http://www.caa-paoyou.com/wechat_notify.do";  //回调函数
+     public static String NOTIFY_URL= "http://www.chinesemarathonleague.com/wechat_notify.do";  //回调函数
      public static String CREATE_IP="211.161.248.65";   //调用IP
      
 

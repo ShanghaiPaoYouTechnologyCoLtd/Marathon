@@ -10,8 +10,17 @@ window.onresize = function() {
 	});
 }
 
-$(".slick-slide").click(function(){
-	location.href="pages/olympicGames.jsp";
+$(".slick-slide").click(function() {
+	location.href = "pages/olympicGames.jsp";
+});
+
+$(".icon-buttons").click(function() {
+	var url = $(this).data("url");
+	if (url != null && url.length > 0) {
+		location.href = url;
+	} else {
+		alert("抱歉，该功能暂未开放。");
+	}
 });
 
 window.onload = function() {
@@ -22,7 +31,7 @@ window.onload = function() {
 			"pageSize" : 10,
 			"pageNumber" : 0,
 			"qType" : '男',
-			"gType":0
+			"gType" : 0
 		},
 		success : function(result) {
 			var jsonS = JSON.parse(result);
@@ -42,7 +51,7 @@ window.onload = function() {
 			"pageSize" : 10,
 			"pageNumber" : 0,
 			"qType" : '女',
-			"gType":1
+			"gType" : 1
 		},
 		success : function(result) {
 			var jsonS = JSON.parse(result);

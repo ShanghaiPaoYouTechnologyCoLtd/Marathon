@@ -1,0 +1,130 @@
+.preload { background: url(../../images/leftlets/passport/beijing.png) no-repeat -9999px -9999px;display:none; }
+.preload  { background: url(../../images/leftlets/passport/bjstamp.png) no-repeat -9999px -9999px;display:none; }
+.preload  { background: url(../../images/leftlets/passport/bottomBtn.png) no-repeat -9999px -9999px; display:none;}
+.preload  { background: url(../../images/leftlets/passport/passport.png) no-repeat -9999px -9999px; display:none;}
+.preload  { background: url(../../images/leftlets/passport/rewards.png) no-repeat -9999px -9999px; display:none;}
+.preload  { background: url(../../images/leftlets/passport/shanghai.png) no-repeat -9999px -9999px; display:none;}
+.preload  { background: url(../../images/leftlets/passport/shop2.png) no-repeat -9999px -9999px; display:none;}
+.preload  { background: url(../../images/leftlets/passport/shop3.png) no-repeat -9999px -9999px; display:none;}
+.preload  { background: url(../../images/leftlets/passport/shstamp.png) no-repeat -9999px -9999px; display:none;}
+.preload { background: url(../../images/leftlets/passport/winner.png) no-repeat -9999px -9999px; display:none;}
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	position: relative;
+}
+
+.intro-wap {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color:#93C0F5;
+/* 	background: -webkit-linear-gradient(#70B2F9, #E1F1F9); Safari 5.1 - 6.0
+	background: -o-linear-gradient(#70B2F9, #E1F1F9); Opera 11.1 - 12.0
+	background: -moz-linear-gradient(#70B2F9, #E1F1F9); Firefox 3.6 - 15
+	background: linear-gradient(#70B2F9, #E1F1F9); 标准的语法 */
+}
+
+.track-bg {
+		z-index:998;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    width: 600%;
+    height: 150px;
+    background: url(../../images/leftlets/passport/strack-finnal.png) no-repeat;
+    transition:left 1s;
+    background-size: 100% 100%;
+}
+
+/* .track-bg img {
+	position: absolute;
+	left: 0%;
+	width: 100%;
+	transition: All 1s ease-in-out;
+	-webkit-transition: All 1s ease-in-out;
+	-moz-transition: All 1s ease-in-out;
+	-o-transition: All 1s ease-in-out;
+} */
+
+/* .track-bg img:hover {
+	transform: rotate(-63deg);
+	-webkit-transform: rotate(-63deg);
+	-moz-transform: rotate(-63deg);
+	-o-transform: rotate(-63deg);
+	-ms-transform: rotate(-63deg);
+} */
+.runner {
+	position: fixed;
+	bottom: 20px;
+	left: 4%;
+}
+
+.runner img {
+	width: 100px;
+}
+
+.nextbtn {
+	position: absolute;
+	bottom: 20px;
+	left: calc(50% - 25px);
+	animation: shake 900ms infinite;
+-moz-animation: shake 900ms infinite;	/* Firefox */
+-webkit-animation: shake 900ms infinite;	/* Safari 和 Chrome */
+-o-animation: shake 900ms infinite;	/* Opera */
+z-index:1000;
+}
+
+.imgcont{
+	text-align:center;
+	padding-top:10%;
+	position:absolute;
+	width:100%;
+	z-index:1000;
+}
+
+#title1{
+	    font-family: SimHei;
+    color: #fff;
+    font-size: 2.2rem;
+    line-height: 3.0rem;
+   text-shadow:-2px 2px 8px #6d89b5;
+}
+
+#title2{
+	font-size: 0.9rem;
+    color: #D8EDFF;
+        margin-top: 0.7rem;
+       text-shadow: -2px 2px 8px #6d89b5;
+}
+
+#img-1{
+	width:60%;
+	margin-top:20px;
+	z-index:997;
+	    position: absolute;
+}
+
+#btn-buy{
+	display:none;
+	margin-top:20px;
+}
+
+@keyframes shake
+{
+0%   {bottom: 20px;}
+10%  {bottom: 22px;}
+20%  {bottom: 24px;}
+30% {bottom: 26px;}
+40% {bottom: 28px;}
+50% {bottom: 30px;}
+60% {bottom: 28px;}
+70% {bottom: 26px;}
+80% {bottom: 24px;}
+90% {bottom: 22px;}
+100% {bottom: 20px;}
+}

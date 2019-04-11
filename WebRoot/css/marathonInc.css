@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+.adbar {
+	position:fixed;
+	width: 130px;
+	height: 200px;
+	top: 280px;
+	z-index: 99999;
+	margin-left:-131px;
+	cursor: pointer;
+}
+
+.adbar_bg {
+	width:100%;
+	height:100%;
+	filter: alpha(opacity : 30);
+	opacity: 0.3;
+	-moz-opacity: 0.3;
+	-khtml-opacity: 0.3;
+	z-index: 99998;
+}
+
+.adbar_text {
+	position: absolute;
+	z-index: 99999;
+	animation: change 10s linear 0s infinite;
+	font-size: 16px;
+	font-weight: 700;
+	display:inline;
+	bottom:10px;
+	width:100%;
+	text-align:center;
+	bottom:-4px;
+}
+
+.adbar_bg:hover {
+	opacity: 1;
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+}
+
+
+@keyframes change{0%{color:#333;}25%{color:#ff0;}50%{color:#f60;}75%{color:#cf0;}100% {color:#f00;}}
+@-webkit-keyframes change{0%{color:#333;}25%{color:#ff0;}50%{color:#f60;}75%{color:#cf0;}100% {color:#f00;}}
+@-o-keyframes change{0%{color:#333;}25%{color:#ff0;}50%{color:#f60;}75%{color:#cf0;}100% {color:#f00;}}
+@-moz-keyframes change{0%{color:#333;}25%{color:#ff0;}50%{color:#f60;}75%{color:#cf0;}100% {color:#f00;}}

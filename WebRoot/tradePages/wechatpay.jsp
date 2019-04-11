@@ -4,8 +4,9 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 	String QRCodeUrl = request.getParameter("pay_wechat_QRCode");
-	String tradeNo = request.getParameter("pay_wechat_tradeno");;
-	String payFee = request.getParameter("pay_wechat_fee");;
+	String tradeNo = request.getParameter("pay_wechat_tradeno");
+	String payFee = request.getParameter("pay_wechat_fee");
+	String tradeType = request.getParameter("pay_wechat_tradetype");
 %>
 
 
@@ -18,13 +19,13 @@
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>中国马拉松护照购买-微信支付</title>
-<base href="<%=basePath%>">
 <link rel="stylesheet" type="text/css"
 	href="css/jquery.toastmessage.css" />
 <link rel="stylesheet" href="css/wechatpay.css" />
 <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="js/jquery.toastmessage.js"></script>
 <script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
 <style>
 .toast-position-middle-center {
 	top: 30% !important;
@@ -81,8 +82,8 @@
 				<!-- 微信支付 -->
 				<div class="pay-weixin">
 					<div class="p-w-hd">
-                      <img src="/Marathon/images/wcpay_logo.png" />
-                    </div>
+						<img src="/Marathon/images/wcpay_logo.png" />
+					</div>
 					<div class="p-w-bd" style="position:relative">
 						<div class="j_weixinInfo"
 							style="position:absolute; top: -26px; left: 130px; font-size:14px;">
@@ -92,8 +93,8 @@
 							<div class="pw-retry j_weixiRetry"
 								style="display: block !important;">
 								<div class="pw-box-hd">
-									<img id="weixinImageURL" src="<%=QRCodeUrl%>" width="298"
-										height="298">
+									<div id="qrcode"></div>
+									<input type="hidden" value="<%=QRCodeUrl%>" id="qrcode_val" />
 								</div>
 								<div class="div_reload">
 									<a style="color: white !important;">点击刷新二维码</a>
@@ -127,7 +128,15 @@
 			var i = 0;
 			var currInterval;
 			var timerInterval;
+			var tradeType = "<%=tradeType%>"; //1护照购买 2补领快递费
 			$(function() {
+				$("#qrcode").qrcode({
+					render : "table", //table方式
+					width : 300, //宽度
+					height : 300, //高度
+					text : $("#qrcode_val").val() //任意内容
+				});
+		
 				i = maxSeconds;
 				currInterval = setInterval("checkPayStatus(false)", 1500);
 				timerInterval = setInterval("timer()", 1000);
@@ -139,7 +148,7 @@
 				$(".div_reload").click(function() {
 					i = maxSeconds;
 					$(".div_reload").hide();
-					$("#weixinImageURL").show();
+					$("#qrcode").show();
 					currInterval = setInterval("checkPayStatus(false)", 1000);
 					timerInterval = setInterval("timer()", 1000);
 				});
@@ -149,7 +158,7 @@
 				$("#sp_seconds").html(i--);
 				if (i < 0) {
 					$(".div_reload").show();
-					$("#weixinImageURL").hide();
+					$("#qrcode").hide();
 					clearInterval(currInterval);
 					clearInterval(timerInterval);
 				}
@@ -158,7 +167,8 @@
 			function checkPayStatus(isTitle) {
 				var url = 'payCheck.do';
 				var params = {
-					tradeNo : "<%=tradeNo%>"
+					tradeNo : "<%=tradeNo%>",
+					tradeType : tradeType
 				};
 				async(url, params, function(res) {
 					var result = {};
@@ -175,7 +185,7 @@
 								if (isTitle)
 									showRequestMessage('notice', "尚未获取到支付信息,请稍候重试或联系客服人员。");
 							} else {
-								window.location = "tradePages/marathonPassportSuccess.jsp";
+								window.location = "tradePages/marathonPassportSuccess.jsp?tradeType=" + tradeType;
 							}
 						} else {
 							var message = result.message;

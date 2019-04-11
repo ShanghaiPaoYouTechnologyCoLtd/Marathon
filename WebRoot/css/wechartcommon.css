@@ -1,0 +1,205 @@
+*{margin: 0;padding: 0;}
+html,body{width: 100%;height: 100%;}
+.hide{
+	display: none;
+}
+.container-wapper{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.container-wapper .bg-img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	width: 100%;
+}
+.container-wapper .bg-img > img{
+	width: 100%;
+}
+
+.container-wapper .passport-wapper{
+	z-index: 1;
+    width: 90%;
+    height: 80%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.passport-wapper .passport-show-wapper{
+	position: absolute;
+	bottom: 60px;
+	left: 0;
+	width: 100%;
+	height: 66%;
+	background-color: #fff;
+	box-shadow: 0px 0px 10px #c0caef;
+    border-radius: 4px;
+}
+.passport-wapper .button-group{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+.button-group > button{
+	width: 48%;
+	line-height: 40px;
+	border-radius: 4px;
+	background: url(../images/wechart/btn-bg.png) repeat;
+	box-shadow: 0px 3px 10px #c0caef;
+	color: #fff;
+	font-size: 14px;
+	border: none;
+	outline: none;
+}
+
+.container-wapper .footer{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 10px 5%;
+	width: 90%;
+	text-align: center;
+}
+.footer .logo-center{
+	display: inline-block;
+	width: 100px;
+}
+#passport-form{
+	
+}
+#passport-form .passport-show-wapper{
+	overflow: auto;
+}
+#passport-form .button-group > button#buy-passport{
+	width: 100%;
+}
+
+#passport-form .form-input{
+	width: 90%;
+	line-height: 50px;
+	margin: 5px auto;
+	border-bottom: 1px solid #f8f8f8;
+}
+#passport-form .form-input > input[type="text"],
+#passport-form .form-input > select{
+	font-size: 14px;
+	line-height: 45px;
+	width: 100%;
+	outline: none;
+}
+#passport-form .form-input > label{
+	margin-right: 20px;
+}
+.pay-way{
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 2;
+}
+.pay-way .pay-way-wapper{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background-color: #fff;
+	border-radius: 4px;
+	width: 90%;
+	height: 400px;
+}
+
+.pay-way .pay-way-wapper .header-wap{
+	position: relative;
+	height: 70px;
+	background: url(../images/wechart/btn-bg.png) repeat;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.header-wap > p{
+	position: absolute;
+	bottom: -40px;
+	left: 50%;
+	margin-left: -40px;
+	width: 80px;
+	height: 80px;
+	background-color: #fff;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 80px;
+	box-shadow: 0px 0px 5px #c0caef;
+}
+.header-wap > p > img{
+	width: 65%;
+	vertical-align: middle;
+}
+
+.pay-way .pay-way-wapper .info-wap{
+	margin-top: 40px;
+	padding: 10px;
+}
+.info-wap > ul > li{
+	display: inline-block;
+	line-height: 40px;
+	font-size: 14px;
+}
+.info-wap > ul > li.title-li{
+	text-align:right;
+	width: 100px;
+	color: #666;
+}
+.pay-way-wapper .confirm-wap{
+	position: relative;
+    width: 90%;
+    margin: 4px auto 0;
+}
+
+.success-wap{
+	position: absolute;
+	top: 100px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+
+	width: 300px;
+	height: 350px;
+	background-color: #fff;
+	box-shadow: 0px 0px 20px #c0caef;
+	border-radius: 4px;
+}
+
+.success-wap > img{
+	width: 40px;
+	display: block;
+	margin: 20px auto 10px;
+}
+
+.success-wap > p{
+	text-align: center;
+	font-size: 18px;
+	line-height: :30px;
+	margin-bottom: 20px;
+}
+
+.success-wap > h6{
+	margin: 5px 0;
+	text-align: center;
+	font-weight: normal;
+	color: #666666;
+}
+
+.success-wap > img.download-app{
+	width: 120px;
+}

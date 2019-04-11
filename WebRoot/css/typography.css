@@ -92,8 +92,8 @@ footer{
 audio,
 video,
 canvas{
-	float:left;
-	width:100%;	
+	/* float:left;
+	width:100%;	 */
 }
 ul {
    margin:0px;

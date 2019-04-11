@@ -1,9 +1,10 @@
 function loginFn(){
-	var url='back/login2.do';
+	var url='sys/login.do';
 	var $username=$('#username');
 	var $password=$('#password');
 	var username=$username.val();
 	var password=$password.val();
+	password=hex_md5(password);
 	if(username.trim()==''){
 		showRequestMessage('notice','用户名不能为空');
 		return false;
@@ -12,12 +13,11 @@ function loginFn(){
 		return false;
 	}
 	var params={
-			username:username,
-			password:password
+			name:username,
+			pwd:password
 	};
 	async(url,params,function(res){
-		var status = res.status;
-		if(1 == status){
+		if("1" == res.status){
 			//登陆成功!
 			window.location.href="system/systemIndex.jsp";
 		}else{

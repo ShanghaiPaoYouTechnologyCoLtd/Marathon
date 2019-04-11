@@ -145,7 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
 			<div class='purchase_footer center-block'>
 				<div class="pull-left"><img src='images/company_logo.png'></div>
-				<div class="pull-left customer_tel_container">客服电话：<span>021-50897802-601</span></div>
+				<div class="pull-left customer_tel_container">客服电话：<span>021-50897802-615</span></div>
 				<div class="clearfix"></div>
 			</div>
 		</div>

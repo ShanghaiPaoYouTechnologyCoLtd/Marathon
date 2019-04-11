@@ -9,28 +9,18 @@
 <html lang="en">
 <head>
 <base href="<%=basePath%>" />
+<script src="js/transfromer.js"></script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <base href="<%=basePath%>" />
 <title>我要上奥运 ▪ 中国马拉松大奖赛</title>
 <%@ include file="../staticFiles/globalCSS.html"%>
-<link href="js/bootstrap/bootstraptable/bootstrap-table.min.css"
-	rel="stylesheet">
 <link href="js/bootstrap/bootstraptable/bootstrap.min.css"
 	rel="stylesheet">
-<script src="js/jquery.js"></script>
 <style>
 .nav-pills li {
 	cursor: pointer;
-}
-
-#div_logs {
-	
-}
-
-#div_logs img {
-	
 }
 </style>
 </head>
@@ -124,7 +114,6 @@
 		</div>
 		<%@ include file="../staticFiles/foot.html"%>
 	</div>
-	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap/bootstraptable/bootstrap-table.min.js"></script>
 	<script src="js/bootstrap/bootstraptable/bootstrap-table-zh-CN.min.js"></script>
 	<script>

@@ -34,11 +34,13 @@ margin-bottom:40px;
 		<div class="kode_content_wrap">
 			<section class="kf_overview_page">
 				<div class="container">
+
 					<div class="overview_wrap">
 						<div class="row">
 							<div class="col-md-8">
+							<a href="passport/Instruction/marathonInstructions.jsp" style="color: #b12025;text-decoration: underline;">点击前往了解办理《中国马拉松护照》</a><br/>
 								<!--Overview Contant Start-->
-								<div class="kf_featured_wrap2">
+								<div class="kf_featured_wrap2" style="margin-top:20px;">
 									<!--Featured 2 thumb Start-->
 									<div class="kf_featured_thumb">
 										<figure>
@@ -49,7 +51,7 @@ margin-bottom:40px;
 												<h2>我要上奥运细则说明</h2>
 												<p>搭载全新精品系列赛事——中国马拉松大奖赛，利用现有优秀赛事资源，选拔大众跑者最优秀选手。</p>
 												<p>A. 选手资格 i.
-													以2018年2月中国田径协会官方公布的“万人大名单”（男子5000人，女子5000人）为基础，利用赛事进行动态更新。考虑到2017年中国马拉松比赛参赛选手实际男女比例为73%：27%，为了更接近实际情况，及提升比赛的竞争程度，缩短总决赛关门......
+													以2018年2月中国田径协会官方公布的“万人大名单”（男子6000人，女子4000人）为基础，利用赛事进行动态更新。考虑到2017年中国马拉松比赛参赛选手实际男女比例为73%：27%，为了更接近实际情况，及提升比赛的竞争程度，缩短总决赛关门......
 												</p>
 												<a class="btn_2" href="pages/temp/temp1.jsp">查看详情&raquo;</a>
 											</div>
@@ -187,7 +189,7 @@ margin-bottom:40px;
 												<span>A类赛事</span>
 											</div>
 											<div class="tb2_age">
-												<span>2018/6(待定)</span>
+												<span>2018/6/10</span>
 											</div>
 											<div class="tb2_weight">
 												<span>兰州</span>
@@ -204,7 +206,7 @@ margin-bottom:40px;
 												<span>A类赛事</span>
 											</div>
 											<div class="tb2_age">
-												<span>2018/6/24</span>
+												<span>2018/6/10</span>
 											</div>
 											<div class="tb2_weight">
 												<span>吉林</span>
@@ -221,7 +223,7 @@ margin-bottom:40px;
 												<span>A类赛事</span>
 											</div>
 											<div class="tb2_age">
-												<span>2018/7/28</span>
+												<span>2018/7/29</span>
 											</div>
 											<div class="tb2_weight">
 												<span>六盘水</span>
@@ -389,8 +391,7 @@ margin-bottom:40px;
 														<div class="single-block tran3s">
 															<img src="extra-images/2.png" alt="" class="tran4s">
 															<h6>免费直通车名额</h6>
-															<h5>万人名单的前100名可获得直通车名额且免交报名费</h5>
-															<h5>（任意一场认证赛事）</h5>
+															<h5>千人跑团前100位报名赛事的选手享有免费直通名额</h5>
 														</div>
 														<!-- /.single-block -->
 													</div>
@@ -400,8 +401,7 @@ margin-bottom:40px;
 														<div class="single-block tran3s">
 															<img src="extra-images/3.png" alt="" class="tran4s">
 															<h6>免抽签直通车名额</h6>
-															<h5>万人名单的前100名可获得直通车名额</h5>
-															<h5>（任意一场认证赛事）</h5>
+															<h5>万人名单选手前500位报名赛事的选手享有付费直通名额</h5>
 														</div>
 													</div>
 												</div>

@@ -31,12 +31,36 @@
 		<property name="prefix" value="/back/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
-		<bean id="viewResolver2"
+
+	<bean id="viewResolver2"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/tlist/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="viewResolver3"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/sys/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="viewResolver4"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/msg/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="viewResolver5"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/passportApi/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 

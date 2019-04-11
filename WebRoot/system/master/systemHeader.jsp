@@ -1,6 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java"
+	import="com.apew.marathon.model.SystemUserModel"%>
 <%
-	if (session.getAttribute("user")==null) {
+	if (session.getAttribute("user") == null) {
 		response.sendRedirect("/Marathon/system/systemLogin.jsp");
 	}
 	String path = request.getContextPath();
@@ -21,7 +23,7 @@
 <meta content="" name="description" />
 <meta content="" name="author" />
 <%@ include file="../static/systemCSS.html"%>
-<!--     <link href="system/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" /> -->
+<%@ include file="../static/systemScript.html"%>
 <style>
 .container-fluid {
 	padding: 0px 10px;
@@ -49,6 +51,11 @@
 	padding-left: 50px;
 	margin: 10px 0px 0px 10px;
 }
+
+.l-dialog-image-donne{ background-image:url('../images/win/dialog-icons-donne.png') !important; /*background-position:0px 0px !important;*/ }
+.l-dialog-image-error{ background-image:url('../images/win/dialog-icons-error.png') !important;/*background-position:0px -48px !important;*/ }
+.l-dialog-image-question{ background-image:url('../images/win/dialog-icons-question.png') !important;/*background-position:0px -144px !important;*/ }
+.l-dialog-image-warn{ background-image:url('../images/win/dialog-icons-warn.png') !important; /*background-position:0px -96px !important;*/ }
 </style>
 </head>
 
@@ -92,9 +99,9 @@
 	<div class="header navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a class="brand" href="#" style="font-size:10px; color:#e6e6e6">
+				<a class="brand" href="system/systemIndex.jsp" style="font-size:10px; color:#e6e6e6">
 					<img src="system/image/logo.png" alt="logo" width="32" height="32"
-					style="margin-top:-3px" /> 跑友科技管理平台
+					style="margin-top:-3px" /> 跑友体育管理平台
 				</a> <a href="javascript:;" class="btn-navbar collapsed"
 					data-toggle="collapse" data-target=".nav-collapse"> <img
 					src="system/image/menu-toggler.png" alt="" />
@@ -103,23 +110,30 @@
 					<%@ include file="../static/systemMessage.html"%>
 					<li class="dropdown user"><a class="dropdown-toggle"
 						data-toggle="dropdown" style="cursor:pointer"> <!--    <img alt="" src="file/photos/@(currUser.LoginName).jpg" width="32" style="height:32px !important" /> -->
-							<span class="username">admin</span> <i class="icon-angle-down"></i>
+							<span class="username">
+								<%
+									if (session.getAttribute("user") != null) {
+										String uname = ((SystemUserModel) session.getAttribute("user")).getUserName();
+										out.print(uname);
+									}
+								%>
+						</span> <i class="icon-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="#"><i class="icon-user"></i> 我的档案 </a></li>
-							<li><a href="#"><i class="icon-calendar"></i> 我的日程 </a></li>
-							<li><a href="#"><i class="icon-envelope"></i> 我的消息 </a></li>
-							<li><a href="#"><i class="icon-tasks"></i> 我的任务 </a></li>
+							<li><a href=""><i class="icon-user"></i> 我的档案 </a></li>
+							<li><a href=""><i class="icon-calendar"></i> 我的日程 </a></li>
+							<li><a href=""><i class="icon-envelope"></i> 我的消息 </a></li>
+							<li><a href=""><i class="icon-tasks"></i> 我的任务 </a></li>
 							<li class="divider"></li>
-							<li><a href="Home/Lock"><i class="icon-lock"></i> 锁定程序 </a></li>
-							<li><a id="logout"><i class="icon-key"></i> 注销 </a></li>
+							<li><a href="system/lock.jsp"><i class="icon-lock"></i> 锁定程序 </a></li>
+							<li><a href="system/systemLogin.jsp"><i class="icon-key"></i> 注销 </a></li>
 						</ul></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="page-container row-fluid">
-		<div class="page-sidebar nav-collapse collapse">
+		<div class="page-sidebar nav-collapse collapse in">
 			<ul class="page-sidebar-menu">
 				<li>
 					<div class="sidebar-toggler hidden-phone"></div>
@@ -146,44 +160,20 @@
 					<p>Here will be a configuration form</p>
 				</div>
 			</div>
-			<div class="container-fluid">
+			<div class=""  style="float:none !important; padding:0px 10px 10px 10px;">
 				<div class="row-fluid">
 					<div class="span12">
 						<%--              <%@ include file="../static/systemSetting.html" %> --%>
 						<%@ include file="../static/systemNav.html"%>
 					</div>
 				</div>
-				<div class="row-fluid">
-					<div class="span12">
+				<div style="float:none !important; display:block !important;">
+					<div class="span12"  style="float:none !important;">
 						<div id="ContentMain">
-							<script src="system/js/jquery-1.10.1.min.js"
-								type="text/javascript" charset="utf-8"></script>
-							<script src="system/js/jquery-migrate-1.2.1.min.js"
-								type="text/javascript" charset="utf-8"></script>
-							<script src="system/js/jquery-ui-1.10.1.custom.min.js"
-								type="text/javascript" charset="utf-8"></script>
-							<script src="system/js/bootstrap.min.js" type="text/javascript"
-								charset="utf-8"></script>
 							<!--[if lt IE 9]>
 <script src="system/js/excanvas.min.js"></script>
 <script src="system/js/respond.min.js"></script>
 <![endif]-->
-							<script src="system/js/jquery.slimscroll.min.js"
-								type="text/javascript" charset="utf-8"></script>
-							<script src="system/js/jquery.blockui.min.js"
-								type="text/javascript" charset="utf-8"></script>
-							<script src="system/js/jquery.cookie.min.js"
-								type="text/javascript" charset="utf-8"></script>
-							<script src="system/js/jquery.uniform.min.js"
-								type="text/javascript" charset="utf-8"></script>
-							<script src="system/js/app.js"></script>
-							<script src="system/js/golbleVariable.js"></script>
-							<script src="system/ligerUI/js/core/base.js"
-								type="text/javascript" charset="utf-8"></script>
-							<script src="system/ligerUI/js/plugins/ligerDrag.js"
-								type="text/javascript" charset="utf-8"></script>
-							<script src="system/ligerUI/js/plugins/ligerDialog.js"
-								type="text/javascript" charset="utf-8"></script>
 							<script>
 								var backTime = 2250;
 								var divHeight = 100;
@@ -248,6 +238,7 @@
 									}
 								}
 							
+							    //type:done,error,warn,question
 								function addTopMessage(msg, typeClass, time, height) {
 									if (!typeClass)
 										typeClass = "done";

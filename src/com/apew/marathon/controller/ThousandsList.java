@@ -163,6 +163,7 @@ public class ThousandsList extends BaseController {
 		json.put("msg", msg);
 		return json.toString();
 	}
+
 	private String returnPlayerQuotaQueryJson(int code, String msg) {
 		JSONObject json = new JSONObject();
 		json.put("code", code);
@@ -186,7 +187,7 @@ public class ThousandsList extends BaseController {
 			return returnQuotasQueryJson(0, 0, -1, "赛事编号不能为空");
 		}
 		if (!tsService.raceExists(raceno)) {
-			return returnQuotasQueryJson(0,0,-1, "未找到的赛事ID：" + raceno);
+			return returnQuotasQueryJson(0, 0, -1, "未找到的赛事ID：" + raceno);
 		}
 		String testSwitch = request.getParameter("testSwitch");
 
@@ -195,8 +196,8 @@ public class ThousandsList extends BaseController {
 		}
 		String tbName = testSwitch.equals("1") ? "thousandslist_discount_test" : "thousandslist_discount";
 		int fquotas = tsService.getRemainFreeQuotas(raceno, tbName);
-		int pquotas= tsService.getRemainPaidQuotas(raceno, tbName);
-		return returnQuotasQueryJson(fquotas, pquotas,0, ""); 
+		int pquotas = tsService.getRemainPaidQuotas(raceno, tbName);
+		return returnQuotasQueryJson(fquotas, pquotas, 0, "");
 	}
 
 	/**
@@ -228,7 +229,55 @@ public class ThousandsList extends BaseController {
 		}
 		String tbName = testSwitch.equals("1") ? "thousandslist_discount_test" : "thousandslist_discount";
 
-		int code=tsService.queryPlayersQuota(cardno, raceno, tbName);
-		return returnPlayerQuotaQueryJson(code, ""); 
+		int code = tsService.queryPlayersQuota(cardno, raceno, tbName);
+		return returnPlayerQuotaQueryJson(code, "");
+	}
+
+	/**
+	 * 获取万人名单批次文本
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getBatchsJson", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String getBatchsJson() {
+		return tsService.getBatchsJSON();
+	}
+
+	/**
+	 * 获取一批万人名单数据，仅获取前台图标展示需要的字段
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getOneBatchJSON", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String getOneBatchJSON(HttpServletRequest request, HttpServletResponse response) {
+		String batchnum = request.getParameter("batchnum");
+		String sql = "select gamename,sex,idcard,sourceseconds from thousandslist where batchNum=? order by sourceSeconds";
+		return tsService.getSqlJSON(sql, new Object[] { batchnum });
+	}
+	
+	/**
+	 * 获取一批万人名单数据，仅获取前台图标展示需要的字段
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/playersRankQuery", produces = "text/html;charset=UTF-8")
+	@ResponseBody
+	public String playersRankQuery(HttpServletRequest request, HttpServletResponse response) {
+		String cardno = request.getParameter("cardno");
+		if(cardno==null || cardno.length()==0)
+			return returnPlayerQuotaQueryJson(-1,"证件号为空");
+	
+		return returnPlayerQuotaQueryJson(tsService.getPlayersRank(cardno),"");
 	}
 }

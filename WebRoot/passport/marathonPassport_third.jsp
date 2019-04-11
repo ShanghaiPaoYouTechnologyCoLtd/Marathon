@@ -1,78 +1,29 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath%>" />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+	content="width=drvice-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
 
 <title>中国马拉松护照</title>
+<script src="js/transfromer.js"></script>
 <%@ include file="../staticFiles/globalCSS.html"%>
 <script src="js/jquery.js"></script>
 <script src="js/iconfont.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="css/jquery.toastmessage.css" />
-<style>
-select {
-	width: 24%;
-	margin-right: 10px;
-	height: 34px;
-	padding: 6px 12px;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #555;
-	background-color: #fff;
-	background-image: none;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
-		ease-in-out .15s;
-	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
-		.15s;
-	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.title_a a:hover {
-	color: blue;
-	text-decoration: underline;
-}
-
-.modal-body table {
-	font-size: 17px;
-}
-
-.modal-body table td {
-	border: none !important;
-	border-top: 1px solid #dddddd !important;
-	padding-top: 7px;
-}
-
-.modal-body table tr td:first-child {
-	text-align: right;
-	width: 25%;
-}
-
-.td_title {
-	text-align: left;
-	font-size: 14px;
-	line-height: 20px;
-	color: red;
-}
-</style>
+<link href="passport/passportBuy.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="display:none">
 	<div class="kode_wrapper">
 		<%@ include file="../staticFiles/head.html"%>
 		<div class="kode_content_wrap section">
@@ -150,11 +101,27 @@ select {
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="selectIdType" class="col-sm-2 control-label">*和作赛事</label>
+											<label for="selectIdType" class="col-sm-2 control-label">*合作赛事</label>
 											<div class="col-sm-10">
 												<select class="form-control" id="sel_race">
 													<option value='-1'>赛事获取中...</option>
 												</select>
+											</div>
+										</div>
+										<div class="form-group" id="div-pack">
+											<label for="selectPaymentMethod"
+												class="col-sm-2 control-label">*选择包装<br />
+											</label>
+											<div class="col-sm-10" id="div-pack2">
+												<input type="radio" name='rad-pack' checked id="rad-pack-1" value="0"/><label
+													style="margin-left: 10px; margin-right: 30px;"
+													for="rad-pack-1"><img
+													src="images/paylogo/pack1.png" width="45" height='60'>
+													平装版（<span id="sp-pack-normal-price" style="float:none">28</span>元）</label><input
+													type="radio" name='rad-pack' id="rad-pack-2"  value="0"/><label
+													for="rad-pack-2" style="margin-left: 10px; "> <img
+													src="images/paylogo/pack2.png" width="80" height='60'>精装版（50.00元）
+												</label>
 											</div>
 										</div>
 										<div class="form-group">
@@ -163,10 +130,11 @@ select {
 												id="sp_price" style="float:none;">50.00</span>)
 											</label>
 											<div class="col-sm-10">
-												<label class="radio-inline"> <input type="radio"
-													name="inlineRadioOptions" class="pay-way-radio"
-													id="rab_zfb" value="zhifubao" checked> <span>
-														<svg class="icon pay-way-icon" aria-hidden="true">
+												<label class="radio-inline" id="lbl_alipay"> <input
+													type="radio" name="inlineRadioOptions"
+													class="pay-way-radio" id="rab_zfb" value="zhifubao" checked>
+													<span> <svg class="icon pay-way-icon"
+															aria-hidden="true">
                                                     <use
 																xlink:href="#icon-zhifubaozhifu"></use>
                                                 </svg>
@@ -186,7 +154,12 @@ select {
 											<label for="selectPaymentMethod"
 												class="col-sm-2 control-label"></label>
 											<div class="col-sm-10">
-												<p style="color: #b02126;font-weight: 300;">注：本产品为定制产品，一经购买，非质量问题不可退换。</p>
+												<p style="color: #b02126;font-weight: 300;">
+													注：本产品为定制产品，一经购买，非质量问题不可退换。<br />
+													您须前往赛事场地指定地点领取护照,如您未在赛事场地领取，则视为放弃。<br />
+													如有疑问，请咨询客服：021-50897802-615<br/>
+													本次购买会为您免费生成电子护照,查看<a href="#" style="color:blue">《中国马拉松护照注册协议》</a>。
+												</p>
 											</div>
 											<div class="form-group">
 												<div class="col-sm-offset-2 col-sm-10">
@@ -199,6 +172,7 @@ select {
 													class="btn btn-primary passport-sell-btn">去购买</button> -->
 												</div>
 											</div>
+										</div>
 									</form>
 								</div>
 							</div>
@@ -217,7 +191,8 @@ select {
 				method='post' target="_self" id="payWechatform" style="display:none">
 				<input id="pay_wechat_QRCode" name="pay_wechat_QRCode" value="" />
 				<input id="pay_wechat_tradeno" name="pay_wechat_tradeno" value="" />
-				<input id="pay_wechat_fee" name="pay_wechat_fee" value="" />
+				<input id="pay_wechat_fee" name="pay_wechat_fee" value="" /> <input
+					id="pay_wechat_tradetype" name="pay_wechat_tradetype" value="1" />
 			</form>
 			<!-- Modal -->
 			<div class="modal fade" id="div_infoCheck" tabindex="-1"
@@ -262,7 +237,8 @@ select {
 								</tr>
 								<tr>
 									<td colspan="2" class="td_title">*本购买赛事合作购买,护照将会发送到赛事场地。<br />
-										*您须前往赛事场地指定地点领取护照。
+										*您须前往赛事场地指定地点领取护照。 *如您未在赛事场地领取，则视为放弃。<br />
+										*本次购买会为您免费生成电子护照,<a href="#">查看电子护照说明</a>。
 									</td>
 								</tr>
 							</table>
@@ -282,7 +258,6 @@ select {
 			<%@ include file="../staticFiles/foot.html"%>
 		</div>
 	</div>
-	<%@ include file="../staticFiles/globalScript.html"%>
 	<script src="js/distpicker/distpicker.data.min.js"></script>
 	<script src="js/distpicker/distpicker.min.js"></script>
 	<script src="js/iconfont.js"></script>
@@ -291,9 +266,12 @@ select {
 	<script type="text/javascript" src="passport/passportOrder.js"></script>
 	<script>
 		var raceChange = function() {
+			$("#div-pack").hide();
+			$("#rad-pack-1").prop("checked", true)
 			for (var i in races) {
 				if (races[i].ID == $("#sel_race").val()) {
 					$("#sp_price").html(races[i].Price.toFixed(2));
+					$("#sp-pack-normal-price").html(races[i].Price.toFixed(2));
 					var now = new Date();
 					var sDate = new Date(parseInt(races[i].StartTime.time));
 					var eDate = new Date(parseInt(races[i].EndTime.time));
@@ -305,6 +283,9 @@ select {
 						$("#sp_btnTitle").html("*" + races[i].RaceName + "报名已截止,无法购买赛事合作护照。但您可以选择其他赛事继续办理。");
 						buyEnable = false;
 					} else {
+						if (races[i].Pack == 1) { //允许使用礼盒装
+							$("#div-pack").show();
+						}
 						$("#sp_btnTitle").hide();
 						$("#btn_buy").html("立即办理");
 						$("#btn_buy").removeClass("btn-secondary");
@@ -330,7 +311,8 @@ select {
 		var races = {};
 		var url = 'getAllRaces.do';
 		var params = {
-			currentID : rID
+			currentID : rID,
+			isAll : 0
 		};
 		async(url, params, function(res) {
 			var result = {};
@@ -358,6 +340,8 @@ select {
 					if (!flag && rID == result[i].ID)
 						flag = true;
 				}
+				if (rID == null || rID.length == 0)
+					flag = true; //传入空ID，搜索所有
 				if (!flag) {
 					$("#sel_race").html("<option value='-1'>未找到您对应的赛事,请重新操作！！</option>");
 					$("#sel_race").val(-1);
@@ -378,6 +362,14 @@ select {
 		}, 'POST');
 	
 		$("#sel_race").change(raceChange);
+	
+		$("#div-pack2").click(function() {
+			if ($("#rad-pack-1").is(":checked")) {
+				$("#sp_price").html($("#sp-pack-normal-price").html());
+			} else {
+				$("#sp_price").html("50.00");
+			}
+		});
 	</script>
 </body>
 </html>

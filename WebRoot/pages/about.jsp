@@ -12,8 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>中国马拉松赛事联盟-关于我们</title>
-     <%@ include file="../staticFiles/globalCSS.html"%>
-         <script src="js/jquery.js"></script>
+<%@ include file="../staticFiles/globalCSS.html"%>
+<%@ include file="../staticFiles/globalScript.html"%>
   </head>
 
   <body>
@@ -43,10 +43,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="kf_featured_slider">
                             <!--Heading 1 Start-->
                             <h6 class="kf_hd1">
-                                <span>上海跑友信息科技有限公司</span>
+                                <span>跑友（上海）体育发展有限公司</span>
                             </h6>
-                            <p>中国马拉松赛事联盟隶属于上海跑友信息科技有限公司<br/>
-上海跑友信息科技有限公司是一家拥有国际、国内顶级赛事资源的专业体育平台公司。公司同时也是中国田径协会 中国马拉松赛事联盟独家官方运营商。</p>
+                            <p>中国马拉松赛事联盟隶属于跑友（上海）体育发展有限公司<br/>
+跑友（上海）体育发展有限公司是一家拥有国际、国内顶级赛事资源的专业体育平台公司。公司同时也是中国田径协会 中国马拉松赛事联盟独家官方运营商。</p>
                             <div class="row contact-details-container">
                                                        
                                 <div class="col-md-6">
@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <i class="glyphicon glyphicon-phone-alt"></i>
                                     </div>
                                     <h3>客服电话</h3>
-                                    <p>021-50897802-601</p>
+                                    <p>021-50897802-615</p>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="icon-container"><i class="glyphicon glyphicon-envelope"></i></div>
@@ -82,12 +82,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <h6 class="kf_hd1">
                                 <span>中国马拉松赛事联盟公众号</span>
                             </h6>
-                            <!--Heading 1 END-->
                             <div class="col-row">
                                 <img src="extra-images/wechat_code.jpg" class="center-block img-rounded" style="width: 60%;">
                             </div>
                         </div>
-                        <!--Widget Add 3 End-->
                     </aside>
                 </div>
             </div>

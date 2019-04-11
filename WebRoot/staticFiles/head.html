@@ -1,49 +1,87 @@
-﻿
+﻿<style>
+.dropdown-menu {
+	border-color: #f2f2f2 !important;
+}
+
+.dropdown-menu a {
+	color: #999999 !important;
+}
+
+.dl-menuwrapper ul {
+	background-color: #e5e5e5 !important;
+}
+
+.dl-menuwrapper ul a {
+	color: black !important;
+}
+</style>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/downCount.js"></script>
+<script src="js/waypoints-min.js"></script>
+<script src="js/jprogress.js" type="text/javascript"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/custom.js"></script>
+<script type="text/javascript" src="js/jquery.toastmessage.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script src="js/dl-menu/jquery.dlmenu.js"></script>
+<script src="js/dl-menu/modernizr.custom.js"></script>
+<link rel="shortcut icon" href="cml.ico"/>
 <header class="kode_header_2" id="kode_header_2">
-		<div class="container">
-			<div class="kode_logo_bar">
-				<div class="logo">
-					<a href="#"> <img src="extra-images\logs\logo.png" alt=""></a>
-				</div>
-				<div class="kode_navigation">
-					<ul class="nav">
+	<div class="container">
+		<div class="kode_logo_bar">
+			<div class="logo">
+				<a href="#"> <img src="extra-images\logs\logo.png" alt="中国马拉松赛事联盟" /></a>
+			</div>
+			<div class="kode_navigation">
+				<ul class="nav">
+					<li><a href="index.jsp" target="_parent">首页</a></li>
+					<li><a href="passport/Instruction/marathonInstructionsNAV.jsp">中国马拉松护照</a></li>
+					<li class="dropdown"><a href="pages/olympicGames.jsp">我要上奥运
+							▪ 中国马拉松大奖赛 ▼</a>
+						<ul class="dropdown-menu">
+							<li><a href="pages/runnerList.jsp">万人名单查询</a></li>
+							<li><a href="pages/tlist/tlistCompare.jsp">在线万人名单比对</a></li>
+						</ul></li>
+					<li><a href="pages/cmlApp.jsp">中国马拉松赛事联盟APP</a></li>
+					<li><a href="pages/about.jsp">关于我们</a></li>
+					<!-- <li><a href="WebSite/personal.html">注册/登录</a></li> -->
+				</ul>
+				<div id="kode-responsive-navigation" class="dl-menuwrapper">
+					<button class="dl-trigger"></button>
+					<ul class="dl-menu">
 						<li><a href="index.jsp" target="_parent">首页</a></li>
-						<li><a href="passport/marathonInstructions.jsp" >中国马拉松护照</a></li>
-						<li><a href="pages/olympicGames.jsp">我要上奥运 ▪ 中国马拉松大奖赛</a></li>
-						<li><a href="pages/cmlApp.jsp">中国马拉松赛事联盟APP</a></li>
-						<li><a href="pages/about.jsp">关于我们</a></li>
-						<!-- <li><a href="WebSite/personal.html">注册/登录</a></li> -->
+						<li><a href="passport/Instruction/marathonInstructions.jsp"
+							target="_parent">中国马拉松护照</a></li>
+						<li class="dropdown"><a href="javascript:;">我要上奥运 ▪
+								中国马拉松大奖赛 ▼</a>
+							<ul class="dropdown-menu">
+								<li><a href="pages/olympicGames.jsp">我要上奥运</a></li>
+								<li><a href="pages/runnerList.jsp">万人名单查询</a></li>
+								<li><a href="pages/tlist/tlistCompare.jsp">在线万人名单比对</a></li>
+							</ul></li>
+						<li><a href="pages/cmlApp.jsp" target="_parent">中国马拉松赛事联盟APP</a></li>
+						<li><a href="pages/about.jsp" target="_parent">关于我们</a></li>
+						<!-- <li><a href="personal.html">注册/登录</a></li> -->
 					</ul>
-					<!--DL Menu Start-->
-					<div id="kode-responsive-navigation" class="dl-menuwrapper">
-						<button class="dl-trigger"></button>
-						<ul class="dl-menu">
-							<li><a href="index.jsp" target="_parent">首页</a></li>
-							<li><a href="passport/marathonInstructions.jsp"
-								target="_parent">中国马拉松护照</a></li>
-							<li><a href="pages/olympicGames.jsp" target="_parent">我要上奥运
-									▪ 中国马拉松大奖赛</a></li>
-							<li><a href="pages/cmlApp.jsp" target="_parent">中国马拉松赛事联盟APP</a></li>
-							<li><a href="pages/about.jsp" target="_parent">关于我们</a></li>
-							<!-- <li><a href="personal.html">注册/登录</a></li> -->
-						</ul>
-					</div>
 				</div>
 			</div>
 		</div>
-	</header>
+	</div>
+</header>
 <script>
-	var links = new Array("index.jsp", "passport", "olympicGames", "cmlApp", "about");
-	var scr = location.href;
-	for (i = 0; i < links.length; i++) {
-		if (scr.indexOf(links[i]) >= 0) {
-			$(".nav a:eq(" + i + ")").addClass("current-item");
-			$(".dl-menu a:eq(" + i + ")").addClass("current-item");
-			break;
-		}
+/* var links = new Array("index.jsp", "passport", "olympicGames", "cmlApp", "about");
+var scr = location.href;
+for (i = 0; i < links.length; i++) {
+	if (scr.indexOf(links[i]) >= 0) {
+		$(".nav a:eq(" + i + ")").addClass("current-item");
+		$(".dl-menu a:eq(" + i + ")").addClass("current-item");
+		break;
 	}
-	
-	window.onload = function() {
+}*/
+
+	$(function() {
 		if (typeof ($.fn.dlmenu) == 'function') {
 			$('#kode-responsive-navigation').each(function() {
 				$(this).find('.dl-submenu').each(function() {
@@ -57,5 +95,7 @@
 				$(this).dlmenu();
 			});
 		}
-	}
-</script> 
+	});
+
+	window.onload = function() {}
+</script>
